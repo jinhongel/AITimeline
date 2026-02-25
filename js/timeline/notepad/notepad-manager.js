@@ -618,6 +618,11 @@ class NotepadManager {
 
         if (this.position.x === null) {
             this.position = this._calcDefaultPosition();
+        } else {
+            const maxX = window.innerWidth - this.size.width;
+            const maxY = window.innerHeight - this.size.height;
+            this.position.x = Math.max(0, Math.min(maxX, this.position.x));
+            this.position.y = Math.max(0, Math.min(maxY, this.position.y));
         }
 
         this.applyState();
