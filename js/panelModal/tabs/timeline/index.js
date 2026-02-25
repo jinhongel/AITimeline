@@ -100,6 +100,24 @@ class TimelineSettingsTab extends BaseTab {
             </div>
         `;
         
+        // 闪记开关
+        const notepadSection = `
+            <div class="setting-section">
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-label">${chrome.i18n.getMessage('notepadTitle')}</div>
+                        <div class="setting-hint">
+                            ${chrome.i18n.getMessage('notepadToggleHint')}
+                        </div>
+                    </div>
+                    <label class="ait-toggle-switch">
+                        <input type="checkbox" id="notepad-toggle">
+                        <span class="ait-toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+        `;
+        
         // 第二部分：箭头键导航开关
         const arrowKeysSection = `
             <div class="setting-section">
@@ -118,7 +136,7 @@ class TimelineSettingsTab extends BaseTab {
             </div>
         `;
         
-        container.innerHTML = chatTimeLabelSection + divider + longPressMarkSection + divider + arrowKeysSection + divider + platformSection;
+        container.innerHTML = chatTimeLabelSection + divider + longPressMarkSection + divider + notepadSection + divider + arrowKeysSection + divider + platformSection;
         
         return container;
     }
@@ -161,7 +179,37 @@ class TimelineSettingsTab extends BaseTab {
             });
         }
         
-        // 1. 处理长按标记重点对话开关（默认开启，无法关闭）
+        // 1. 处理闪记开关（默认开启）
+        const notepadCheckbox = document.getElementById('notepad-toggle');
+        if (notepadCheckbox) {
+            try {
+                const result = await chrome.storage.local.get('aitNotepadEnabled');
+                notepadCheckbox.checked = result.aitNotepadEnabled !== false;
+            } catch (e) {
+                notepadCheckbox.checked = true;
+            }
+            
+            this.addEventListener(notepadCheckbox, 'change', async (e) => {
+                try {
+                    const enabled = e.target.checked;
+                    await chrome.storage.local.set({ aitNotepadEnabled: enabled });
+                    
+                    // 立即更新时间轴上闪记按钮的显隐
+                    const notepadBtn = document.querySelector('.ait-notepad-btn');
+                    if (notepadBtn) {
+                        notepadBtn.style.display = enabled ? 'flex' : 'none';
+                    }
+                    // 关闭时同时收起面板
+                    if (!enabled && window.notepadManager && window.notepadManager.isOpen) {
+                        window.notepadManager.close();
+                    }
+                } catch (e) {
+                    notepadCheckbox.checked = !notepadCheckbox.checked;
+                }
+            });
+        }
+        
+        // 2. 处理长按标记重点对话开关（默认开启，无法关闭）
         const longPressCheckbox = document.getElementById('long-press-mark-toggle');
         if (longPressCheckbox) {
             // 设置为默认开启

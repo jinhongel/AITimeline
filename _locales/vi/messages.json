@@ -355,5 +355,35 @@
   },
   "mermaidViewerHint": {
     "message": "Cuộn để thu phóng · Kéo để di chuyển · ESC để đóng"
+  },
+  "notepadToggleHint": {
+    "message": "Show notepad entry at the bottom of the timeline for quick notes"
+  },
+  "notepadTitle": {
+    "message": "Flash Notes"
+  },
+  "notepadPlaceholder": {
+    "message": "Just write what comes to mind…"
+  },
+  "notepadClose": {
+    "message": "Close"
+  },
+  "notepadAllNotes": {
+    "message": "All Notes"
+  },
+  "notepadNewNote": {
+    "message": "New Note"
+  },
+  "notepadConfirmDeleteTitle": {
+    "message": "Confirm Delete"
+  },
+  "notepadConfirmDeleteContent": {
+    "message": "This cannot be undone. Are you sure?"
+  },
+  "notepadUntitled": {
+    "message": "Untitled"
+  },
+  "notepadYesterday": {
+    "message": "Yesterday"
   }
 }

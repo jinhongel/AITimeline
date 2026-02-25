@@ -424,5 +424,35 @@
   },
   "mermaidViewerHint": {
     "message": "滚轮缩放 · 拖拽平移 · ESC 退出"
+  },
+  "notepadToggleHint": {
+    "message": "在时间轴底部显示闪记入口，随手记录灵感"
+  },
+  "notepadTitle": {
+    "message": "闪记"
+  },
+  "notepadPlaceholder": {
+    "message": "想到什么就写什么，无需排版…"
+  },
+  "notepadClose": {
+    "message": "关闭"
+  },
+  "notepadAllNotes": {
+    "message": "全部笔记"
+  },
+  "notepadNewNote": {
+    "message": "新建笔记"
+  },
+  "notepadConfirmDeleteTitle": {
+    "message": "确认删除"
+  },
+  "notepadConfirmDeleteContent": {
+    "message": "删除后将无法恢复，确定要继续吗？"
+  },
+  "notepadUntitled": {
+    "message": "无标题"
+  },
+  "notepadYesterday": {
+    "message": "昨天"
   }
 }

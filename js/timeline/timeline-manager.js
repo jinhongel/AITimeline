@@ -354,6 +354,37 @@ class TimelineManager {
         // 如果按钮已存在，直接复用，保留原有事件监听器
         this.ui.starredBtn = starredBtn;
         
+        // ✅ 添加闪记按钮（在收藏按钮下方）
+        let notepadBtn = document.querySelector('.ait-notepad-btn');
+        if (!notepadBtn) {
+            notepadBtn = document.createElement('button');
+            notepadBtn.className = 'ait-notepad-btn';
+            notepadBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V16a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-1.3A7 7 0 0 0 12 2Z"/></svg>';
+            notepadBtn.setAttribute('aria-label', 'Notepad');
+            notepadBtn.style.display = 'none';
+            
+            notepadBtn.addEventListener('mouseenter', () => {
+                window.globalTooltipManager.show(
+                    'notepad-btn',
+                    'button',
+                    notepadBtn,
+                    chrome.i18n.getMessage('notepadTitle') || '闪记',
+                    { placement: 'left' }
+                );
+            });
+            
+            notepadBtn.addEventListener('mouseleave', () => {
+                window.globalTooltipManager.hide();
+            });
+            
+            wrapper.appendChild(notepadBtn);
+        }
+        // 恢复激活状态（跨页面导航后按钮重建时同步）
+        if (window.notepadManager && window.notepadManager.isOpen) {
+            notepadBtn.classList.add('active');
+        }
+        this.ui.notepadBtn = notepadBtn;
+        
         // ✅ 收藏按钮使用相对定位，不需要动态计算位置
         
         // ✅ 添加收藏整个聊天的按钮（插入到平台原生UI中）
@@ -512,6 +543,11 @@ class TimelineManager {
         
         const isCollapsed = this.ui.wrapper.classList.toggle('ait-collapsed');
         this.updateToggleButtonIcon(isCollapsed);
+        
+        // 收起时关闭闪记面板
+        if (isCollapsed && window.notepadManager && window.notepadManager.isOpen) {
+            window.notepadManager.close();
+        }
         
         // 保存状态到 localStorage
         try {
@@ -1787,6 +1823,13 @@ class TimelineManager {
         window.eventDelegateManager.on('click', '.timeline-starred-btn', () => {
             if (window.panelModal) {
                 window.panelModal.show('starred');
+            }
+        });
+        
+        // ✅ 闪记按钮点击事件
+        window.eventDelegateManager.on('click', '.ait-notepad-btn', () => {
+            if (window.notepadManager) {
+                window.notepadManager.toggle();
             }
         });
         
@@ -3093,6 +3136,12 @@ class TimelineManager {
         // ✅ 修复：清理收藏按钮
         TimelineUtils.removeElementSafe(this.ui.starredBtn);
         
+        // ✅ 清理闪记按钮，并关闭面板
+        if (window.notepadManager && window.notepadManager.isOpen) {
+            window.notepadManager.close();
+        }
+        TimelineUtils.removeElementSafe(this.ui.notepadBtn);
+        
         // ✅ 清理切换按钮
         TimelineUtils.removeElementSafe(this.ui.toggleBtn);
         
@@ -3594,6 +3643,17 @@ class TimelineManager {
         
         // 始终显示收藏按钮，即使没有收藏记录
         this.ui.starredBtn.style.display = 'flex';
+        
+        // 同步显示闪记按钮（受开关控制，默认开启）
+        if (this.ui.notepadBtn) {
+            try {
+                const result = await chrome.storage.local.get('aitNotepadEnabled');
+                const enabled = result.aitNotepadEnabled !== false;
+                this.ui.notepadBtn.style.display = enabled ? 'flex' : 'none';
+            } catch (e) {
+                this.ui.notepadBtn.style.display = 'flex';
+            }
+        }
         
         // 根据是否有收藏数据来设置不同的颜色状态
         const hasData = await this.hasStarredData();

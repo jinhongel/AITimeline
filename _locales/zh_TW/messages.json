@@ -388,5 +388,35 @@
   },
   "mermaidViewerHint": {
     "message": "滾輪縮放 · 拖曳平移 · ESC 退出"
+  },
+  "notepadToggleHint": {
+    "message": "在時間軸底部顯示閃記入口，隨手記錄靈感"
+  },
+  "notepadTitle": {
+    "message": "閃記"
+  },
+  "notepadPlaceholder": {
+    "message": "想到什麼就寫什麼，無需排版…"
+  },
+  "notepadClose": {
+    "message": "關閉"
+  },
+  "notepadAllNotes": {
+    "message": "全部筆記"
+  },
+  "notepadNewNote": {
+    "message": "新建筆記"
+  },
+  "notepadConfirmDeleteTitle": {
+    "message": "確認刪除"
+  },
+  "notepadConfirmDeleteContent": {
+    "message": "刪除後將無法恢復，確定要繼續嗎？"
+  },
+  "notepadUntitled": {
+    "message": "無標題"
+  },
+  "notepadYesterday": {
+    "message": "昨天"
   }
 }
