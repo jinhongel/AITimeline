@@ -417,12 +417,18 @@
     "message": "Pengembang"
   },
   "aboutDeveloperContent": {
-    "message": "Proyek ini dikelola satu orang, dengan 1-2 versi baru per minggu. Untuk laporan bug atau saran fitur, hubungi melalui salah satu saluran di bawah (pasti dibalas):"
+    "message": "Proyek ini dipelihara oleh saya sendiri, dengan ritme 1–2 versi baru setiap minggu. Untuk melaporkan bug atau menyarankan fitur, hubungi saya melalui salah satu saluran di bawah (saya pasti akan membalas ketika melihatnya):"
   },
   "aboutShareTitle": {
     "message": "Minta bantuan kecil"
   },
   "aboutShareContent": {
     "message": "Jika ekstensi ini membantu, tolong rekomendasikan di X, Reddit atau platform lainnya, dan bagikan ke teman, teman sekelas, atau rekan kerja. Saya mengelola plugin ini sendirian dan tidak bisa meluangkan waktu untuk pemasaran — yang bisa saya lakukan adalah menjaganya tetap berguna dan gratis. Terima kasih banyak. ❤️"
+  },
+  "aboutXhsTip": {
+    "message": "Jika kamu telah memposting artikel atau video rekomendasi berkualitas tentang ekstensi ini di Xiaohongshu, saya dapat membantu mempromosikannya secara gratis agar lebih banyak orang menemukan kontenmu 👇"
+  },
+  "aboutXhsBtn": {
+    "message": "Kirim Link Xiaohongshu"
   }
 }

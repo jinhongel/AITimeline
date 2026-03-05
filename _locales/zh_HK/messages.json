@@ -402,7 +402,7 @@
     "message": "開發者"
   },
   "aboutDeveloperContent": {
-    "message": "這個專案由我一個人維護，保持每週 1～2 個新版本的節奏。如果想回饋 bug 或功能建議，可透過以下任一管道進行回饋（看到一定回覆）："
+    "message": "這個專案由我一個人維護，每週 1～2 個新版本的更新節奏。如果想回饋 bug 或功能建議，可透過以下任一管道進行回饋（我看到一定會回覆）："
   },
   "aboutShareTitle": {
     "message": "想請你幫個忙"
@@ -424,5 +424,11 @@
   },
   "formulaMathMLHint": {
     "message": "點擊公式複製為 MathML 格式，可直接貼到 Word"
+  },
+  "aboutXhsTip": {
+    "message": "如果你在小紅書發布了關於這個插件的推薦文章或視頻，且內容優質，我可以幫你免費投流推廣，讓更多人看到你的內容 👇"
+  },
+  "aboutXhsBtn": {
+    "message": "登記小紅書連結"
   }
 }

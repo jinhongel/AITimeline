@@ -417,12 +417,18 @@
     "message": "Nhà phát triển"
   },
   "aboutDeveloperContent": {
-    "message": "Dự án này do một người duy trì, cập nhật 1-2 phiên bản mới mỗi tuần. Để báo lỗi hoặc góp ý, liên hệ qua các kênh dưới đây (chắc chắn phản hồi):"
+    "message": "Dự án này được tôi duy trì một mình, với nhịp độ 1–2 phiên bản mới mỗi tuần. Để báo lỗi hoặc đề xuất tính năng, hãy liên hệ qua bất kỳ kênh nào bên dưới (tôi chắc chắn sẽ trả lời khi thấy):"
   },
   "aboutShareTitle": {
     "message": "Nhờ giúp một chút"
   },
   "aboutShareContent": {
     "message": "Nếu tiện ích này hữu ích, hãy giới thiệu trên X, Reddit hoặc các nền tảng khác, và chia sẻ với bạn bè, bạn học hoặc đồng nghiệp. Tôi duy trì plugin này một mình, không có thời gian làm marketing — điều tôi có thể làm là giữ cho nó hữu ích và miễn phí. Cảm ơn rất nhiều. ❤️"
+  },
+  "aboutXhsTip": {
+    "message": "Nếu bạn đã đăng bài viết hoặc video giới thiệu chất lượng về tiện ích mở rộng này trên Xiaohongshu, tôi có thể giúp bạn quảng bá miễn phí để nhiều người khám phá nội dung của bạn hơn 👇"
+  },
+  "aboutXhsBtn": {
+    "message": "Gửi liên kết Xiaohongshu"
   }
 }

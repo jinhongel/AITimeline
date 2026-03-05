@@ -65,7 +65,7 @@ class AboutTab extends BaseTab {
                 <div class="about-section-body">
                     <div class="about-section-title">${chrome.i18n.getMessage('aboutDeveloperTitle') || '开发者'}</div>
                     <div class="about-section-content">
-                        ${chrome.i18n.getMessage('aboutDeveloperContent') || '这个项目是我一个人在维护，保持每周 1～2 个新版本的节奏。如果想反馈 bug 或功能建议，可通过以下任一渠道进行反馈（看到一定回复）：'}
+                        ${chrome.i18n.getMessage('aboutDeveloperContent') || '这个项目是我一个人在维护，每周 1～2 个新版本的更新节奏。如果想反馈 bug 或功能建议，可通过以下任一渠道进行反馈（我看到一定会回复）：'}
                         <div class="about-feedback-blocks">
                             <a href="https://chromewebstore.google.com/detail/fgebdnlceacaiaeikopldglhffljjlhh?utm_source=item-share-cb" target="_blank" class="about-feedback-block">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
@@ -92,7 +92,16 @@ class AboutTab extends BaseTab {
                 </div>
                 <div class="about-section-body">
                     <div class="about-section-title">${chrome.i18n.getMessage('aboutShareTitle') || '想请你帮个忙'}</div>
-                    <div class="about-section-content">${chrome.i18n.getMessage('aboutShareContent') || '如果这个插件帮到了你，想请你帮忙在 小红书、X、Reddit 等平台发帖推荐一下，也欢迎分享给朋友、同学、同事，让更多人使用到它。我是一个人维护这个插件，精力有限，无法抽身去做用户增长运营，我能做到的是让这个插件好用又免费，非常感谢。❤️'}</div>
+                    <div class="about-section-content">
+                        ${chrome.i18n.getMessage('aboutShareContent') || '如果这个插件帮到了你，想请你帮忙在 小红书、X、Reddit 等平台发帖推荐一下，也欢迎分享给朋友、同学、同事，让更多人使用到它。我是一个人维护这个插件，精力有限，无法抽身去做用户增长运营，我能做到的是让这个插件好用又免费，非常感谢。❤️'}
+                        <div class="about-xhs-collect">
+                            <div class="about-xhs-collect-tip">${chrome.i18n.getMessage('aboutXhsTip') || '如果你在小红书发布了关于这个插件的推荐文章或视频，且内容优质，我可以帮你免费投流推广，让更多人看到你的内容 👇'}</div>
+                            <a href="https://my.feishu.cn/share/base/form/shrcnm9dxA0OZVK96buotGs1the" target="_blank" class="about-xhs-btn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                ${chrome.i18n.getMessage('aboutXhsBtn') || '登记小红书链接'}
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 

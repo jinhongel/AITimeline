@@ -417,12 +417,18 @@
     "message": "Desarrollador"
   },
   "aboutDeveloperContent": {
-    "message": "Este proyecto lo mantengo yo solo, con 1-2 versiones nuevas por semana. Para reportar bugs o sugerir funciones, contáctame por cualquiera de estos canales (respuesta garantizada):"
+    "message": "Este proyecto lo mantengo yo solo, con un ritmo de 1–2 versiones nuevas por semana. Para reportar un bug o sugerir una función, contáctame por cualquiera de los canales a continuación (te responderé en cuanto lo vea):"
   },
   "aboutShareTitle": {
     "message": "Un pequeño favor"
   },
   "aboutShareContent": {
     "message": "Si esta extensión te ha ayudado, te agradecería que la recomendaras en X, Reddit u otras plataformas, y la compartieras con amigos, compañeros o colegas. Mantengo este plugin solo y no puedo dedicar tiempo al marketing — lo que puedo hacer es mantenerlo útil y gratuito. Muchas gracias. ❤️"
+  },
+  "aboutXhsTip": {
+    "message": "Si has publicado un artículo o video de recomendación de calidad sobre esta extensión en Xiaohongshu, puedo ayudarte a promocionarlo gratis para que más personas descubran tu contenido 👇"
+  },
+  "aboutXhsBtn": {
+    "message": "Enviar enlace de Xiaohongshu"
   }
 }

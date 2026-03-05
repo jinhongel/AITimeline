@@ -153,3 +153,39 @@
     border-color: #d1d5db;
     color: #111827;
 }
+
+/* 小红书投流收集（嵌在想请你帮个忙块内） */
+.about-xhs-collect {
+    margin-top: 12px;
+}
+
+.about-xhs-collect-tip {
+    font-size: 12px;
+    color: #5b21b6;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.about-xhs-collect-tip strong {
+    color: #7c3aed;
+    font-weight: 600;
+}
+
+.about-xhs-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    background: #e11d48;
+    color: #ffffff;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.12s;
+}
+
+.about-xhs-btn:hover {
+    background: #be123c;
+    color: #ffffff;
+}
