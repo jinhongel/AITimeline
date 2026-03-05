@@ -409,5 +409,47 @@
   },
   "notepadYesterday": {
     "message": "Yesterday"
+  },
+  "formulaCopyTypeTitle": {
+    "message": "수식 복사 유형"
+  },
+  "formulaCopyMathML": {
+    "message": "MathML 수식 복사"
+  },
+  "formulaCopyGeneric": {
+    "message": "수식 복사"
+  },
+  "formulaLatexTitle": {
+    "message": "LaTeX 수식 복사"
+  },
+  "formulaLatexHint": {
+    "message": "수식을 클릭하면 LaTeX 형식으로 복사됩니다"
+  },
+  "formulaMathMLTitle": {
+    "message": "MathML 수식 복사"
+  },
+  "formulaMathMLHint": {
+    "message": "수식을 클릭하면 MathML 형식으로 복사되어 Word에 바로 붙여넣기 가능"
+  },
+  "aboutTabName": {
+    "message": "플러그인 소개"
+  },
+  "aboutPluginTitle": {
+    "message": "플러그인 소개"
+  },
+  "aboutPluginContent": {
+    "message": "AI 대화를 위한 생산성 플러그인입니다. 대화 타임라인, 플래시 메모, LaTeX 수식 복사, 사용자 정의 프롬프트 등 다양한 기능을 제공합니다. ChatGPT, Gemini, DeepSeek, Kimi, Claude 등 주요 플랫폼을 지원하며, AI 사용 효율을 배로 높여줍니다."
+  },
+  "aboutDeveloperTitle": {
+    "message": "개발자"
+  },
+  "aboutDeveloperContent": {
+    "message": "이 프로젝트는 혼자서 유지보수하고 있으며, 매주 1~2개의 새 버전을 배포합니다. 버그 신고나 기능 제안은 아래 채널을 통해 연락해 주세요(반드시 답변드립니다):"
+  },
+  "aboutShareTitle": {
+    "message": "부탁드립니다"
+  },
+  "aboutShareContent": {
+    "message": "이 플러그인이 도움이 되었다면, X, Reddit 등의 플랫폼에서 추천해 주시고, 친구나 동료에게도 공유해 주세요. 혼자서 유지보수하는 플러그인이라 마케팅에 시간을 할애할 수 없지만, 좋은 플러그인을 무료로 만들겠습니다. 감사합니다. ❤️"
   }
 }

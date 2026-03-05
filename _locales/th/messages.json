@@ -382,5 +382,47 @@
   },
   "notepadYesterday": {
     "message": "Yesterday"
+  },
+  "formulaCopyTypeTitle": {
+    "message": "ประเภทการคัดลอกสูตร"
+  },
+  "formulaCopyMathML": {
+    "message": "คัดลอกสูตร MathML"
+  },
+  "formulaCopyGeneric": {
+    "message": "คัดลอกสูตร"
+  },
+  "formulaLatexTitle": {
+    "message": "คัดลอกสูตร LaTeX"
+  },
+  "formulaLatexHint": {
+    "message": "คลิกที่สูตรเพื่อคัดลอกในรูปแบบ LaTeX"
+  },
+  "formulaMathMLTitle": {
+    "message": "คัดลอกสูตร MathML"
+  },
+  "formulaMathMLHint": {
+    "message": "คลิกที่สูตรเพื่อคัดลอกในรูปแบบ MathML วางใน Word ได้โดยตรง"
+  },
+  "aboutTabName": {
+    "message": "เกี่ยวกับปลั๊กอิน"
+  },
+  "aboutPluginTitle": {
+    "message": "เกี่ยวกับส่วนขยาย"
+  },
+  "aboutPluginContent": {
+    "message": "ส่วนขยายเพิ่มประสิทธิภาพสำหรับการสนทนา AI มีไทม์ไลน์การสนทนา บันทึกด่วน คัดลอกสูตร LaTeX พรอมต์กำหนดเอง และอีกมากมาย รองรับ ChatGPT, Gemini, DeepSeek, Kimi, Claude และแพลตฟอร์มหลักทั้งหมด เพิ่มประสิทธิภาพการใช้ AI เป็นสองเท่า"
+  },
+  "aboutDeveloperTitle": {
+    "message": "นักพัฒนา"
+  },
+  "aboutDeveloperContent": {
+    "message": "โปรเจกต์นี้ดูแลโดยคนเดียว อัปเดต 1-2 เวอร์ชันต่อสัปดาห์ แจ้งบักหรือเสนอแนะฟีเจอร์ผ่านช่องทางด้านล่าง (ตอบกลับทุกข้อความ):"
+  },
+  "aboutShareTitle": {
+    "message": "ขอความช่วยเหลือ"
+  },
+  "aboutShareContent": {
+    "message": "หากส่วนขยายนี้ช่วยคุณได้ กรุณาแนะนำบน X, Reddit หรือแพลตฟอร์มอื่นๆ และแบ่งปันให้เพื่อน เพื่อนร่วมชั้น หรือเพื่อนร่วมงาน ผมดูแลปลั๊กอินนี้คนเดียว ไม่มีเวลาทำการตลาด สิ่งที่ทำได้คือทำให้มันดีและฟรี ขอบคุณมากครับ ❤️"
   }
 }

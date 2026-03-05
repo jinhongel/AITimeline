@@ -382,5 +382,47 @@
   },
   "notepadYesterday": {
     "message": "Yesterday"
+  },
+  "formulaCopyTypeTitle": {
+    "message": "Jenis salinan rumus"
+  },
+  "formulaCopyMathML": {
+    "message": "Salin rumus MathML"
+  },
+  "formulaCopyGeneric": {
+    "message": "Salin rumus"
+  },
+  "formulaLatexTitle": {
+    "message": "Salin rumus LaTeX"
+  },
+  "formulaLatexHint": {
+    "message": "Klik rumus untuk menyalinnya dalam format LaTeX"
+  },
+  "formulaMathMLTitle": {
+    "message": "Salin rumus MathML"
+  },
+  "formulaMathMLHint": {
+    "message": "Klik rumus untuk menyalinnya dalam format MathML, bisa langsung ditempel di Word"
+  },
+  "aboutTabName": {
+    "message": "Tentang Plugin"
+  },
+  "aboutPluginTitle": {
+    "message": "Tentang ekstensi"
+  },
+  "aboutPluginContent": {
+    "message": "Ekstensi produktivitas untuk percakapan AI, dengan timeline percakapan, catatan cepat, salin rumus LaTeX, prompt kustom, dan banyak lagi. Mendukung ChatGPT, Gemini, DeepSeek, Kimi, Claude dan semua platform utama — dirancang untuk menggandakan efisiensi penggunaan AI."
+  },
+  "aboutDeveloperTitle": {
+    "message": "Pengembang"
+  },
+  "aboutDeveloperContent": {
+    "message": "Proyek ini dikelola satu orang, dengan 1-2 versi baru per minggu. Untuk laporan bug atau saran fitur, hubungi melalui salah satu saluran di bawah (pasti dibalas):"
+  },
+  "aboutShareTitle": {
+    "message": "Minta bantuan kecil"
+  },
+  "aboutShareContent": {
+    "message": "Jika ekstensi ini membantu, tolong rekomendasikan di X, Reddit atau platform lainnya, dan bagikan ke teman, teman sekelas, atau rekan kerja. Saya mengelola plugin ini sendirian dan tidak bisa meluangkan waktu untuk pemasaran — yang bisa saya lakukan adalah menjaganya tetap berguna dan gratis. Terima kasih banyak. ❤️"
   }
 }

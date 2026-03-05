@@ -382,5 +382,47 @@
   },
   "notepadYesterday": {
     "message": "Yesterday"
+  },
+  "formulaCopyTypeTitle": {
+    "message": "Tipo de cópia de fórmula"
+  },
+  "formulaCopyMathML": {
+    "message": "Copiar fórmula MathML"
+  },
+  "formulaCopyGeneric": {
+    "message": "Copiar fórmula"
+  },
+  "formulaLatexTitle": {
+    "message": "Copiar fórmula LaTeX"
+  },
+  "formulaLatexHint": {
+    "message": "Clique numa fórmula para copiá-la em formato LaTeX"
+  },
+  "formulaMathMLTitle": {
+    "message": "Copiar fórmula MathML"
+  },
+  "formulaMathMLHint": {
+    "message": "Clique numa fórmula para copiá-la em formato MathML, colável diretamente no Word"
+  },
+  "aboutTabName": {
+    "message": "Sobre"
+  },
+  "aboutPluginTitle": {
+    "message": "Sobre a extensão"
+  },
+  "aboutPluginContent": {
+    "message": "Extensão de produtividade para conversas com IA, com timeline de conversas, notas rápidas, cópia de fórmulas LaTeX, prompts personalizados e muito mais. Compatível com ChatGPT, Gemini, DeepSeek, Kimi, Claude e todas as principais plataformas — projetada para duplicar a sua eficiência com IA."
+  },
+  "aboutDeveloperTitle": {
+    "message": "Desenvolvedor"
+  },
+  "aboutDeveloperContent": {
+    "message": "Este projeto é mantido por uma só pessoa, com 1-2 novas versões por semana. Para reportar bugs ou sugerir funcionalidades, contacte-me através de um dos canais abaixo (resposta garantida):"
+  },
+  "aboutShareTitle": {
+    "message": "Um pequeno favor"
+  },
+  "aboutShareContent": {
+    "message": "Se esta extensão o ajudou, ficaria grato se a recomendasse no X, Reddit ou outras plataformas, e a partilhasse com amigos, colegas de turma ou de trabalho. Mantenho este plugin sozinho e não consigo dedicar tempo ao marketing — o que posso fazer é mantê-lo útil e gratuito. Muito obrigado. ❤️"
   }
 }

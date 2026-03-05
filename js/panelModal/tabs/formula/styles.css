@@ -12,7 +12,14 @@
 }
 
 /* 设置区块 */
-.setting-section {
+.formula-settings .setting-section {
+    margin-bottom: 12px;
+    background: #f9fafb;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.formula-settings .setting-section:last-child {
     margin-bottom: 0;
 }
 
@@ -23,8 +30,6 @@
     justify-content: space-between;
     gap: 16px;
     padding: 16px;
-    background: #f9fafb;
-    border-radius: 8px;
     transition: background 0.2s;
 }
 
@@ -101,20 +106,17 @@
     box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
-/* ==================== 格式选择区域 ==================== */
+/* ==================== 格式选择区域（内联在 setting-info 中） ==================== */
 
-.format-section {
-    margin-top: 16px;
-    padding: 16px;
-    background: #f9fafb;
-    border-radius: 8px;
+.format-inline {
+    margin-top: 12px;
 }
 
-.format-section-title {
-    font-size: 14px;
+.format-inline-title {
+    font-size: 13px;
     font-weight: 500;
     color: #374151;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .format-options {

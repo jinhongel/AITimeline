@@ -45,6 +45,10 @@ class FormulaManager {
         // ✅ Storage 监听器
         this.storageListener = null;
         
+        // 缓存开关状态
+        this._latexEnabled = true;
+        this._mathmlEnabled = false;
+        
         // 绑定事件处理器
         this.handleMouseEnter = this.handleMouseEnter.bind(this);
         this.handleMouseLeave = this.handleMouseLeave.bind(this);
@@ -71,6 +75,13 @@ class FormulaManager {
         
         this.isEnabled = true;
 
+        // 读取开关状态
+        try {
+            const r = await chrome.storage.local.get(['formulaLatexEnabled', 'formulaMathMLEnabled']);
+            this._latexEnabled = r.formulaLatexEnabled !== false;
+            this._mathmlEnabled = r.formulaMathMLEnabled === true;
+        } catch (e) {}
+
         // ✅ 始终创建降级方案的 tooltip 和反馈元素（以防全局管理器失败）
         this.createTooltip();
         this.createCopyFeedback();
@@ -90,8 +101,10 @@ class FormulaManager {
      */
     async checkIfEnabled() {
         try {
-            const result = await chrome.storage.local.get('formulaEnabled');
-            // 默认开启（!== false）
+            const result = await chrome.storage.local.get(['formulaEnabled', 'formulaLatexEnabled', 'formulaMathMLEnabled']);
+            const latexOn = result.formulaLatexEnabled !== false;
+            const mathmlOn = result.formulaMathMLEnabled === true;
+            if (!latexOn && !mathmlOn) return false;
             return result.formulaEnabled !== false;
         } catch (e) {
             console.error('[FormulaManager] Failed to check if enabled:', e);
@@ -106,9 +119,16 @@ class FormulaManager {
      */
     attachStorageListener() {
         this.storageListener = (changes, areaName) => {
-            if (areaName === 'local' && changes.formulaEnabled) {
+            if (areaName !== 'local') return;
+            if (changes.formulaEnabled) {
                 const newValue = changes.formulaEnabled.newValue;
                 console.log('[FormulaManager] Feature enabled changed to:', newValue !== false);
+            }
+            if (changes.formulaLatexEnabled) {
+                this._latexEnabled = changes.formulaLatexEnabled.newValue !== false;
+            }
+            if (changes.formulaMathMLEnabled) {
+                this._mathmlEnabled = changes.formulaMathMLEnabled.newValue === true;
             }
         };
         
@@ -134,7 +154,7 @@ class FormulaManager {
         this.tooltip = document.createElement('div');
         this.tooltip.className = 'timeline-tooltip-base formula-tooltip';
         this.tooltip.setAttribute('data-placement', 'top');
-        this.tooltip.textContent = chrome.i18n.getMessage('mvxkpz');
+        this.tooltip.textContent = this._getTooltipText();
         
         // 设置颜色（根据当前主题模式）
         const isDarkMode = document.documentElement.classList.contains('dark');
@@ -220,8 +240,7 @@ class FormulaManager {
                 // 使用全局管理器
                 const formulaId = 'formula-' + Date.now();
                 
-                // 获取 tooltip 文本
-                const tooltipText = chrome.i18n.getMessage('mvxkpz');
+                const tooltipText = this._getTooltipText();
                 
                 window.globalTooltipManager.show(
                     formulaId,
@@ -276,49 +295,113 @@ class FormulaManager {
      */
     async handleClick(e) {
         const formulaElement = e.currentTarget;
-        
-        // 直接从属性读取 LaTeX 源码（已在 attachFormulaListeners 中提取并存储）
-        const latexCode = formulaElement.getAttribute('data-latex-source');
-        
-        if (!latexCode) {
-            // 防御性检查（理论上不应该发生）
-            console.warn('Formula element missing data-latex-source attribute', formulaElement);
-            this.showCopyFeedback('⚠ 无法获取公式', formulaElement, true);
-            return;
+
+        // 隐藏 tooltip
+        if (typeof window.globalTooltipManager !== 'undefined') {
+            window.globalTooltipManager.hide(true);
+        } else {
+            this.hideTooltip();
         }
 
-        // 检查 Clipboard API 是否可用
-        if (!navigator.clipboard || !navigator.clipboard.writeText) {
-            console.error('Clipboard API 不可用');
-            this.showCopyFeedback('⚠ 浏览器不支持', formulaElement, true);
-            return;
-        }
+        if (!this._latexEnabled && !this._mathmlEnabled) return;
 
+        const bothEnabled = this._latexEnabled && this._mathmlEnabled;
+
+        if (bothEnabled) {
+            if (window.globalDropdownManager) {
+                const rect = formulaElement.getBoundingClientRect();
+                const dropdownWidth = 210;
+                const centerX = rect.left + rect.width / 2 - dropdownWidth / 2;
+                const virtualTrigger = document.createElement('div');
+                virtualTrigger.style.cssText = `position:fixed;left:${centerX}px;top:${rect.top}px;width:${dropdownWidth}px;height:0;pointer-events:none;`;
+                document.body.appendChild(virtualTrigger);
+
+                window.globalDropdownManager.show({
+                    trigger: virtualTrigger,
+                    items: [
+                        {
+                            label: chrome.i18n.getMessage('mvxkpz') || '复制 LaTeX 公式',
+                            icon: '📐',
+                            onClick: () => this._copyAsLatex(formulaElement)
+                        },
+                        {
+                            label: chrome.i18n.getMessage('formulaCopyMathML') || '复制 MathML 公式',
+                            icon: '📊',
+                            onClick: () => this._copyAsMathML(formulaElement)
+                        }
+                    ],
+                    position: 'top-left',
+                    width: dropdownWidth,
+                    className: 'formula-dropdown'
+                });
+
+                setTimeout(() => virtualTrigger.remove(), 100);
+            }
+        } else if (this._mathmlEnabled) {
+            await this._copyAsMathML(formulaElement);
+        } else if (this._latexEnabled) {
+            await this._copyAsLatex(formulaElement);
+        }
+    }
+
+    /**
+     * 复制为 LaTeX
+     */
+    async _copyAsLatex(formulaElement) {
         try {
-            // 读取用户设置的格式
+            const latexCode = formulaElement.getAttribute('data-latex-source');
+            if (!latexCode) {
+                this.showCopyFeedback('⚠ 无法获取公式', formulaElement, true);
+                return;
+            }
             const result = await chrome.storage.local.get('formulaFormat');
             const formatId = result.formulaFormat || 'none';
-            
-            // 应用格式模板
-            const formattedCode = applyFormulaFormat(latexCode, formatId);
-            
-            // 复制格式化后的 LaTeX 源码
-            await navigator.clipboard.writeText(formattedCode);
-            
-            // 显示成功反馈
-            const successMsg = chrome.i18n.getMessage('xpzmvk');
-            this.showCopyFeedback(successMsg, formulaElement, false);
-            
-            // 隐藏 tooltip（使用统一的隐藏逻辑）
-            if (typeof window.globalTooltipManager !== 'undefined') {
-                window.globalTooltipManager.hide(true);  // 立即隐藏
-            } else {
-                this.hideTooltip();
-            }
+            const formatted = applyFormulaFormat(latexCode, formatId);
+            await navigator.clipboard.writeText(formatted);
+            this.showCopyFeedback(chrome.i18n.getMessage('xpzmvk'), formulaElement, false);
         } catch (err) {
-            console.error('复制公式失败:', err);
+            console.error('复制 LaTeX 失败:', err);
             this.showCopyFeedback('⚠ 复制失败', formulaElement, true);
         }
+    }
+
+    /**
+     * 复制为 MathML
+     */
+    async _copyAsMathML(formulaElement) {
+        try {
+            const mathml = LatexExtractor.extractMathML(formulaElement);
+            if (!mathml) {
+                this.showCopyFeedback('⚠ 无法获取 MathML', formulaElement, true);
+                return;
+            }
+            if (navigator.clipboard.write) {
+                const htmlContent = `<html xmlns:mml="http://www.w3.org/1998/Math/MathML"><body>${mathml}</body></html>`;
+                const clipboardItem = new ClipboardItem({
+                    'text/plain': new Blob([mathml], { type: 'text/plain' }),
+                    'text/html': new Blob([htmlContent], { type: 'text/html' })
+                });
+                await navigator.clipboard.write([clipboardItem]);
+            } else {
+                await navigator.clipboard.writeText(mathml);
+            }
+            this.showCopyFeedback(chrome.i18n.getMessage('xpzmvk'), formulaElement, false);
+        } catch (err) {
+            console.error('复制 MathML 失败:', err);
+            this.showCopyFeedback('⚠ 复制失败', formulaElement, true);
+        }
+    }
+
+    /**
+     * 根据开关状态返回 tooltip 文案
+     */
+    _getTooltipText() {
+        if (this._latexEnabled && this._mathmlEnabled) {
+            return chrome.i18n.getMessage('formulaCopyGeneric') || '复制公式';
+        } else if (this._mathmlEnabled) {
+            return chrome.i18n.getMessage('formulaCopyMathML') || '复制 MathML 公式';
+        }
+        return chrome.i18n.getMessage('mvxkpz') || '复制 LaTeX 公式';
     }
 
 
@@ -330,6 +413,9 @@ class FormulaManager {
 
         // 检查元素是否还在 DOM 中
         if (!formulaElement.isConnected) return;
+
+        // 动态更新 tooltip 文案
+        this.tooltip.textContent = this._getTooltipText();
 
         // 清除之前的隐藏定时器
         if (this.tooltipTimer) {

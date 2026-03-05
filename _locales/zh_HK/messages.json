@@ -287,6 +287,12 @@
   "formulaFormatTitle": {
     "message": "選擇複製格式"
   },
+  "formulaCopyTypeTitle": {
+    "message": "複製公式類型"
+  },
+  "formulaCopyMathML": {
+    "message": "複製 MathML 公式"
+  },
   "importSuccess": {
     "message": "匯入成功"
   },
@@ -382,5 +388,41 @@
   },
   "notepadYesterday": {
     "message": "昨天"
+  },
+  "aboutTabName": {
+    "message": "關於插件"
+  },
+  "aboutPluginTitle": {
+    "message": "插件簡介"
+  },
+  "aboutPluginContent": {
+    "message": "專門為 AI 對話開發的提效插件，擁有對話時間軸、閃記、複製 LaTeX 公式、自訂提示詞等超多功能。支援 ChatGPT、Gemini、DeepSeek、Kimi、Claude 等主流平台，它的使命是助你使用 AI 的效率翻倍。"
+  },
+  "aboutDeveloperTitle": {
+    "message": "開發者"
+  },
+  "aboutDeveloperContent": {
+    "message": "這個專案由我一個人維護，保持每週 1～2 個新版本的節奏。如果想回饋 bug 或功能建議，可透過以下任一管道進行回饋（看到一定回覆）："
+  },
+  "aboutShareTitle": {
+    "message": "想請你幫個忙"
+  },
+  "aboutShareContent": {
+    "message": "如果這個插件幫到了你，想請你幫忙在 X、Reddit 等平台發帖推薦一下，也歡迎分享給朋友、同學、同事，讓更多人使用到它。我是一個人維護這個插件，精力有限，無法抽身去做用戶增長運營，我能做到的是讓這個插件好用又免費，非常感謝。❤️"
+  },
+  "formulaCopyGeneric": {
+    "message": "複製公式"
+  },
+  "formulaLatexTitle": {
+    "message": "複製 LaTeX 公式"
+  },
+  "formulaLatexHint": {
+    "message": "點擊公式複製為 LaTeX 格式"
+  },
+  "formulaMathMLTitle": {
+    "message": "複製 MathML 公式"
+  },
+  "formulaMathMLHint": {
+    "message": "點擊公式複製為 MathML 格式，可直接貼到 Word"
   }
 }

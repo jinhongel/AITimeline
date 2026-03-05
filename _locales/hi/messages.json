@@ -382,5 +382,47 @@
   },
   "notepadYesterday": {
     "message": "Yesterday"
+  },
+  "formulaCopyTypeTitle": {
+    "message": "सूत्र कॉपी प्रकार"
+  },
+  "formulaCopyMathML": {
+    "message": "MathML सूत्र कॉपी करें"
+  },
+  "formulaCopyGeneric": {
+    "message": "सूत्र कॉपी करें"
+  },
+  "formulaLatexTitle": {
+    "message": "LaTeX सूत्र कॉपी करें"
+  },
+  "formulaLatexHint": {
+    "message": "सूत्र पर क्लिक करके LaTeX में कॉपी करें"
+  },
+  "formulaMathMLTitle": {
+    "message": "MathML सूत्र कॉपी करें"
+  },
+  "formulaMathMLHint": {
+    "message": "सूत्र पर क्लिक करके MathML में कॉपी करें, Word में सीधे पेस्ट करें"
+  },
+  "aboutTabName": {
+    "message": "प्लगइन के बारे में"
+  },
+  "aboutPluginTitle": {
+    "message": "एक्सटेंशन के बारे में"
+  },
+  "aboutPluginContent": {
+    "message": "AI संवाद के लिए उत्पादकता एक्सटेंशन, जिसमें संवाद टाइमलाइन, फ्लैश मेमो, LaTeX सूत्र कॉपी, कस्टम प्रॉम्प्ट और बहुत कुछ शामिल है। ChatGPT, Gemini, DeepSeek, Kimi, Claude और सभी प्रमुख प्लेटफॉर्मों के साथ संगत — AI उपयोग की दक्षता को दोगुना करने के लिए डिज़ाइन किया गया।"
+  },
+  "aboutDeveloperTitle": {
+    "message": "डेवलपर"
+  },
+  "aboutDeveloperContent": {
+    "message": "यह प्रोजेक्ट एक व्यक्ति द्वारा मैन्टेन किया जाता है, हर हफ्ते 1-2 नए वर्शन। बग रिपोर्ट या सुझाव के लिए नीचे किसी भी चैनल से संपर्क करें (जवाब पक्का):"
+  },
+  "aboutShareTitle": {
+    "message": "एक छोटी सी मदद"
+  },
+  "aboutShareContent": {
+    "message": "अगर यह एक्सटेंशन आपके काम आया, तो कृपया X, Reddit या अन्य प्लेटफॉर्म पर सिफारिश करें, और दोस्तों, सहपाठियों या सहकर्मियों के साथ शेयर करें। मैं अकेले इस प्लगइन को मैन्टेन करता हूँ, मार्केटिंग के लिए समय नहीं है — जो मैं कर सकता हूँ वह है इसे अच्छा और मुफ्त बनाए रखना। बहुत धन्यवाद। ❤️"
   }
 }

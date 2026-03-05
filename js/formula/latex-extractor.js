@@ -105,5 +105,103 @@ class LatexExtractor {
         // 无法获取公式
         return null;
     }
+
+    /**
+     * 从公式元素中提取 MathML
+     * temml 作为 content_script 直接加载，同步可用
+     * 
+     * @param {Element} formulaElement - 公式 DOM 元素
+     * @returns {string|null} - MathML XML 字符串，失败返回 null
+     */
+    static extractMathML(formulaElement) {
+        if (!formulaElement) return null;
+
+        const latexSource = formulaElement.getAttribute('data-latex-source');
+        if (latexSource) {
+            const generated = LatexExtractor.generateMathML(latexSource);
+            if (generated) return generated;
+        }
+
+        return null;
+    }
+
+    /**
+     * 用 temml 将 LaTeX 转换为 MathML
+     * @param {string} latex - LaTeX 源码
+     * @returns {string|null}
+     */
+    static generateMathML(latex) {
+        if (!latex) return null;
+
+        try {
+            if (typeof temml !== 'undefined' && temml.renderToString) {
+                const rawMathML = temml.renderToString(latex, {
+                    displayMode: false,
+                    xml: true,
+                    annotate: false,
+                    throwOnError: false,
+                    trust: false
+                });
+
+                const cleaned = LatexExtractor.cleanMathML(rawMathML);
+                return LatexExtractor.toWordMathML(cleaned);
+            }
+        } catch (e) {
+            console.warn('[LatexExtractor] temml conversion failed:', e);
+        }
+
+        return null;
+    }
+
+    /**
+     * 移除 MathML 中的 annotation 和 semantics 包装
+     */
+    static cleanMathML(mathml) {
+        return mathml
+            .replace(/<annotation(?:-xml)?[\s\S]*?<\/annotation(?:-xml)?>/g, '')
+            .replace(/<semantics>\s*([\s\S]*?)\s*<\/semantics>/g, '$1');
+    }
+
+    /**
+     * 转换为 Word 兼容的 MathML（添加 mml: 前缀）
+     */
+    static toWordMathML(mathml) {
+        const MATHML_NS = 'http://www.w3.org/1998/Math/MathML';
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(
+            `<root xmlns:mml="${MATHML_NS}">${mathml}</root>`,
+            'application/xml'
+        );
+        const mathEl = doc.querySelector('math');
+        if (!mathEl) return mathml;
+
+        const SKIP_ATTRS = new Set(['xmlns', 'class', 'style']);
+
+        const serialize = (node) => {
+            if (node.nodeType === Node.TEXT_NODE) return node.textContent;
+            if (node.nodeType !== Node.ELEMENT_NODE) return '';
+
+            const tag = 'mml:' + node.localName;
+            let attrs = '';
+
+            if (node.localName === 'math') {
+                attrs += ` xmlns:mml="${MATHML_NS}" display="block"`;
+            }
+
+            for (const attr of node.attributes) {
+                if (SKIP_ATTRS.has(attr.name)) continue;
+                attrs += ` ${attr.name}="${attr.value}"`;
+            }
+
+            let children = '';
+            for (const child of node.childNodes) {
+                children += serialize(child);
+            }
+
+            return `<${tag}${attrs}>${children}</${tag}>`;
+        };
+
+        return serialize(mathEl);
+    }
 }
 

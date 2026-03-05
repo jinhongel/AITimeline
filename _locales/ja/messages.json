@@ -409,5 +409,47 @@
   },
   "notepadYesterday": {
     "message": "Yesterday"
+  },
+  "formulaCopyTypeTitle": {
+    "message": "数式コピーの種類"
+  },
+  "formulaCopyMathML": {
+    "message": "MathML 数式をコピー"
+  },
+  "formulaCopyGeneric": {
+    "message": "数式をコピー"
+  },
+  "formulaLatexTitle": {
+    "message": "LaTeX 数式をコピー"
+  },
+  "formulaLatexHint": {
+    "message": "数式をクリックすると LaTeX 形式でコピーされます"
+  },
+  "formulaMathMLTitle": {
+    "message": "MathML 数式をコピー"
+  },
+  "formulaMathMLHint": {
+    "message": "数式をクリックすると MathML 形式でコピーされ、Word に直接貼り付け可能"
+  },
+  "aboutTabName": {
+    "message": "プラグインについて"
+  },
+  "aboutPluginTitle": {
+    "message": "プラグイン紹介"
+  },
+  "aboutPluginContent": {
+    "message": "AI 会話専用の効率化プラグイン。会話タイムライン、フラッシュメモ、LaTeX 数式コピー、カスタムプロンプトなど多数の機能を搭載。ChatGPT、Gemini、DeepSeek、Kimi、Claude など主要プラットフォームに対応し、AI の使用効率を倍増させます。"
+  },
+  "aboutDeveloperTitle": {
+    "message": "開発者"
+  },
+  "aboutDeveloperContent": {
+    "message": "このプロジェクトは私一人でメンテナンスしており、毎週 1〜2 バージョンをリリースしています。バグ報告や機能提案は以下のいずれかのチャネルでお願いします（必ず返信します）："
+  },
+  "aboutShareTitle": {
+    "message": "お願い"
+  },
+  "aboutShareContent": {
+    "message": "このプラグインが役に立ったら、X、Reddit などのプラットフォームで紹介していただけると嬉しいです。友人や同僚への共有も大歓迎です。一人で維持しており、マーケティングに手が回らないので、できることは良いプラグインを無料で作り続けることです。ありがとうございます。❤️"
   }
 }

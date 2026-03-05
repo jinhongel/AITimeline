@@ -382,5 +382,47 @@
   },
   "notepadYesterday": {
     "message": "Yesterday"
+  },
+  "formulaCopyTypeTitle": {
+    "message": "Formel-Kopiertyp"
+  },
+  "formulaCopyMathML": {
+    "message": "MathML-Formel kopieren"
+  },
+  "formulaCopyGeneric": {
+    "message": "Formel kopieren"
+  },
+  "formulaLatexTitle": {
+    "message": "LaTeX-Formel kopieren"
+  },
+  "formulaLatexHint": {
+    "message": "Klicken Sie auf eine Formel, um sie im LaTeX-Format zu kopieren"
+  },
+  "formulaMathMLTitle": {
+    "message": "MathML-Formel kopieren"
+  },
+  "formulaMathMLHint": {
+    "message": "Klicken Sie auf eine Formel, um sie im MathML-Format zu kopieren — direkt in Word einfügbar"
+  },
+  "aboutTabName": {
+    "message": "Über"
+  },
+  "aboutPluginTitle": {
+    "message": "Über diese Erweiterung"
+  },
+  "aboutPluginContent": {
+    "message": "Eine Produktivitätserweiterung für KI-Gespräche mit Zeitleiste, Schnellnotizen, LaTeX-Formelkopie, benutzerdefinierten Prompts und vielem mehr. Unterstützt ChatGPT, Gemini, DeepSeek, Kimi, Claude und alle wichtigen Plattformen — verdoppelt Ihre KI-Effizienz."
+  },
+  "aboutDeveloperTitle": {
+    "message": "Entwickler"
+  },
+  "aboutDeveloperContent": {
+    "message": "Dieses Projekt wird von einer einzelnen Person gepflegt, mit 1–2 neuen Versionen pro Woche. Für Fehlerberichte oder Funktionsvorschläge nutzen Sie bitte einen der folgenden Kanäle (Antwort garantiert):"
+  },
+  "aboutShareTitle": {
+    "message": "Eine kleine Bitte"
+  },
+  "aboutShareContent": {
+    "message": "Wenn Ihnen diese Erweiterung geholfen hat, würde ich mich freuen, wenn Sie sie auf X, Reddit oder anderen Plattformen empfehlen und mit Freunden, Kommilitonen oder Kollegen teilen. Ich pflege dieses Plugin allein und kann keine Zeit für Marketing aufwenden — was ich tun kann, ist es nützlich und kostenlos zu halten. Vielen Dank. ❤️"
   }
 }

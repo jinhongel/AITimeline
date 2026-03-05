@@ -382,5 +382,47 @@
   },
   "notepadYesterday": {
     "message": "Yesterday"
+  },
+  "formulaCopyTypeTitle": {
+    "message": "Loại sao chép công thức"
+  },
+  "formulaCopyMathML": {
+    "message": "Sao chép công thức MathML"
+  },
+  "formulaCopyGeneric": {
+    "message": "Sao chép công thức"
+  },
+  "formulaLatexTitle": {
+    "message": "Sao chép công thức LaTeX"
+  },
+  "formulaLatexHint": {
+    "message": "Nhấp vào công thức để sao chép dạng LaTeX"
+  },
+  "formulaMathMLTitle": {
+    "message": "Sao chép công thức MathML"
+  },
+  "formulaMathMLHint": {
+    "message": "Nhấp vào công thức để sao chép dạng MathML, dán trực tiếp vào Word"
+  },
+  "aboutTabName": {
+    "message": "Giới thiệu"
+  },
+  "aboutPluginTitle": {
+    "message": "Về tiện ích"
+  },
+  "aboutPluginContent": {
+    "message": "Tiện ích nâng cao năng suất cho hội thoại AI, bao gồm dòng thời gian hội thoại, ghi chú nhanh, sao chép công thức LaTeX, prompt tùy chỉnh và nhiều tính năng khác. Hỗ trợ ChatGPT, Gemini, DeepSeek, Kimi, Claude và tất cả nền tảng chính — giúp tăng gấp đôi hiệu suất sử dụng AI."
+  },
+  "aboutDeveloperTitle": {
+    "message": "Nhà phát triển"
+  },
+  "aboutDeveloperContent": {
+    "message": "Dự án này do một người duy trì, cập nhật 1-2 phiên bản mới mỗi tuần. Để báo lỗi hoặc góp ý, liên hệ qua các kênh dưới đây (chắc chắn phản hồi):"
+  },
+  "aboutShareTitle": {
+    "message": "Nhờ giúp một chút"
+  },
+  "aboutShareContent": {
+    "message": "Nếu tiện ích này hữu ích, hãy giới thiệu trên X, Reddit hoặc các nền tảng khác, và chia sẻ với bạn bè, bạn học hoặc đồng nghiệp. Tôi duy trì plugin này một mình, không có thời gian làm marketing — điều tôi có thể làm là giữ cho nó hữu ích và miễn phí. Cảm ơn rất nhiều. ❤️"
   }
 }

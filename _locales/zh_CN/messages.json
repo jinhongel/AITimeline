@@ -311,6 +311,27 @@
   "formulaFormatTitle": {
     "message": "选择复制格式"
   },
+  "formulaCopyTypeTitle": {
+    "message": "复制公式类型"
+  },
+  "formulaCopyMathML": {
+    "message": "复制 MathML 公式"
+  },
+  "formulaCopyGeneric": {
+    "message": "复制公式"
+  },
+  "formulaLatexTitle": {
+    "message": "复制 LaTeX 公式"
+  },
+  "formulaLatexHint": {
+    "message": "点击公式复制为 LaTeX 格式"
+  },
+  "formulaMathMLTitle": {
+    "message": "复制 MathML 公式"
+  },
+  "formulaMathMLHint": {
+    "message": "点击公式复制为 MathML 格式，可直接粘贴到 Word"
+  },
   "dataSyncTabName": {
     "message": "数据迁移"
   },
@@ -451,5 +472,27 @@
   },
   "notepadYesterday": {
     "message": "昨天"
+  },
+  "aboutTabName": {
+    "message": "关于插件"
+  },
+  "aboutPluginTitle": {
+    "message": "插件简介"
+  },
+  "aboutPluginContent": {
+    "message": "专门为 AI 对话开发的提效插件，拥有 对话时间轴、闪记、复制 LaTeX 公式、自定义提示词等超多功能。支持 ChatGPT、Gemini、DeepSeek、Kimi、Claude 等主流平台，它的使命是助你使用 AI 的效率翻倍。"
+  },
+  "aboutDeveloperTitle": {
+    "message": "开发者"
+  },
+  "aboutDeveloperContent": {
+    "message": "这个项目是我一个人在维护，保持每周 1～2 个新版本的节奏。如果想反馈 bug 或功能建议，可通过以下任一渠道进行反馈（看到一定回复）："
+  },
+
+  "aboutShareTitle": {
+    "message": "想请你帮个忙"
+  },
+  "aboutShareContent": {
+    "message": "如果这个插件帮到了你，想请你帮忙在 小红书、X、Reddit 等平台发帖推荐一下，也欢迎分享给朋友、同学、同事，让更多人使用到它。我是一个人维护这个插件，精力有限，无法抽身去做用户增长运营，我能做到的是让这个插件好用又免费，非常感谢。❤️"
   }
 }

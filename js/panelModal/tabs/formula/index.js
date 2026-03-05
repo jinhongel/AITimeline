@@ -1,10 +1,10 @@
 /**
- * Formula Tab - 复制 LaTeX 公式设置
+ * Formula Tab - 复制公式设置
  * 
  * 功能：
- * - 提供开关控制公式复制功能
- * - 点击公式即可复制为 LaTeX 格式
- * - 支持选择复制格式（无特殊附加、$ ... $、$$ ... $$ 等）
+ * - LaTeX 开关：独立控制 LaTeX 复制（带格式选择）
+ * - MathML 开关：独立控制 MathML 复制（Word 兼容）
+ * - 两者都开启时，点击公式弹出菜单选择
  */
 
 class FormulaTab extends BaseTab {
@@ -18,14 +18,10 @@ class FormulaTab extends BaseTab {
         </svg>`;
     }
     
-    /**
-     * 渲染设置内容
-     */
     render() {
         const container = document.createElement('div');
         container.className = 'formula-settings';
         
-        // 生成格式选项的 HTML
         const formatOptionsHtml = FORMULA_FORMATS.map(format => `
             <label class="format-option">
                 <input type="radio" name="formula-format" value="${format.id}">
@@ -38,22 +34,32 @@ class FormulaTab extends BaseTab {
             <div class="setting-section">
                 <div class="setting-item">
                     <div class="setting-info">
-                        <div class="setting-label">${chrome.i18n.getMessage('zmkvpx')}</div>
-                        <div class="setting-hint">
-                            ${chrome.i18n.getMessage('vxkpzm')}
-                        </div>
+                        <div class="setting-label">${chrome.i18n.getMessage('formulaMathMLTitle') || '复制 MathML 公式'}</div>
+                        <div class="setting-hint">${chrome.i18n.getMessage('formulaMathMLHint') || '点击公式复制为 MathML 格式，可直接粘贴到 Word'}</div>
                     </div>
                     <label class="ait-toggle-switch">
-                        <input type="checkbox" id="formula-toggle">
+                        <input type="checkbox" id="formula-mathml-toggle">
                         <span class="ait-toggle-slider"></span>
                     </label>
                 </div>
             </div>
             
-            <div class="setting-section format-section" id="format-section" style="display: none;">
-                <div class="format-section-title">${chrome.i18n.getMessage('formulaFormatTitle') || '选择复制格式'}</div>
-                <div class="format-options">
-                    ${formatOptionsHtml}
+            <div class="setting-section">
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-label">${chrome.i18n.getMessage('formulaLatexTitle') || '复制 LaTeX 公式'}</div>
+                        <div class="setting-hint">${chrome.i18n.getMessage('formulaLatexHint') || '点击公式复制为 LaTeX 格式'}</div>
+                        <div class="format-inline" id="format-section" style="display: none;">
+                            <div class="format-inline-title">${chrome.i18n.getMessage('formulaFormatTitle') || '选择复制格式'}</div>
+                            <div class="format-options">
+                                ${formatOptionsHtml}
+                            </div>
+                        </div>
+                    </div>
+                    <label class="ait-toggle-switch">
+                        <input type="checkbox" id="formula-latex-toggle">
+                        <span class="ait-toggle-slider"></span>
+                    </label>
                 </div>
             </div>
         `;
@@ -61,68 +67,77 @@ class FormulaTab extends BaseTab {
         return container;
     }
     
-    /**
-     * Tab 激活时加载状态
-     */
     async mounted() {
         super.mounted();
         
-        const checkbox = document.getElementById('formula-toggle');
+        const latexToggle = document.getElementById('formula-latex-toggle');
+        const mathmlToggle = document.getElementById('formula-mathml-toggle');
         const formatSection = document.getElementById('format-section');
         const formatRadios = document.querySelectorAll('input[name="formula-format"]');
         
-        if (!checkbox) return;
+        if (!latexToggle || !mathmlToggle) return;
         
-        // 读取当前状态
         try {
-            const result = await chrome.storage.local.get(['formulaEnabled', 'formulaFormat']);
+            const result = await chrome.storage.local.get(['formulaLatexEnabled', 'formulaMathMLEnabled', 'formulaFormat']);
             
-            // 默认值为 true（开启）
-            const isEnabled = result.formulaEnabled !== false;
-            checkbox.checked = isEnabled;
+            const latexEnabled = result.formulaLatexEnabled !== false;
+            const mathmlEnabled = result.formulaMathMLEnabled === true;
             
-            // 显示/隐藏格式选择区域
+            latexToggle.checked = latexEnabled;
+            mathmlToggle.checked = mathmlEnabled;
+            
             if (formatSection) {
-                formatSection.style.display = isEnabled ? 'block' : 'none';
+                formatSection.style.display = latexEnabled ? 'block' : 'none';
             }
             
-            // 设置格式选中状态（默认 'none'）
             const currentFormat = result.formulaFormat || 'none';
             formatRadios.forEach(radio => {
                 radio.checked = radio.value === currentFormat;
             });
         } catch (e) {
             console.error('[FormulaTab] Failed to load state:', e);
-            checkbox.checked = true;
-            if (formatSection) {
-                formatSection.style.display = 'block';
-            }
+            latexToggle.checked = true;
+            mathmlToggle.checked = false;
         }
         
-        // 监听开关变化
-        this.addEventListener(checkbox, 'change', async (e) => {
+        this.addEventListener(latexToggle, 'change', async (e) => {
             try {
                 const enabled = e.target.checked;
-                
-                // 保存到 Storage
-                await chrome.storage.local.set({ formulaEnabled: enabled });
-                
-                // 显示/隐藏格式选择区域
+                await chrome.storage.local.set({ formulaLatexEnabled: enabled });
                 if (formatSection) {
                     formatSection.style.display = enabled ? 'block' : 'none';
                 }
+                // 至少保持一个开启
+                if (!enabled && !mathmlToggle.checked) {
+                    await chrome.storage.local.set({ formulaEnabled: false });
+                } else {
+                    await chrome.storage.local.set({ formulaEnabled: true });
+                }
             } catch (e) {
                 console.error('[FormulaTab] Failed to save state:', e);
-                checkbox.checked = !checkbox.checked;
+                latexToggle.checked = !latexToggle.checked;
             }
         });
         
-        // 监听格式选择变化
+        this.addEventListener(mathmlToggle, 'change', async (e) => {
+            try {
+                const enabled = e.target.checked;
+                await chrome.storage.local.set({ formulaMathMLEnabled: enabled });
+                if (!enabled && !latexToggle.checked) {
+                    await chrome.storage.local.set({ formulaEnabled: false });
+                } else {
+                    await chrome.storage.local.set({ formulaEnabled: true });
+                }
+            } catch (e) {
+                console.error('[FormulaTab] Failed to save state:', e);
+                mathmlToggle.checked = !mathmlToggle.checked;
+            }
+        });
+        
         formatRadios.forEach(radio => {
             this.addEventListener(radio, 'change', async (e) => {
                 try {
-                    const formatId = e.target.value;
-                    await chrome.storage.local.set({ formulaFormat: formatId });
+                    await chrome.storage.local.set({ formulaFormat: e.target.value });
                 } catch (e) {
                     console.error('[FormulaTab] Failed to save format:', e);
                 }
@@ -130,9 +145,6 @@ class FormulaTab extends BaseTab {
         });
     }
     
-    /**
-     * Tab 卸载时清理
-     */
     unmounted() {
         super.unmounted();
     }

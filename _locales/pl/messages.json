@@ -382,5 +382,47 @@
   },
   "notepadYesterday": {
     "message": "Yesterday"
+  },
+  "formulaCopyTypeTitle": {
+    "message": "Typ kopiowania formuły"
+  },
+  "formulaCopyMathML": {
+    "message": "Kopiuj formułę MathML"
+  },
+  "formulaCopyGeneric": {
+    "message": "Kopiuj formułę"
+  },
+  "formulaLatexTitle": {
+    "message": "Kopiuj formułę LaTeX"
+  },
+  "formulaLatexHint": {
+    "message": "Kliknij formułę, aby skopiować ją w formacie LaTeX"
+  },
+  "formulaMathMLTitle": {
+    "message": "Kopiuj formułę MathML"
+  },
+  "formulaMathMLHint": {
+    "message": "Kliknij formułę, aby skopiować ją w formacie MathML, można wkleić bezpośrednio do Worda"
+  },
+  "aboutTabName": {
+    "message": "O wtyczce"
+  },
+  "aboutPluginTitle": {
+    "message": "O rozszerzeniu"
+  },
+  "aboutPluginContent": {
+    "message": "Rozszerzenie zwiększające produktywność w rozmowach z AI, z osią czasu rozmów, szybkimi notatkami, kopiowaniem formuł LaTeX, własnymi promptami i wieloma innymi funkcjami. Obsługuje ChatGPT, Gemini, DeepSeek, Kimi, Claude i wszystkie główne platformy — podwaja efektywność korzystania z AI."
+  },
+  "aboutDeveloperTitle": {
+    "message": "Deweloper"
+  },
+  "aboutDeveloperContent": {
+    "message": "Ten projekt jest utrzymywany przez jedną osobę, z 1-2 nowymi wersjami tygodniowo. Zgłoś błąd lub zaproponuj funkcję przez jeden z poniższych kanałów (odpowiedź gwarantowana):"
+  },
+  "aboutShareTitle": {
+    "message": "Mała prośba"
+  },
+  "aboutShareContent": {
+    "message": "Jeśli to rozszerzenie Ci pomogło, będę wdzięczny za polecenie go na X, Reddit lub innych platformach, oraz udostępnienie znajomym, kolegom z klasy lub współpracownikom. Utrzymuję tę wtyczkę sam i nie mogę poświęcać czasu na marketing — mogę jedynie dbać o to, by była użyteczna i bezpłatna. Dziękuję bardzo. ❤️"
   }
 }

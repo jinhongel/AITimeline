@@ -311,6 +311,27 @@
   "formulaFormatTitle": {
     "message": "Select Copy Format"
   },
+  "formulaCopyTypeTitle": {
+    "message": "Formula Copy Type"
+  },
+  "formulaCopyMathML": {
+    "message": "Copy MathML Formula"
+  },
+  "formulaCopyGeneric": {
+    "message": "Copy Formula"
+  },
+  "formulaLatexTitle": {
+    "message": "Copy LaTeX Formula"
+  },
+  "formulaLatexHint": {
+    "message": "Click on a formula to copy it in LaTeX format"
+  },
+  "formulaMathMLTitle": {
+    "message": "Copy MathML Formula"
+  },
+  "formulaMathMLHint": {
+    "message": "Click on a formula to copy it in MathML format, paste directly into Word"
+  },
   "dataSyncTabName": {
     "message": "Data Migration"
   },
@@ -451,5 +472,26 @@
   },
   "notepadYesterday": {
     "message": "Yesterday"
+  },
+  "aboutTabName": {
+    "message": "About"
+  },
+  "aboutPluginTitle": {
+    "message": "About This Extension"
+  },
+  "aboutPluginContent": {
+    "message": "A productivity plugin built for AI conversations, featuring conversation timeline, quick notes, LaTeX formula copying, custom prompts, and more. Works with ChatGPT, Gemini, DeepSeek, Kimi, Claude, and all major platforms — designed to double your AI efficiency."
+  },
+  "aboutDeveloperTitle": {
+    "message": "Developer"
+  },
+  "aboutDeveloperContent": {
+    "message": "This project is maintained by just me, with 1–2 new versions released every week. To report a bug or suggest a feature, reach out through any of the channels below (I will definitely reply):"
+  },
+  "aboutShareTitle": {
+    "message": "A Small Favor"
+  },
+  "aboutShareContent": {
+    "message": "If this extension has been helpful, I'd love it if you could recommend it on X, Reddit, or other platforms, and share it with friends, classmates, or colleagues so more people can discover it. I maintain this plugin solo with limited energy and can't spare time for marketing — what I can do is keep it useful and free. Thank you so much. ❤️"
   }
 }

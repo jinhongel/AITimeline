@@ -60,6 +60,13 @@ html[data-timeline-theme="dark"] .MathJax.formula-interactive.formula-hover {
     white-space: nowrap;
 }
 
+/* 公式 dropdown 菜单：不截断文字 */
+.formula-dropdown .global-dropdown-item-label {
+    overflow: visible;
+    text-overflow: unset;
+    white-space: nowrap;
+}
+
 /* 公式复制反馈样式优化 */
 .timeline-copy-feedback {
     /* 基础样式已定义，这里添加公式特定的优化 */
