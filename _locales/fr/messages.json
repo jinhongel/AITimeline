@@ -413,6 +413,12 @@
   "aboutPluginContent": {
     "message": "Extension de productivité conçue pour les conversations IA, avec timeline de conversation, mémos rapides, copie de formules LaTeX, prompts personnalisés et bien plus. Compatible avec ChatGPT, Gemini, DeepSeek, Kimi, Claude et toutes les grandes plateformes — pour doubler votre efficacité avec l'IA."
   },
+  "aboutDataSecurityTitle": {
+    "message": "Sécurité des données"
+  },
+  "aboutDataSecurityContent": {
+    "message": "Toutes vos données au sein de cette extension sont stockées localement dans votre navigateur ou dans votre Google Drive, sans passer par aucun serveur tiers. L'extension ne collecte, ne télécharge ni ne partage aucun de vos contenus de conversation ou informations personnelles. Ce projet est open-source sur GitHub, et le code est disponible pour examen à tout moment."
+  },
   "aboutDeveloperTitle": {
     "message": "Développeur"
   },
@@ -423,10 +429,10 @@
     "message": "Un petit coup de main"
   },
   "aboutShareContent": {
-    "message": "Si cette extension vous a aidé, n'hésitez pas à la recommander sur X, Reddit ou d'autres plateformes, et à la partager avec vos amis, camarades ou collègues. Je maintiens ce plugin seul avec des ressources limitées et ne peux pas consacrer de temps au marketing — ce que je peux faire, c'est le rendre utile et gratuit. Merci beaucoup. ❤️"
+    "message": "Si cette extension vous a aidé, n'hésitez pas à la recommander sur X, Reddit ou d'autres plateformes, et à la partager avec vos amis, camarades ou collègues. Je maintiens ce plugin seul avec des ressources limitées et ne peux pas consacrer de temps au marketing — ce que je peux faire, c'est de le rendre de mieux en mieux. Merci beaucoup. ❤️"
   },
   "aboutXhsTip": {
-    "message": "Si vous avez publié un article ou une vidéo de qualité recommandant cette extension sur Xiaohongshu, je peux vous aider à le promouvoir gratuitement pour que plus de personnes découvrent votre contenu 👇"
+    "message": "Si vous avez publié un article ou une vidéo de recommandation de qualité sur Xiaohongshu, je peux vous aider à le promouvoir (à partir de 75 ¥). 👇"
   },
   "aboutXhsBtn": {
     "message": "Soumettre le lien Xiaohongshu"

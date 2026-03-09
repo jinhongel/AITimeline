@@ -413,6 +413,12 @@
   "aboutPluginContent": {
     "message": "Extensão de produtividade para conversas com IA, com timeline de conversas, notas rápidas, cópia de fórmulas LaTeX, prompts personalizados e muito mais. Compatível com ChatGPT, Gemini, DeepSeek, Kimi, Claude e todas as principais plataformas — projetada para duplicar a sua eficiência com IA."
   },
+  "aboutDataSecurityTitle": {
+    "message": "Segurança de dados"
+  },
+  "aboutDataSecurityContent": {
+    "message": "Todos os seus dados nesta extensão são armazenados localmente no seu navegador ou no seu Google Drive, sem passar por servidores de terceiros. A extensão não recolhe, carrega ou partilha qualquer conteúdo das suas conversas ou informações pessoais. Este projeto é de código aberto no GitHub, e o código está disponível para revisão a qualquer momento."
+  },
   "aboutDeveloperTitle": {
     "message": "Desenvolvedor"
   },
@@ -423,10 +429,10 @@
     "message": "Um pequeno favor"
   },
   "aboutShareContent": {
-    "message": "Se esta extensão o ajudou, ficaria grato se a recomendasse no X, Reddit ou outras plataformas, e a partilhasse com amigos, colegas de turma ou de trabalho. Mantenho este plugin sozinho e não consigo dedicar tempo ao marketing — o que posso fazer é mantê-lo útil e gratuito. Muito obrigado. ❤️"
+    "message": "Se esta extensão o ajudou, ficaria grato se a recomendasse no X, Reddit ou outras plataformas, e a partilhasse com amigos, colegas de turma ou de trabalho. Mantenho este plugin sozinho e não consigo dedicar tempo ao marketing — o que posso fazer é torná-lo cada vez melhor. Muito obrigado. ❤️"
   },
   "aboutXhsTip": {
-    "message": "Se publicou um artigo ou vídeo de recomendação de qualidade sobre esta extensão no Xiaohongshu, posso ajudá-lo a promovê-lo gratuitamente para que mais pessoas descubram o seu conteúdo 👇"
+    "message": "Se publicou um artigo ou vídeo de recomendação de qualidade no Xiaohongshu, posso ajudá-lo com promoção paga (a partir de ¥75). 👇"
   },
   "aboutXhsBtn": {
     "message": "Enviar link do Xiaohongshu"

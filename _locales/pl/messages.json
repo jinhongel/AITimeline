@@ -413,6 +413,12 @@
   "aboutPluginContent": {
     "message": "Rozszerzenie zwiększające produktywność w rozmowach z AI, z osią czasu rozmów, szybkimi notatkami, kopiowaniem formuł LaTeX, własnymi promptami i wieloma innymi funkcjami. Obsługuje ChatGPT, Gemini, DeepSeek, Kimi, Claude i wszystkie główne platformy — podwaja efektywność korzystania z AI."
   },
+  "aboutDataSecurityTitle": {
+    "message": "Bezpieczeństwo danych"
+  },
+  "aboutDataSecurityContent": {
+    "message": "Wszystkie Twoje dane w tym rozszerzeniu są przechowywane lokalnie w przeglądarce lub na Twoim Google Drive, bez przechodzenia przez serwery firm trzecich. Rozszerzenie nie zbiera, nie przesyła ani nie udostępnia żadnych treści rozmów ani danych osobowych. Projekt jest open-source na GitHubie, a kod jest dostępny do przeglądu w każdej chwili."
+  },
   "aboutDeveloperTitle": {
     "message": "Deweloper"
   },
@@ -423,10 +429,10 @@
     "message": "Mała prośba"
   },
   "aboutShareContent": {
-    "message": "Jeśli to rozszerzenie Ci pomogło, będę wdzięczny za polecenie go na X, Reddit lub innych platformach, oraz udostępnienie znajomym, kolegom z klasy lub współpracownikom. Utrzymuję tę wtyczkę sam i nie mogę poświęcać czasu na marketing — mogę jedynie dbać o to, by była użyteczna i bezpłatna. Dziękuję bardzo. ❤️"
+    "message": "Jeśli to rozszerzenie Ci pomogło, będę wdzięczny za polecenie go na X, Reddit lub innych platformach, oraz udostępnienie znajomym, kolegom z klasy lub współpracownikom. Utrzymuję tę wtyczkę sam i nie mogę poświęcać czasu na marketing — mogę jedynie dbać o to, by była coraz lepsza. Dziękuję bardzo. ❤️"
   },
   "aboutXhsTip": {
-    "message": "Jeśli opublikowałeś wartościowy artykuł lub film polecający to rozszerzenie na Xiaohongshu, mogę pomóc ci bezpłatnie go wypromować, aby więcej osób odkryło twoje treści 👇"
+    "message": "Jeśli opublikowałeś wartościowy artykuł lub film polecający na Xiaohongshu, mogę pomóc ci z płatną promocją (od 75 ¥). 👇"
   },
   "aboutXhsBtn": {
     "message": "Prześlij link Xiaohongshu"

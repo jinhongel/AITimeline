@@ -431,6 +431,12 @@
   "aboutPluginContent": {
     "message": "專門為 AI 對話開發的提效插件，擁有對話時間軸、閃記、複製 LaTeX 公式、自訂提示詞等超多功能。支援 ChatGPT、Gemini、DeepSeek、Kimi、Claude 等主流平台，它的使命是助你使用 AI 的效率翻倍。"
   },
+  "aboutDataSecurityTitle": {
+    "message": "數據安全"
+  },
+  "aboutDataSecurityContent": {
+    "message": "你在本插件內的所有數據都存儲在你的瀏覽器本地或你的 Google Drive 中，不經過任何第三方伺服器。插件不會收集、上傳或分享你的任何對話內容和個人信息，本項目已在GitHub開源，可隨時審查代碼。"
+  },
   "aboutDeveloperTitle": {
     "message": "開發者"
   },
@@ -441,7 +447,7 @@
     "message": "想請你幫個忙"
   },
   "aboutShareContent": {
-    "message": "如果這個插件幫到了你，想請你幫忙在 X、Reddit 等平台發帖推薦一下，也歡迎分享給朋友、同學、同事，讓更多人使用到它。我是一個人維護這個插件，精力有限，無法抽身去做用戶增長運營，我能做到的是讓這個插件好用又免費，非常感謝。❤️"
+    "message": "如果這個插件幫到了你，想請你在 X、Reddit 等平台發帖推薦一下，也歡迎分享給朋友、同學、同事，讓更多人使用到它。我是一個人維護這個插件，精力有限，無法抽身去做用戶增長運營，我能做到的是讓這個插件越來越好用，非常感謝。❤️"
   },
   "formulaCopyGeneric": {
     "message": "複製公式"
@@ -459,7 +465,7 @@
     "message": "點擊公式複製為 MathML 格式，可直接貼到 Word"
   },
   "aboutXhsTip": {
-    "message": "如果你在小紅書發布了關於這個插件的推薦文章或影片，且內容優質，我可以幫你免費投流推廣，讓更多人看到你的內容 👇"
+    "message": "如果你在小紅書發布了推薦文章或影片，且內容優質，我可以幫你投流推廣（75元起）。👇"
   },
   "aboutXhsBtn": {
     "message": "登記小紅書連結"

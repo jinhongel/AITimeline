@@ -413,6 +413,12 @@
   "aboutPluginContent": {
     "message": "Eine Produktivitätserweiterung für KI-Gespräche mit Zeitleiste, Schnellnotizen, LaTeX-Formelkopie, benutzerdefinierten Prompts und vielem mehr. Unterstützt ChatGPT, Gemini, DeepSeek, Kimi, Claude und alle wichtigen Plattformen — verdoppelt Ihre KI-Effizienz."
   },
+  "aboutDataSecurityTitle": {
+    "message": "Datensicherheit"
+  },
+  "aboutDataSecurityContent": {
+    "message": "Alle Ihre Daten innerhalb dieser Erweiterung werden lokal in Ihrem Browser oder in Ihrem Google Drive gespeichert, ohne über Drittanbieter-Server zu gehen. Die Erweiterung sammelt, lädt hoch oder teilt keine Ihrer Gesprächsinhalte oder persönlichen Informationen. Dieses Projekt ist auf GitHub quelloffen, und der Code kann jederzeit überprüft werden."
+  },
   "aboutDeveloperTitle": {
     "message": "Entwickler"
   },
@@ -423,10 +429,10 @@
     "message": "Eine kleine Bitte"
   },
   "aboutShareContent": {
-    "message": "Wenn Ihnen diese Erweiterung geholfen hat, würde ich mich freuen, wenn Sie sie auf X, Reddit oder anderen Plattformen empfehlen und mit Freunden, Kommilitonen oder Kollegen teilen. Ich pflege dieses Plugin allein und kann keine Zeit für Marketing aufwenden — was ich tun kann, ist es nützlich und kostenlos zu halten. Vielen Dank. ❤️"
+    "message": "Wenn Ihnen diese Erweiterung geholfen hat, würde ich mich freuen, wenn Sie sie auf X, Reddit oder anderen Plattformen empfehlen und mit Freunden, Kommilitonen oder Kollegen teilen. Ich pflege dieses Plugin allein und kann keine Zeit für Marketing aufwenden — was ich tun kann, ist es immer besser zu machen. Vielen Dank. ❤️"
   },
   "aboutXhsTip": {
-    "message": "Wenn du einen hochwertigen Empfehlungsartikel oder ein Video über diese Erweiterung auf Xiaohongshu veröffentlicht hast, kann ich dir helfen, es kostenlos zu bewerben, damit mehr Menschen deinen Inhalt entdecken 👇"
+    "message": "Wenn du einen hochwertigen Empfehlungsartikel oder ein Video auf Xiaohongshu veröffentlicht hast, kann ich dir bei der bezahlten Werbung helfen (ab 75 ¥). 👇"
   },
   "aboutXhsBtn": {
     "message": "Xiaohongshu-Link einreichen"

@@ -413,6 +413,12 @@
   "aboutPluginContent": {
     "message": "Extensión de productividad para conversaciones con IA, con línea de tiempo, notas rápidas, copia de fórmulas LaTeX, prompts personalizados y mucho más. Compatible con ChatGPT, Gemini, DeepSeek, Kimi, Claude y todas las plataformas principales — diseñada para duplicar tu eficiencia con la IA."
   },
+  "aboutDataSecurityTitle": {
+    "message": "Seguridad de datos"
+  },
+  "aboutDataSecurityContent": {
+    "message": "Todos tus datos dentro de esta extensión se almacenan localmente en tu navegador o en tu Google Drive, sin pasar por ningún servidor de terceros. La extensión no recopila, sube ni comparte ningún contenido de tus conversaciones ni información personal. Este proyecto es de código abierto en GitHub, y el código está disponible para revisión en cualquier momento."
+  },
   "aboutDeveloperTitle": {
     "message": "Desarrollador"
   },
@@ -423,10 +429,10 @@
     "message": "Un pequeño favor"
   },
   "aboutShareContent": {
-    "message": "Si esta extensión te ha ayudado, te agradecería que la recomendaras en X, Reddit u otras plataformas, y la compartieras con amigos, compañeros o colegas. Mantengo este plugin solo y no puedo dedicar tiempo al marketing — lo que puedo hacer es mantenerlo útil y gratuito. Muchas gracias. ❤️"
+    "message": "Si esta extensión te ha ayudado, te agradecería que la recomendaras en X, Reddit u otras plataformas, y la compartieras con amigos, compañeros o colegas. Mantengo este plugin solo y no puedo dedicar tiempo al marketing — lo que puedo hacer es hacerlo cada vez mejor. Muchas gracias. ❤️"
   },
   "aboutXhsTip": {
-    "message": "Si has publicado un artículo o video de recomendación de calidad sobre esta extensión en Xiaohongshu, puedo ayudarte a promocionarlo gratis para que más personas descubran tu contenido 👇"
+    "message": "Si has publicado un artículo o video de recomendación de calidad en Xiaohongshu, puedo ayudarte con la promoción pagada (desde ¥75). 👇"
   },
   "aboutXhsBtn": {
     "message": "Enviar enlace de Xiaohongshu"

@@ -413,6 +413,12 @@
   "aboutPluginContent": {
     "message": "A productivity plugin built for AI conversations, featuring conversation timeline, quick notes, LaTeX formula copying, custom prompts, and more. Works with ChatGPT, Gemini, DeepSeek, Kimi, Claude, and all major platforms — designed to double your AI efficiency."
   },
+  "aboutDataSecurityTitle": {
+    "message": "Data Security"
+  },
+  "aboutDataSecurityContent": {
+    "message": "All your data within this extension is stored locally in your browser or in your Google Drive, without passing through any third-party servers. The extension does not collect, upload, or share any of your conversation content or personal information. This project is open-source on GitHub, and the code is available for review at any time."
+  },
   "aboutDeveloperTitle": {
     "message": "Developer"
   },
@@ -423,10 +429,10 @@
     "message": "A Small Favor"
   },
   "aboutShareContent": {
-    "message": "If this extension has been helpful, I'd love it if you could recommend it on X, Reddit, or other platforms, and share it with friends, classmates, or colleagues so more people can discover it. I maintain this plugin solo with limited energy and can't spare time for marketing — what I can do is keep it useful and free. Thank you so much. ❤️"
+    "message": "If this extension has been helpful, I'd love it if you could recommend it on X, Reddit, or other platforms, and share it with friends, classmates, or colleagues so more people can discover it. I maintain this plugin solo with limited energy and can't spare time for marketing — what I can do is keep making it better and better. Thank you so much. ❤️"
   },
   "aboutXhsTip": {
-    "message": "If you've posted a quality recommendation article or video about this extension on Xiaohongshu, I can help you boost it with free paid promotion so more people can discover your content 👇"
+    "message": "If you've posted a quality recommendation article or video on Xiaohongshu, I can help boost it with paid promotion (starting from ¥75). 👇"
   },
   "aboutXhsBtn": {
     "message": "Submit Xiaohongshu Link"
