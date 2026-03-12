@@ -3406,12 +3406,12 @@ class TimelineManager {
         if (!m) return { success: false, action: null };
         
         // ✅ 检查是否是 stableNodeId 平台但还没有真正的 ID
+        // 临时 ID 格式：平台名-小数字（如 doubao-0），真实 ID 的数字部分远大于 1000
         const features = getCurrentPlatform()?.features;
         if (features?.stableNodeId) {
-            // 检查 ID 是否是临时格式（以 -数字 结尾，如 gemini-0）
-            const isTempId = /^.+-\d+$/.test(id);
+            const tempMatch = id.match(/-(\d+)$/);
+            const isTempId = tempMatch && parseInt(tempMatch[1], 10) < 1000;
             if (isTempId) {
-                // 显示提示
                 if (window.globalToastManager) {
                     window.globalToastManager.info(chrome.i18n.getMessage('pleaseWait') || '请稍等，节点ID正在加载...');
                 }
@@ -3750,12 +3750,12 @@ class TimelineManager {
         }
         
         // ✅ 检查是否是 stableNodeId 平台但还没有真正的 ID
+        // 临时 ID 格式：平台名-小数字（如 doubao-0），真实 ID 的数字部分远大于 1000
         const features = getCurrentPlatform()?.features;
         if (features?.stableNodeId) {
-            // 检查 ID 是否是临时格式（以 -数字 结尾，如 gemini-0）
-            const isTempId = /^.+-\d+$/.test(id);
+            const tempMatch = id.match(/-(\d+)$/);
+            const isTempId = tempMatch && parseInt(tempMatch[1], 10) < 1000;
             if (isTempId) {
-                // 显示提示
                 if (window.globalToastManager) {
                     window.globalToastManager.info(chrome.i18n.getMessage('pleaseWait') || '请稍等，节点ID正在加载...');
                 }
