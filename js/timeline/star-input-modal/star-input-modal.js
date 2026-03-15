@@ -160,7 +160,7 @@ class StarInputModal {
                             ${chrome.i18n.getMessage('kxzpmv')}
                         </label>
                         <div class="star-input-modal-folder-selector">
-                            <span class="star-input-modal-folder-text">${chrome.i18n.getMessage('vmzpkx')}</span>
+                            <span class="star-input-modal-folder-text">${chrome.i18n.getMessage('folderRequired') || 'Please select a folder'}</span>
                             <svg class="star-input-modal-folder-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg>
@@ -218,23 +218,6 @@ class StarInputModal {
                 // 构建文件夹菜单
                 const folders = await config.folderManager.getFolders();
                 const items = [];
-                
-                // "默认文件夹"选项
-                items.push({
-                    label: chrome.i18n.getMessage('vmzpkx'),
-                    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-                    </svg>`,
-                    onClick: () => {
-                        selectedFolderId = null;
-                        selectedFolderPath = '';
-                        folderText.textContent = chrome.i18n.getMessage('vmzpkx');
-                    }
-                });
-                
-                if (folders.length > 0) {
-                    items.push({ type: 'divider' });
-                }
                 
                 // 构建文件夹树（一级 + 二级）
                 const rootFolders = folders.filter(f => !f.parentId).sort((a, b) => a.order - b.order);
@@ -358,6 +341,14 @@ class StarInputModal {
                     return {
                         valid: false,
                         message: config.requiredMessage
+                    };
+                }
+                
+                // 文件夹必选
+                if (!selectedFolderId) {
+                    return {
+                        valid: false,
+                        message: chrome.i18n.getMessage('folderRequired') || 'Please select a folder'
                     };
                 }
                 

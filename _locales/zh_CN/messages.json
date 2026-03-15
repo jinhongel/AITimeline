@@ -53,6 +53,9 @@
   "mzpxvk": {
     "message": "主题不能为空"
   },
+  "folderRequired": {
+    "message": "请选择一个文件夹"
+  },
   "xvkpmz": {
     "message": "重命名"
   },
@@ -392,13 +395,13 @@
   "refreshLater": {
     "message": "稍后刷新"
   },
-  "quoteReply": {
+  "quickAsk": {
     "message": "追问"
   },
-  "quoteReplyTitle": {
+  "quickAskTitle": {
     "message": "追问功能"
   },
-  "quoteReplyHint": {
+  "quickAskHint": {
     "message": "选中页面上的文字后，显示追问按钮，点击可快速引用到对话框中"
   },
   "scrollToBottomTitle": {

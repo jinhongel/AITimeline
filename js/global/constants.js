@@ -33,8 +33,8 @@ const SITE_INFO = [
         features: {
             timeline: true,
             smartInput: true,
-            quoteReply: true,
-            quoteReplyPosition: 'bottomLeft',  // 追问按钮位置
+            quickAsk: true,
+            quickAskPosition: 'bottomLeft',  // 追问按钮位置
             chatTimes: true,  // 提问时间记录
             stableNodeId: true  // 使用稳定的节点 ID（data-message-id），需等待 id 分配后记录
         }
@@ -47,10 +47,11 @@ const SITE_INFO = [
         features: {
             timeline: true,
             smartInput: true,
-            quoteReply: true,
+            quickAsk: true,
             scrollToBottom: true,  // 回到底部按钮
             chatTimes: true,  // 提问时间记录
-            stableNodeId: true  // 使用稳定的节点 ID（父元素 id），需等待 id 分配后记录
+            stableNodeId: true,  // 使用稳定的节点 ID（父元素 id），需等待 id 分配后记录
+            sidebarStarred: true  // 侧边栏收藏列表
         }
     },
     {
@@ -61,7 +62,7 @@ const SITE_INFO = [
         features: {
             timeline: true,
             smartInput: true,
-            quoteReply: true,
+            quickAsk: true,
             chatTimes: true,  // 提问时间记录
             stableNodeId: true  // 使用稳定的节点 ID（data-message-id），需等待 id 分配后记录
         }
@@ -74,7 +75,7 @@ const SITE_INFO = [
         features: {
             timeline: true,
             smartInput: true,
-            quoteReply: true,
+            quickAsk: true,
             chatTimes: true  // 提问时间记录
         }
     },
@@ -86,7 +87,7 @@ const SITE_INFO = [
         features: {
             timeline: true,
             smartInput: false,
-            quoteReply: true,
+            quickAsk: true,
             chatTimes: false  // 提问时间记录
         }
     },
@@ -98,7 +99,7 @@ const SITE_INFO = [
         features: {
             timeline: true,
             smartInput: true,
-            quoteReply: true,
+            quickAsk: true,
             chatTimes: false  // 提问时间记录
         }
     },
@@ -110,7 +111,7 @@ const SITE_INFO = [
         features: {
             timeline: true,
             smartInput: true,
-            quoteReply: true,
+            quickAsk: true,
             chatTimes: true  // 提问时间记录
         }
     },
@@ -122,7 +123,7 @@ const SITE_INFO = [
         features: {
             timeline: true,
             smartInput: true,
-            quoteReply: true,
+            quickAsk: true,
             chatTimes: false  // 提问时间记录
         }
     },
@@ -134,8 +135,8 @@ const SITE_INFO = [
         features: {
             timeline: true,
             smartInput: true,
-            quoteReply: true,
-            quoteReplyPosition: 'bottomLeft',
+            quickAsk: true,
+            quickAskPosition: 'bottomLeft',
             chatTimes: false  // 提问时间记录
         }
     },
@@ -147,8 +148,8 @@ const SITE_INFO = [
         features: {
             timeline: true,
             smartInput: true,
-            quoteReply: true,
-            quoteReplyPosition: 'bottomLeft',
+            quickAsk: true,
+            quickAskPosition: 'bottomLeft',
             chatTimes: false  // 提问时间记录
         }
     },
@@ -160,8 +161,8 @@ const SITE_INFO = [
         features: {
             timeline: true,
             smartInput: true,
-            quoteReply: true,
-            quoteReplyPosition: 'bottomLeft',
+            quickAsk: true,
+            quickAskPosition: 'bottomLeft',
             chatTimes: false  // 提问时间记录
         }
     },
@@ -173,7 +174,7 @@ const SITE_INFO = [
         features: {
             timeline: false,
             smartInput: true,
-            quoteReply: true
+            quickAsk: true
         }
     }
 ];

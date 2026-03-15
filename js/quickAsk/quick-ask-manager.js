@@ -1,5 +1,5 @@
 /**
- * Quote Reply Manager
+ * Quick Ask Manager
  * 
  * 引用回复功能
  * 选中文字后显示"引用回复"按钮，点击后将选中文字以引用格式插入输入框
@@ -15,7 +15,7 @@ const POSITION_FALLBACK = {
     bottomRight: 'topRight'
 };
 
-class QuoteReplyManager {
+class QuickAskManager {
     constructor() {
         this.buttonElement = null;
         this.currentSelection = null;
@@ -35,7 +35,7 @@ class QuoteReplyManager {
         this._createButton();
         this._bindEvents();
         this.isEnabled = true;
-        console.log('[QuoteReply] 初始化完成');
+        console.log('[QuickAsk] 初始化完成');
     }
     
     /**
@@ -48,7 +48,7 @@ class QuoteReplyManager {
         this._createButton();
         this._bindEvents();
         this.isEnabled = true;
-        console.log('[QuoteReply] 已启用');
+        console.log('[QuickAsk] 已启用');
     }
     
     /**
@@ -58,8 +58,8 @@ class QuoteReplyManager {
         try {
             if (typeof getCurrentPlatform === 'function') {
                 const platform = getCurrentPlatform();
-                if (platform?.features?.quoteReplyPosition) {
-                    this._position = platform.features.quoteReplyPosition;
+                if (platform?.features?.quickAskPosition) {
+                    this._position = platform.features.quickAskPosition;
                 }
             }
         } catch (e) {
@@ -82,7 +82,7 @@ class QuoteReplyManager {
         }
         
         this.isEnabled = false;
-        console.log('[QuoteReply] 已禁用');
+        console.log('[QuickAsk] 已禁用');
     }
     
     /**
@@ -92,26 +92,26 @@ class QuoteReplyManager {
         if (this.buttonElement) return;
         
         const btn = document.createElement('div');
-        btn.className = 'ait-quote-reply-btn';
+        btn.className = 'ait-quick-ask-btn';
         btn.innerHTML = `
-            <button class="ait-quote-reply-action">
+            <button class="ait-quick-ask-action">
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21z"/>
                     <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
                 </svg>
-                <span>${chrome.i18n.getMessage('quoteReply') || '追问'}</span>
+                <span>${chrome.i18n.getMessage('quickAsk') || '追问'}</span>
             </button>
         `;
         btn.style.display = 'none';
         
         // ✅ 使用事件委托（解决长时间停留后事件失效问题）
         // 追问按钮：执行引用追问
-        window.eventDelegateManager.on('click', '.ait-quote-reply-action', (e) => {
+        window.eventDelegateManager.on('click', '.ait-quick-ask-action', (e) => {
             e.preventDefault();
             e.stopPropagation();
             this._handleQuote();
         });
-        window.eventDelegateManager.on('mousedown', '.ait-quote-reply-btn', (e) => {
+        window.eventDelegateManager.on('mousedown', '.ait-quick-ask-btn', (e) => {
             e.preventDefault();
         });
         
@@ -214,7 +214,7 @@ class QuoteReplyManager {
         }
         
         // 排除我们自己的 UI 元素
-        if (element.closest('.ait-quote-reply-btn, .ait-chat-timeline-wrapper, .ait-panel-modal')) {
+        if (element.closest('.ait-quick-ask-btn, .ait-chat-timeline-wrapper, .ait-panel-modal')) {
             return false;
         }
         
@@ -387,7 +387,7 @@ class QuoteReplyManager {
         const inputElement = this._findInputElement();
         
         if (!inputElement) {
-            console.warn('[QuoteReply] 未找到输入框');
+            console.warn('[QuickAsk] 未找到输入框');
             return;
         }
         
@@ -507,7 +507,7 @@ class QuoteReplyManager {
                     inputElement.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
                     inputElement.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
                 } catch (domError) {
-                    console.error('[QuoteReply] DOM manipulation failed:', domError);
+                    console.error('[QuickAsk] DOM manipulation failed:', domError);
                 }
             }
             
@@ -566,7 +566,7 @@ class QuoteReplyManager {
                 }
             }
         } catch (e) {
-            console.debug('[QuoteReply] adapter selector failed', e);
+            console.debug('[QuickAsk] adapter selector failed', e);
         }
         return null;
     }
@@ -594,4 +594,4 @@ class QuoteReplyManager {
 }
 
 // 导出
-window.QuoteReplyManager = QuoteReplyManager;
+window.QuickAskManager = QuickAskManager;

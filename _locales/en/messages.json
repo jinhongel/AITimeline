@@ -53,6 +53,9 @@
   "mzpxvk": {
     "message": "Title cannot be empty"
   },
+  "folderRequired": {
+    "message": "Please select a folder"
+  },
   "xvkpmz": {
     "message": "Rename"
   },
@@ -392,13 +395,13 @@
   "refreshLater": {
     "message": "Later"
   },
-  "quoteReply": {
+  "quickAsk": {
     "message": "Follow Up"
   },
-  "quoteReplyTitle": {
+  "quickAskTitle": {
     "message": "Follow Up"
   },
-  "quoteReplyHint": {
+  "quickAskHint": {
     "message": "After selecting text on the page, a follow-up button appears to quickly quote into the input box"
   },
   "scrollToBottomTitle": {

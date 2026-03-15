@@ -59,6 +59,9 @@
   "mzpxvk": {
     "message": "शीर्षक खाली नहीं हो सकता"
   },
+  "folderRequired": {
+    "message": "कृपया एक फ़ोल्डर चुनें"
+  },
   "xvkpmz": {
     "message": "नाम बदलें"
   },
@@ -302,7 +305,7 @@
   "refreshLater": {
     "message": "बाद में रीफ्रेश करें"
   },
-  "quoteReply": {
+  "quickAsk": {
     "message": "अनुवर्ती प्रश्न"
   },
   "scrollToBottomTitle": {

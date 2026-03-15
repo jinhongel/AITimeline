@@ -59,6 +59,9 @@
   "mzpxvk": {
     "message": "標題不能為空"
   },
+  "folderRequired": {
+    "message": "請選擇一個資料夾"
+  },
   "xvkpmz": {
     "message": "重新命名"
   },
@@ -308,7 +311,7 @@
   "refreshLater": {
     "message": "稍後重新整理"
   },
-  "quoteReply": {
+  "quickAsk": {
     "message": "追問"
   },
   "scrollToBottomTitle": {

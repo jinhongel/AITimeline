@@ -59,6 +59,9 @@
   "mzpxvk": {
     "message": "Tytuł nie może być pusty"
   },
+  "folderRequired": {
+    "message": "Proszę wybrać folder"
+  },
   "xvkpmz": {
     "message": "Zmień nazwę"
   },
@@ -302,7 +305,7 @@
   "refreshLater": {
     "message": "Odśwież później"
   },
-  "quoteReply": {
+  "quickAsk": {
     "message": "Dopytaj"
   },
   "scrollToBottomTitle": {

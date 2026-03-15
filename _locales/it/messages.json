@@ -59,6 +59,9 @@
   "mzpxvk": {
     "message": "Il titolo non può essere vuoto"
   },
+  "folderRequired": {
+    "message": "Seleziona una cartella"
+  },
   "xvkpmz": {
     "message": "Rinomina"
   },
@@ -302,7 +305,7 @@
   "refreshLater": {
     "message": "Aggiorna più tardi"
   },
-  "quoteReply": {
+  "quickAsk": {
     "message": "Approfondisci"
   },
   "scrollToBottomTitle": {

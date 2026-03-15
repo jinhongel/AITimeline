@@ -27,15 +27,15 @@ class SmartInputBoxTab extends BaseTab {
         const smartInputPlatforms = getPlatformsByFeature('smartInput').filter(p => p.id !== 'claude');
         
         // ==================== 追问功能模块 ====================
-        const quoteReplySection = `
+        const quickAskSection = `
             <div class="setting-section">
                 <div class="setting-item">
                     <div class="setting-info">
-                        <div class="setting-label">${chrome.i18n.getMessage('quoteReplyTitle') || '追问功能'}</div>
-                        <div class="setting-hint">${chrome.i18n.getMessage('quoteReplyHint') || '选中页面上的文字后，显示追问按钮，点击可快速引用到对话框中'}</div>
+                        <div class="setting-label">${chrome.i18n.getMessage('quickAskTitle') || '追问功能'}</div>
+                        <div class="setting-hint">${chrome.i18n.getMessage('quickAskHint') || '选中页面上的文字后，显示追问按钮，点击可快速引用到对话框中'}</div>
                     </div>
                     <label class="ait-toggle-switch">
-                        <input type="checkbox" id="quote-reply-toggle">
+                        <input type="checkbox" id="quick-ask-toggle">
                         <span class="ait-toggle-slider"></span>
                     </label>
                 </div>
@@ -81,7 +81,7 @@ class SmartInputBoxTab extends BaseTab {
             </div>
         `;
         
-        container.innerHTML = quoteReplySection + scrollToBottomSection + divider + enterKeySection;
+        container.innerHTML = quickAskSection + scrollToBottomSection + divider + enterKeySection;
         
         return container;
     }
@@ -93,7 +93,7 @@ class SmartInputBoxTab extends BaseTab {
         super.mounted();
         
         // 加载追问功能设置
-        await this.loadQuoteReplySettings();
+        await this.loadQuickAskSettings();
         
         // 加载返回底部设置
         await this.loadScrollToBottomSettings();
@@ -105,38 +105,38 @@ class SmartInputBoxTab extends BaseTab {
     /**
      * 加载追问功能设置
      */
-    async loadQuoteReplySettings() {
-        const quoteReplyToggle = document.getElementById('quote-reply-toggle');
-        if (!quoteReplyToggle) return;
+    async loadQuickAskSettings() {
+        const quickAskToggle = document.getElementById('quick-ask-toggle');
+        if (!quickAskToggle) return;
         
         try {
             // 读取当前状态（默认开启）
-            const result = await chrome.storage.local.get('quoteReplyEnabled');
+            const result = await chrome.storage.local.get('quickAskEnabled');
             // 默认值为 true（开启）
-            quoteReplyToggle.checked = result.quoteReplyEnabled !== false;
+            quickAskToggle.checked = result.quickAskEnabled !== false;
         } catch (e) {
-            quoteReplyToggle.checked = true;
+            quickAskToggle.checked = true;
         }
         
         // 监听开关变化
-        this.addEventListener(quoteReplyToggle, 'change', async (e) => {
+        this.addEventListener(quickAskToggle, 'change', async (e) => {
             try {
                 const enabled = e.target.checked;
                 
                 // 保存到 Storage
-                await chrome.storage.local.set({ quoteReplyEnabled: enabled });
+                await chrome.storage.local.set({ quickAskEnabled: enabled });
                 
-                // 通知 QuoteReply 模块
-                if (window.AIChatTimelineQuoteReply) {
+                // 通知 QuickAsk 模块
+                if (window.AIChatTimelineQuickAsk) {
                     if (enabled) {
-                        window.AIChatTimelineQuoteReply.enable();
+                        window.AIChatTimelineQuickAsk.enable();
                     } else {
-                        window.AIChatTimelineQuoteReply.disable();
+                        window.AIChatTimelineQuickAsk.disable();
                     }
                 }
             } catch (e) {
-                console.error('[SmartInputBoxTab] Failed to save quote reply setting:', e);
-                quoteReplyToggle.checked = !quoteReplyToggle.checked;
+                console.error('[SmartInputBoxTab] Failed to save quick ask setting:', e);
+                quickAskToggle.checked = !quickAskToggle.checked;
             }
         });
     }

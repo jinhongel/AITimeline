@@ -59,6 +59,9 @@
   "mzpxvk": {
     "message": "Le titre ne peut pas être vide"
   },
+  "folderRequired": {
+    "message": "Veuillez sélectionner un dossier"
+  },
   "xvkpmz": {
     "message": "Renommer"
   },
@@ -302,7 +305,7 @@
   "refreshLater": {
     "message": "Actualiser plus tard"
   },
-  "quoteReply": {
+  "quickAsk": {
     "message": "Question de suivi"
   },
   "scrollToBottomTitle": {

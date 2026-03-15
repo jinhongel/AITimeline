@@ -1,0 +1,56 @@
+/**
+ * Sidebar Starred Styles
+ * 简洁的文件夹展开/收起列表
+ */
+
+.ait-sidebar-starred { padding: 20px 0 0px 10px; }
+
+/* Header */
+.ait-ss-header { display: flex; align-items: center; justify-content: space-between; padding: 4px 12px 4px 16px; margin-bottom: 2px; }
+.ait-ss-title { font-size: 14px; font-weight: 600; color: #1f1f1f; user-select: none; }
+.ait-ss-add-btn { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: none; background: transparent; border-radius: 50%; cursor: pointer; color: #444746; padding: 0; transition: background-color 0.2s; }
+.ait-ss-add-btn:hover { background-color: rgba(68, 71, 70, 0.08); }
+
+/* Folder row */
+.ait-ss-folder-row { display: flex; align-items: center; gap: 4px; height: 32px; padding: 0 12px 0 6px; margin: 0 8px; border-radius: 16px; cursor: pointer; user-select: none; transition: background-color 0.15s; }
+.ait-ss-folder-row:hover { background-color: rgba(68, 71, 70, 0.08); }
+
+/* Chevron */
+.ait-ss-chevron { display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; flex-shrink: 0; color: #444746; transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+.ait-ss-chevron.open { transform: rotate(90deg); }
+.ait-ss-chevron svg { width: 16px; height: 16px; }
+
+/* Folder icon */
+.ait-ss-folder-icon { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 18px; height: 18px; font-size: 14px; line-height: 1; }
+
+/* Folder name */
+.ait-ss-name { font-size: 14px; font-weight: 500; color: #444746; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; min-width: 0; }
+
+/* Folder body (grid collapse) */
+.ait-ss-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+.ait-ss-body > * { overflow: hidden; }
+.ait-ss-body.open { grid-template-rows: 1fr; }
+
+/* Nested folder indent */
+.ait-ss-folder .ait-ss-folder .ait-ss-folder-row { padding-left: 28px; }
+.ait-ss-folder .ait-ss-folder .ait-ss-item { padding-left: 44px; }
+
+/* Item */
+.ait-ss-item { height: 32px; display: flex; align-items: center; padding: 0 12px 0 36px; margin: 0 8px; border-radius: 16px; font-size: 14px; font-weight: 500; color: #444746; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; transition: background-color 0.15s; }
+.ait-ss-item:hover { background-color: rgba(68, 71, 70, 0.08); }
+
+/* Empty */
+.ait-ss-empty { padding: 16px; font-size: 13px; color: #70757a; text-align: center; }
+
+/* ============ Dark theme ============ */
+body.dark-theme .ait-ss-title { color: #e8eaed; }
+body.dark-theme .ait-ss-add-btn, body.dark-theme .ait-ss-chevron { color: #9aa0a6; }
+body.dark-theme .ait-ss-name, body.dark-theme .ait-ss-item { color: #dadce0; }
+body.dark-theme .ait-ss-folder-row:hover, body.dark-theme .ait-ss-item:hover, body.dark-theme .ait-ss-add-btn:hover { background-color: rgba(232, 234, 237, 0.08); }
+body.dark-theme .ait-ss-empty { color: #9aa0a6; }
+
+html[data-timeline-theme="dark"] .ait-ss-title { color: #e8eaed; }
+html[data-timeline-theme="dark"] .ait-ss-add-btn, html[data-timeline-theme="dark"] .ait-ss-chevron { color: #9aa0a6; }
+html[data-timeline-theme="dark"] .ait-ss-name, html[data-timeline-theme="dark"] .ait-ss-item { color: #dadce0; }
+html[data-timeline-theme="dark"] .ait-ss-folder-row:hover, html[data-timeline-theme="dark"] .ait-ss-item:hover, html[data-timeline-theme="dark"] .ait-ss-add-btn:hover { background-color: rgba(232, 234, 237, 0.08); }
+html[data-timeline-theme="dark"] .ait-ss-empty { color: #9aa0a6; }

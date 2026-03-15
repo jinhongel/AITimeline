@@ -59,6 +59,9 @@
   "mzpxvk": {
     "message": "標題不能為空"
   },
+  "folderRequired": {
+    "message": "請選擇一個資料夾"
+  },
   "xvkpmz": {
     "message": "重新命名"
   },
@@ -341,13 +344,13 @@
   "refreshLater": {
     "message": "稍後重新整理"
   },
-  "quoteReply": {
+  "quickAsk": {
     "message": "追問"
   },
-  "quoteReplyTitle": {
+  "quickAskTitle": {
     "message": "追問功能"
   },
-  "quoteReplyHint": {
+  "quickAskHint": {
     "message": "選中頁面上的文字後，顯示追問按鈕，點擊可快速引用到對話框中"
   },
   "scrollToBottomTitle": {

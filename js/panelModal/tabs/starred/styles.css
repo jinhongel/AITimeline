@@ -160,8 +160,9 @@
     flex: 1;
     min-width: 0;
     font-size: 14px;
+    font-weight: 500;
     line-height: 1.5;
-    color: #374151;
+    color: #444746;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -415,8 +416,9 @@
 }
 
 .ait-folder-name {
+    font-size: 14px;
     font-weight: 500;
-    color: #374151;
+    color: #444746;
 }
 
 .ait-folder-count {

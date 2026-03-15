@@ -59,6 +59,9 @@
   "mzpxvk": {
     "message": "El título no puede estar vacío"
   },
+  "folderRequired": {
+    "message": "Por favor, selecciona una carpeta"
+  },
   "xvkpmz": {
     "message": "Renombrar"
   },
@@ -302,7 +305,7 @@
   "refreshLater": {
     "message": "Actualizar más tarde"
   },
-  "quoteReply": {
+  "quickAsk": {
     "message": "Preguntar más"
   },
   "scrollToBottomTitle": {

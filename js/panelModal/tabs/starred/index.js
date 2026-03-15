@@ -179,15 +179,14 @@ class StarredTab extends BaseTab {
             return;
         }
         
-        // 判断是否只有默认文件夹
-        const onlyDefaultFolder = tree.folders.length === 0;
-        
-        // 始终先渲染默认文件夹（虚拟）
-        this.renderUncategorized(tree.uncategorized, listContainer, onlyDefaultFolder);
-        
         // 渲染文件夹树
         for (const folder of tree.folders) {
             this.renderFolder(folder, listContainer);
+        }
+        
+        // 未归类的收藏项（直接展示，不包在文件夹里）
+        for (const item of tree.uncategorized) {
+            listContainer.appendChild(this.renderStarredItem(item));
         }
         
         // ✨ 搜索模式下，如果没有任何结果，显示提示
@@ -280,7 +279,6 @@ class StarredTab extends BaseTab {
                 ${folderIconHtml}
             </span>
             <span class="ait-folder-name">${this.escapeHtml(folder.name)}</span>
-            <span class="ait-folder-count">(${totalItems})</span>
         `;
         // 点击文件夹名称也可以展开/收起
         folderInfo.style.cursor = 'pointer';
@@ -450,7 +448,6 @@ class StarredTab extends BaseTab {
                 ${isExpanded ? this._folderSvgOpen : this._folderSvgClosed}
             </span>
             <span class="ait-folder-name">${chrome.i18n.getMessage('pkxvmz')}</span>
-            <span class="ait-folder-count">(${filteredItems.length})</span>
         `;
         // 点击文件夹名称也可以展开/收起
         folderInfo.style.cursor = 'pointer';
@@ -932,18 +929,7 @@ class StarredTab extends BaseTab {
         console.log('[StarredTab] Folders count:', folders.length);
         const children = [];
         
-        // 添加"默认文件夹"选项
-        children.push({
-            label: chrome.i18n.getMessage('pkxvmz'),
-            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-            </svg>`,
-            onClick: () => this.handleMoveToFolder(turnId, null)
-        });
-        
-        if (folders.length > 0) {
-            children.push({ type: 'divider' });
-        }
+        // 文件夹列表
         
         // 添加文件夹选项（包括根文件夹和子文件夹）
         // 按层级排序：先根文件夹，再子文件夹

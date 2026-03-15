@@ -59,6 +59,9 @@
   "mzpxvk": {
     "message": "Judul tidak boleh kosong"
   },
+  "folderRequired": {
+    "message": "Silakan pilih folder"
+  },
   "xvkpmz": {
     "message": "Ganti nama"
   },
@@ -302,7 +305,7 @@
   "refreshLater": {
     "message": "Refresh nanti"
   },
-  "quoteReply": {
+  "quickAsk": {
     "message": "Tanya Lanjutan"
   },
   "scrollToBottomTitle": {

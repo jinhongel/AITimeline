@@ -47,11 +47,11 @@
     --timeline-compact-line-height: 2px;       /* 横线高度 */
     
     /* ✅ 追问按钮变量 */
-    --ait-quote-btn-bg: #1a1a1a;
-    --ait-quote-btn-bg-hover: #333;
-    --ait-quote-btn-bg-active: #444;
-    --ait-quote-btn-text: #fff;
-    --ait-quote-btn-shadow: rgba(0, 0, 0, 0.2);
+    --ait-quick-ask-bg: #1a1a1a;
+    --ait-quick-ask-hover: #333;
+    --ait-quick-ask-active: #444;
+    --ait-quick-ask-text: #fff;
+    --ait-quick-ask-shadow: rgba(0, 0, 0, 0.2);
 }
 
 /* Override variables when chat's dark mode is active */
@@ -67,9 +67,9 @@ html[data-timeline-theme="dark"] {
     --timeline-bar-bg: rgba(45, 45, 48, 0.95); /* ✅✅ 更高不透明度：0.92 → 0.95，背景更扎实 */
     
     /* ✅ 追问按钮 - 深色主题 */
-    --ait-quote-btn-bg: #f5f5f5;
-    --ait-quote-btn-bg-hover: #e5e5e5;
-    --ait-quote-btn-bg-active: #d4d4d4;
-    --ait-quote-btn-text: #1a1a1a;
-    --ait-quote-btn-shadow: rgba(0, 0, 0, 0.3);
+    --ait-quick-ask-bg: #f5f5f5;
+    --ait-quick-ask-hover: #e5e5e5;
+    --ait-quick-ask-active: #d4d4d4;
+    --ait-quick-ask-text: #1a1a1a;
+    --ait-quick-ask-shadow: rgba(0, 0, 0, 0.3);
 }

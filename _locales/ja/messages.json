@@ -59,6 +59,9 @@
   "mzpxvk": {
     "message": "タイトルは空にできません"
   },
+  "folderRequired": {
+    "message": "フォルダーを選択してください"
+  },
   "xvkpmz": {
     "message": "名前を変更"
   },
@@ -335,7 +338,7 @@
   "refreshLater": {
     "message": "後で更新"
   },
-  "quoteReply": {
+  "quickAsk": {
     "message": "追加質問"
   },
   "scrollToBottomTitle": {
