@@ -32,6 +32,9 @@ class SidebarStarredAdapterRegistry {
         if (typeof TongyiSidebarStarredAdapter !== 'undefined') {
             this.adapters.push(new TongyiSidebarStarredAdapter());
         }
+        if (typeof QwenSidebarStarredAdapter !== 'undefined') {
+            this.adapters.push(new QwenSidebarStarredAdapter());
+        }
     }
 
     /**

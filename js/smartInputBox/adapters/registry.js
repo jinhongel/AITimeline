@@ -44,6 +44,11 @@ class SmartEnterAdapterRegistry {
             this.adapters.push(new TongyiSmartEnterAdapter());
         }
         
+        // 注册千问国际版适配器
+        if (typeof QwenSmartEnterAdapter !== 'undefined') {
+            this.adapters.push(new QwenSmartEnterAdapter());
+        }
+        
         // 注册 Grok 适配器
         if (typeof GrokSmartEnterAdapter !== 'undefined') {
             this.adapters.push(new GrokSmartEnterAdapter());

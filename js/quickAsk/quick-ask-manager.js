@@ -483,44 +483,59 @@ class QuickAskManager {
             const trailing = '\n'.repeat(trailingBlankLines + 1);
             const appendText = separator + text + trailing;
             
-            // 尝试使用 execCommand，如果失败则使用 DOM 操作
-            let insertSuccess = false;
-            const beforeLength = inputElement.innerText?.length || 0;
-            
-            // 方案1: 尝试 execCommand
-            const execResult = document.execCommand('insertText', false, appendText);
-            const afterExecLength = inputElement.innerText?.length || 0;
-            
-            // 检查是否真的插入了（有些框架 execCommand 返回 true 但没实际效果）
-            if (execResult && afterExecLength > beforeLength) {
-                insertSuccess = true;
-            }
-            
-            // 方案2: 如果 execCommand 没效果，使用 DOM 操作 + 事件触发
-            if (!insertSuccess) {
-                try {
-                    // 直接在光标位置插入文本
-                    if (targetNode.nodeType === Node.TEXT_NODE) {
-                        // 在文本节点末尾追加
-                        const originalText = targetNode.textContent;
-                        targetNode.textContent = originalText + appendText;
-                        insertSuccess = true;
-                    } else {
-                        // 创建新文本节点
-                        const textNode = document.createTextNode(appendText);
-                        if (targetNode === inputElement) {
-                            inputElement.appendChild(textNode);
+            // Slate.js 编辑器：使用粘贴模拟（execCommand 和 DOM 操作都无法同步 Slate 内部状态）
+            const isSlateEditor = inputElement.hasAttribute('data-slate-editor');
+
+            if (isSlateEditor) {
+                const slateText = hasContent ? ('\n' + text + '\n') : text + '\n';
+
+                const slateRange = document.createRange();
+                slateRange.selectNodeContents(inputElement);
+                if (hasContent) {
+                    slateRange.collapse(false);
+                }
+                const slateSel = window.getSelection();
+                slateSel.removeAllRanges();
+                slateSel.addRange(slateRange);
+
+                const dt = new DataTransfer();
+                dt.setData('text/plain', slateText);
+                inputElement.dispatchEvent(new ClipboardEvent('paste', {
+                    clipboardData: dt, bubbles: true, cancelable: true
+                }));
+            } else {
+                // 非 Slate 编辑器：尝试 execCommand，失败则 DOM 操作
+                let insertSuccess = false;
+                const beforeLength = inputElement.innerText?.length || 0;
+
+                const execResult = document.execCommand('insertText', false, appendText);
+                const afterExecLength = inputElement.innerText?.length || 0;
+
+                if (execResult && afterExecLength > beforeLength) {
+                    insertSuccess = true;
+                }
+
+                if (!insertSuccess) {
+                    try {
+                        if (targetNode.nodeType === Node.TEXT_NODE) {
+                            const originalText = targetNode.textContent;
+                            targetNode.textContent = originalText + appendText;
+                            insertSuccess = true;
                         } else {
-                            targetNode.parentNode.insertBefore(textNode, targetNode.nextSibling);
+                            const textNode = document.createTextNode(appendText);
+                            if (targetNode === inputElement) {
+                                inputElement.appendChild(textNode);
+                            } else {
+                                targetNode.parentNode.insertBefore(textNode, targetNode.nextSibling);
+                            }
+                            insertSuccess = true;
                         }
-                        insertSuccess = true;
+
+                        inputElement.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
+                        inputElement.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
+                    } catch (domError) {
+                        console.error('[QuickAsk] DOM manipulation failed:', domError);
                     }
-                    
-                    // 触发 input 事件让框架同步状态
-                    inputElement.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
-                    inputElement.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
-                } catch (domError) {
-                    console.error('[QuickAsk] DOM manipulation failed:', domError);
                 }
             }
             

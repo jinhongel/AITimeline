@@ -14,12 +14,20 @@ const GDRIVE_FOLDER_NAME = 'AITimeline_Backup';
 const GDRIVE_DATA_FILE = 'ait-backup.json';
 const GDRIVE_API = 'https://www.googleapis.com';
 
+const IS_FIREFOX = typeof browser !== 'undefined' && browser.runtime?.id;
+
+const OAUTH_CLIENT_ID = '945798922226-gdjj6v37j5fueacci9253u0j1iasiht2.apps.googleusercontent.com';
+const OAUTH_SCOPES = 'https://www.googleapis.com/auth/drive.file';
+
 /**
  * 获取 OAuth2 Access Token
- * 使用 chrome.identity.getAuthToken（需要扩展已发布到 Chrome Web Store）
- * Chrome 自动管理 token 的缓存和刷新
+ * Chrome: chrome.identity.getAuthToken（内置 OAuth，自动管理 token）
+ * Firefox: browser.identity.launchWebAuthFlow（打开网页授权）
  */
 async function getAuthToken(interactive = true) {
+    if (IS_FIREFOX) {
+        return await getAuthTokenFirefox(interactive);
+    }
     const result = await chrome.identity.getAuthToken({ interactive });
     if (!result.token) {
         throw new Error('Not authenticated');
@@ -27,17 +35,63 @@ async function getAuthToken(interactive = true) {
     return result.token;
 }
 
+async function getAuthTokenFirefox(interactive) {
+    const stored = await browser.storage.local.get('gdriveToken');
+    if (stored.gdriveToken?.access_token) {
+        const isValid = await validateToken(stored.gdriveToken.access_token);
+        if (isValid) return stored.gdriveToken.access_token;
+    }
+
+    if (!interactive) throw new Error('Not authenticated');
+
+    const redirectUrl = browser.identity.getRedirectURL();
+    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth` +
+        `?client_id=${encodeURIComponent(OAUTH_CLIENT_ID)}` +
+        `&response_type=token` +
+        `&redirect_uri=${encodeURIComponent(redirectUrl)}` +
+        `&scope=${encodeURIComponent(OAUTH_SCOPES)}`;
+
+    const responseUrl = await browser.identity.launchWebAuthFlow({
+        url: authUrl,
+        interactive: true
+    });
+
+    const params = new URL(responseUrl.replace('#', '?')).searchParams;
+    const accessToken = params.get('access_token');
+    if (!accessToken) throw new Error('OAuth failed: no access_token');
+
+    await browser.storage.local.set({
+        gdriveToken: { access_token: accessToken, obtained_at: Date.now() }
+    });
+
+    return accessToken;
+}
+
+async function validateToken(token) {
+    try {
+        const resp = await fetch(`https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${token}`);
+        return resp.ok;
+    } catch { return false; }
+}
+
 /**
  * 撤销 Token 并登出
  */
 async function revokeToken() {
     try {
-        const result = await chrome.identity.getAuthToken({ interactive: false });
-        if (result.token) {
-            // 从 Google 服务端撤销
-            await fetch(`https://accounts.google.com/o/oauth2/revoke?token=${result.token}`);
-            // 从 Chrome 本地缓存中移除
-            await chrome.identity.removeCachedAuthToken({ token: result.token });
+        if (IS_FIREFOX) {
+            const stored = await browser.storage.local.get('gdriveToken');
+            const token = stored.gdriveToken?.access_token;
+            if (token) {
+                await fetch(`https://accounts.google.com/o/oauth2/revoke?token=${token}`);
+                await browser.storage.local.remove('gdriveToken');
+            }
+        } else {
+            const result = await chrome.identity.getAuthToken({ interactive: false });
+            if (result.token) {
+                await fetch(`https://accounts.google.com/o/oauth2/revoke?token=${result.token}`);
+                await chrome.identity.removeCachedAuthToken({ token: result.token });
+            }
         }
     } catch {}
 }

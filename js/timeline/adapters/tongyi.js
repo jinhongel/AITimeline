@@ -20,7 +20,34 @@ class TongyiAdapter extends SiteAdapter {
     }
 
     generateTurnId(element, index) {
+        const msgId = element.getAttribute('data-msgid');
+        if (msgId) return `tongyi-${msgId}`;
         return `tongyi-${index}`;
+    }
+
+    extractIndexFromTurnId(turnId) {
+        if (!turnId) return null;
+        if (turnId.startsWith('tongyi-')) {
+            const part = turnId.substring(7);
+            const parsed = parseInt(part, 10);
+            return (String(parsed) === part) ? parsed : part;
+        }
+        return null;
+    }
+
+    generateTurnIdFromIndex(identifier) {
+        return `tongyi-${identifier}`;
+    }
+
+    findMarkerByStoredIndex(storedKey, markers, markerMap) {
+        if (storedKey === null || storedKey === undefined) return null;
+        const turnId = `tongyi-${storedKey}`;
+        const marker = markerMap?.get(turnId);
+        if (marker) return marker;
+        if (typeof storedKey === 'number' && storedKey >= 0 && storedKey < markers.length) {
+            return markers[storedKey];
+        }
+        return null;
     }
 
     extractText(element) {
@@ -67,6 +94,10 @@ class TongyiAdapter extends SiteAdapter {
         });
     }
 
+    getTimeLabelPosition() {
+        return { top: '0px', right: '0px', paddingTop: '4px' };
+    }
+
     getTimelinePosition() {
         // 通义千问位置配置
         return {
@@ -77,10 +108,10 @@ class TongyiAdapter extends SiteAdapter {
     }
     
     getStarChatButtonTarget() {
-        // 找到分享图标（通过 data-icon-type 属性），然后找到它的祖先 button 元素，收藏按钮插入到它前面（左边）
-        const shareIcon = document.querySelector('[data-icon-type="pcicon-transmission-line"]');
-        if (shareIcon) {
-            const button = shareIcon.closest('button');
+        const shareLink = document.querySelector('use[*|href="#qwpcicon-transmission"]') ||
+            document.querySelector('[data-icon-type="qwpcicon-transmission"]');
+        if (shareLink) {
+            const button = shareLink.closest('button');
             return button;
         }
         return null;

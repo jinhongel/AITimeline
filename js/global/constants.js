@@ -102,15 +102,31 @@ const SITE_INFO = [
     {
         id: 'tongyi',
         sites: ['qianwen.com'],
-        name: '千问 Qwen',
+        name: '千问',
         logoPath: 'images/logo/tongyi.webp',
         features: {
             timeline: true,
             smartInput: true,
             inputAnimation: true,
             quickAsk: true,
-            chatTimes: false,  // 提问时间记录
+            chatTimes: true,  // 提问时间记录
+            stableNodeId: true,  // data-msgid 提供稳定节点 ID
             sidebarStarred: true  // 侧边栏收藏列表
+        }
+    },
+    {
+        id: 'qwen',
+        sites: ['chat.qwen.ai'],
+        name: '千问国际版',
+        logoPath: 'images/logo/tongyi.webp',
+        features: {
+            timeline: true,
+            smartInput: true,
+            inputAnimation: true,
+            quickAsk: true,
+            chatTimes: true,
+            stableNodeId: true,
+            sidebarStarred: true
         }
     },
     {

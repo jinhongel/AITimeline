@@ -327,6 +327,10 @@ class ChatTimeRecorder {
             
             const formattedTime = this.formatNodeTime(timestamp);
             
+            if (position.paddingTop) {
+                element.style.paddingTop = position.paddingTop;
+            }
+            
             // 检查是否已有时间标签且内容相同（避免不必要的 DOM 操作）
             if (element.getAttribute('data-ait-time') === formattedTime) return;
             

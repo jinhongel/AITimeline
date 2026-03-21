@@ -13,6 +13,7 @@ class SiteAdapterRegistry {
             new DeepSeekAdapter(),
             new YiyanAdapter(),
             new TongyiAdapter(),
+            new QwenAdapter(),
             new KimiAdapter(),
             new YuanbaoAdapter(),
             new GrokAdapter(),
