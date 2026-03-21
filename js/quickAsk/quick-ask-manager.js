@@ -228,7 +228,10 @@ class QuickAskManager {
         // 优先使用 timeline 已定位的对话容器（最精确）
         const convContainer = window.timelineManager?.conversationContainer;
         if (convContainer && convContainer.isConnected) {
-            return convContainer.contains(element);
+            if (convContainer.contains(element)) return true;
+            // Firefox 上 conversationContainer 可能定位偏小，检查是否在同一滚动区域内
+            const convParent = convContainer.parentElement;
+            if (convParent && convParent.contains(element)) return true;
         }
         
         // 降级：timeline 未初始化时，限制在 <main> 区域内（排除侧边栏/导航）

@@ -16,7 +16,8 @@ const GDRIVE_API = 'https://www.googleapis.com';
 
 const IS_FIREFOX = typeof browser !== 'undefined' && browser.runtime?.id;
 
-const OAUTH_CLIENT_ID = '945798922226-gdjj6v37j5fueacci9253u0j1iasiht2.apps.googleusercontent.com';
+const OAUTH_CLIENT_ID_CHROME = '945798922226-gdjj6v37j5fueacci9253u0j1iasiht2.apps.googleusercontent.com';
+const OAUTH_CLIENT_ID_FIREFOX = '945798922226-jve664u0ibs7lsji89kr8s7f9lsnilla.apps.googleusercontent.com';
 const OAUTH_SCOPES = 'https://www.googleapis.com/auth/drive.file';
 
 /**
@@ -46,7 +47,7 @@ async function getAuthTokenFirefox(interactive) {
 
     const redirectUrl = browser.identity.getRedirectURL();
     const authUrl = `https://accounts.google.com/o/oauth2/v2/auth` +
-        `?client_id=${encodeURIComponent(OAUTH_CLIENT_ID)}` +
+        `?client_id=${encodeURIComponent(OAUTH_CLIENT_ID_FIREFOX)}` +
         `&response_type=token` +
         `&redirect_uri=${encodeURIComponent(redirectUrl)}` +
         `&scope=${encodeURIComponent(OAUTH_SCOPES)}`;

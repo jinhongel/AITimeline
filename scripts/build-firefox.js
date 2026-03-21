@@ -25,7 +25,7 @@ const { execSync } = require('child_process');
 const ROOT = path.resolve(__dirname, '..');
 const MANIFEST_PATH = path.join(ROOT, 'manifest.json');
 const FIREFOX_MANIFEST_PATH = path.join(ROOT, 'manifest.firefox.json');
-const DEFAULT_GECKO_ID = 'ai-timeline@nicholosb';
+const DEFAULT_GECKO_ID = 'ai-timeline@timeline4ai.com';
 
 function parseArgs() {
     const args = {};
@@ -46,11 +46,15 @@ function generateFirefoxManifest(geckoId) {
         };
     }
 
-    // 2. 添加 gecko ID
+    // 2. 添加 gecko ID + 数据收集声明
     manifest.browser_specific_settings = {
         gecko: {
             id: geckoId,
-            strict_min_version: '109.0'
+            strict_min_version: '109.0',
+            data_collection_permissions: {
+                required: ['none'],
+                optional: ['technicalAndInteraction']
+            }
         }
     };
 
@@ -58,15 +62,10 @@ function generateFirefoxManifest(geckoId) {
     delete manifest.oauth2;
     delete manifest.sandbox;
 
-    // 4. 替换 sandbox CSP → extension_pages CSP（Runner 需要 eval 能力）
-    manifest.content_security_policy = {
-        extension_pages: "script-src 'self' 'unsafe-eval' 'wasm-unsafe-eval'; object-src 'self';"
-    };
+    // 4. 移除 sandbox CSP（Firefox 不支持 sandbox，也不允许 extension_pages 中使用 unsafe-eval）
+    delete manifest.content_security_policy;
 
-    // 5. permissions 中移除 identity
-    if (Array.isArray(manifest.permissions)) {
-        manifest.permissions = manifest.permissions.filter(p => p !== 'identity');
-    }
+    // 5. 保留 identity 权限（Firefox 需要 identity 权限来使用 launchWebAuthFlow）
 
     return manifest;
 }
