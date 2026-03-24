@@ -7,6 +7,7 @@ class AnimationTab extends BaseTab {
         super();
         this.id = 'animation';
         this.name = chrome.i18n.getMessage('animTabTitle') || 'Fun Animation';
+        this.badge = 'NEW';
         this.icon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/>
             <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
@@ -25,7 +26,7 @@ class AnimationTab extends BaseTab {
 
         const desc = document.createElement('div');
         desc.className = 'anim-tab-desc';
-        desc.textContent = chrome.i18n.getMessage('animTabDesc') || 'Choose a fun animation above the input box.';
+        desc.textContent = chrome.i18n.getMessage('animTabDesc') || 'Displayed above the chat box. Cute animals walk around when AI replies.';
         container.appendChild(desc);
 
         const list = document.createElement('div');
@@ -74,7 +75,11 @@ class AnimationTab extends BaseTab {
             const checkbox = toggle.querySelector('input');
             this.addEventListener(checkbox, 'change', async () => {
                 await mgr.toggle(anim.id);
-                this._renderList();
+                if (mgr.getActiveId()) {
+                    window.panelModal?.hide();
+                } else {
+                    this._renderList();
+                }
             });
 
             item.appendChild(info);

@@ -90,7 +90,7 @@ class FormulaTab extends BaseTab {
             const result = await chrome.storage.local.get(['formulaLatexEnabled', 'formulaMathMLEnabled', 'formulaFormat']);
             
             const latexEnabled = result.formulaLatexEnabled !== false;
-            const mathmlEnabled = result.formulaMathMLEnabled !== false;
+            const mathmlEnabled = result.formulaMathMLEnabled === true;
             
             latexToggle.checked = latexEnabled;
             mathmlToggle.checked = mathmlEnabled;

@@ -83,11 +83,29 @@
   "sidebarStarredManageTitle": {
     "message": "Gestion des favoris"
   },
+  "pinAction": {
+    "message": "Marquer comme important"
+  },
+  "unpinAction": {
+    "message": "Retirer le marquage important"
+  },
+  "starAction": {
+    "message": "Enregistrer dans un dossier"
+  },
+  "unstarAction": {
+    "message": "Retirer des favoris"
+  },
+  "questionListTitle": {
+    "message": "Questions"
+  },
+  "questionListEmpty": {
+    "message": "Pas encore de questions"
+  },
   "animTabTitle": {
     "message": "Animation amusante"
   },
   "animTabDesc": {
-    "message": "Choisissez une animation amusante au-dessus de la zone de saisie."
+    "message": "Affiché au-dessus de la boîte de dialogue. De mignons animaux se promènent quand l'IA répond."
   },
   "animSnail": {
     "message": "Défilé d'escargots"
@@ -210,7 +228,7 @@
     "message": "Lorsque activé, utilisez les touches ↑ / ↓ pour passer rapidement d'un nœud de conversation à l'autre."
   },
   "pxmzkv": {
-    "message": "📌 Marquer les conversations importantes"
+    "message": "Marquer les conversations importantes"
   },
   "kzxvpm": {
     "message": "Appuyez longuement sur un nœud de conversation dans la chronologie pour le marquer comme important."

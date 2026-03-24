@@ -79,7 +79,7 @@ class FormulaManager {
         try {
             const r = await chrome.storage.local.get(['formulaLatexEnabled', 'formulaMathMLEnabled']);
             this._latexEnabled = r.formulaLatexEnabled !== false;
-            this._mathmlEnabled = r.formulaMathMLEnabled !== false;
+            this._mathmlEnabled = r.formulaMathMLEnabled === true;
         } catch (e) {}
 
         // ✅ 始终创建降级方案的 tooltip 和反馈元素（以防全局管理器失败）
@@ -103,7 +103,7 @@ class FormulaManager {
         try {
             const result = await chrome.storage.local.get(['formulaLatexEnabled', 'formulaMathMLEnabled']);
             const latexOn = result.formulaLatexEnabled !== false;
-            const mathmlOn = result.formulaMathMLEnabled !== false;
+            const mathmlOn = result.formulaMathMLEnabled === true;
             return latexOn || mathmlOn;
         } catch (e) {
             console.error('[FormulaManager] Failed to check if enabled:', e);
@@ -123,7 +123,7 @@ class FormulaManager {
                 this._latexEnabled = changes.formulaLatexEnabled.newValue !== false;
             }
             if (changes.formulaMathMLEnabled) {
-                this._mathmlEnabled = changes.formulaMathMLEnabled.newValue !== false;
+                this._mathmlEnabled = changes.formulaMathMLEnabled.newValue === true;
             }
         };
         
@@ -237,25 +237,21 @@ class FormulaManager {
         // 显示 tooltip - 优先使用全局管理器
         if (typeof window.globalTooltipManager !== 'undefined' && window.globalTooltipManager) {
             try {
-                // 使用全局管理器
                 const formulaId = 'formula-' + Date.now();
-                
-                const tooltipText = this._getTooltipText();
+                const tooltipContent = this._buildTooltipContent();
                 
                 window.globalTooltipManager.show(
                     formulaId,
                     'formula',
                     formulaElement,
-                    tooltipText,
+                    { element: tooltipContent },
                     { placement: 'top' }
                 );
             } catch (error) {
                 console.error('[FormulaManager] Failed to show tooltip via global manager:', error);
-                // 降级到旧逻辑
                 this.showTooltip(formulaElement);
             }
         } else {
-            // 降级：使用旧逻辑
             this.showTooltip(formulaElement);
         }
     }
@@ -443,6 +439,40 @@ class FormulaManager {
         return chrome.i18n.getMessage('mvxkpz') || '复制 LaTeX 公式';
     }
 
+    /**
+     * 构建 tooltip 内容：文字 + 设置 icon
+     */
+    _buildTooltipContent() {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'formula-tooltip-content';
+
+        const textSpan = document.createElement('span');
+        textSpan.className = 'formula-tooltip-text';
+        textSpan.textContent = this._getTooltipText();
+
+        const settingsBtn = document.createElement('span');
+        settingsBtn.className = 'formula-tooltip-settings';
+        settingsBtn.setAttribute('aria-label', chrome.i18n.getMessage('kpxvmz') || '公式设置');
+        settingsBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+            <circle cx="12" cy="12" r="3"/>
+        </svg>`;
+
+        settingsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            if (window.globalTooltipManager) {
+                window.globalTooltipManager.hide(true);
+            }
+            if (window.panelModal) {
+                window.panelModal.show('formula');
+            }
+        });
+
+        wrapper.appendChild(textSpan);
+        wrapper.appendChild(settingsBtn);
+        return wrapper;
+    }
 
     /**
      * 显示 tooltip

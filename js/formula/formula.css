@@ -54,10 +54,59 @@ html[data-timeline-theme="dark"] .MathJax.formula-interactive.formula-hover {
 
 /* 公式 tooltip（继承通用 tooltip 样式）*/
 .formula-tooltip {
-    /* 基础样式已在 .timeline-tooltip-base 中定义 */
     font-size: 13px;
-    padding: 8px 14px;
+    padding: 6px 8px 6px 14px;
     white-space: nowrap;
+}
+
+/* tooltip 内部布局：文字 + 设置 icon */
+.formula-tooltip-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.formula-tooltip-text {
+    flex-shrink: 0;
+}
+
+.formula-tooltip-settings {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    pointer-events: auto;
+    opacity: 0.5;
+    transition: opacity 0.15s, background-color 0.15s;
+    flex-shrink: 0;
+}
+
+.formula-tooltip-settings:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.formula-tooltip-settings:active {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* 深色模式 tooltip 下的设置 icon hover */
+[data-tooltip-theme="dark"] .formula-tooltip-settings:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+[data-tooltip-theme="dark"] .formula-tooltip-settings:active {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.formula-tooltip-settings svg {
+    width: 14px;
+    height: 14px;
+    color: currentColor;
 }
 
 /* 公式 dropdown 菜单：不截断文字 */

@@ -90,11 +90,12 @@ class InputBoxAnimationManager {
         const aiMon = window.AIStateMonitor?.getInstance();
         if (aiMon?.isGenerating) return;
         this.resumeActive();
+        const duration = this._active?.marchDuration || 60;
         this._previewTimer = setTimeout(() => {
             this._previewTimer = null;
             const aiMon = window.AIStateMonitor?.getInstance();
             if (!aiMon?.isGenerating) this.pauseActive();
-        }, 60000);
+        }, (duration / 3) * 1000);
     }
 
     _cancelPreview() {

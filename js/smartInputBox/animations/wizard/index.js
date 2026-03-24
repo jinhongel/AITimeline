@@ -11,6 +11,7 @@ class WizardAnimation {
         this.maxCount = 7;
         this.growAt = [10, 100, 300, 500, 700, 900, 1100];
         this._el = null;
+        this.marchDuration = 40;
         this._leaderSize = 60;
         this._followerSize = 36;
         this._types = [

@@ -6,6 +6,9 @@
     <a href="https://chromewebstore.google.com/detail/timeline-ai-chat/fgebdnlceacaiaeikopldglhffljjlhh">
       <img src="https://img.shields.io/badge/Chrome-Install_Extension-4285F4?style=flat-square&logo=googlechrome&logoColor=white" alt="Chrome Web Store">
     </a>
+    <a href="https://microsoftedge.microsoft.com/addons/detail/ai-timeline%EF%BC%9A%E5%8A%A9%E4%BD%A0%E4%BD%BF%E7%94%A8-ai-%E6%95%88%E7%8E%87%E7%BF%BB%E5%80%8D-/ekednjjojnhlajfobalaaihkibbdcbab">
+      <img src="https://img.shields.io/badge/Edge-Install_Extension-0078D7?style=flat-square&logo=microsoftedge&logoColor=white" alt="Edge Add-ons">
+    </a>
     <img src="https://img.shields.io/badge/Users-10000+-brightgreen?style=flat-square" alt="Users">
     <img src="https://img.shields.io/badge/Version-4.1.6-blue?style=flat-square" alt="Version">
     <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License">
@@ -13,7 +16,7 @@
 
   <h4><a href="./README.md">简体中文</a> | <strong>English</strong></h4>
 
-  <p><strong>Boost your AI efficiency. When using AI in your browser, you'll need it. 10,000+ installs.</strong></p>
+  <p><strong>Boost your AI efficiency. When using AI in your browser, you'll need it. 22,000+ installs.</strong></p>
 
   <img src="./READMEIMAGE/index.png" alt="AI Timeline Demo" width="800">
 </div>

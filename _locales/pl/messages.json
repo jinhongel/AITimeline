@@ -83,11 +83,29 @@
   "sidebarStarredManageTitle": {
     "message": "Ulubione na pasku bocznym"
   },
+  "pinAction": {
+    "message": "Oznacz jako ważne"
+  },
+  "unpinAction": {
+    "message": "Usuń oznaczenie ważnego"
+  },
+  "starAction": {
+    "message": "Zapisz w folderze"
+  },
+  "unstarAction": {
+    "message": "Usuń z zapisanych"
+  },
+  "questionListTitle": {
+    "message": "Pytania"
+  },
+  "questionListEmpty": {
+    "message": "Brak pytań"
+  },
   "animTabTitle": {
     "message": "Zabawna animacja"
   },
   "animTabDesc": {
-    "message": "Wybierz animację nad polem tekstowym."
+    "message": "Wyświetlane nad oknem czatu. Słodkie zwierzątka spacerują, gdy AI odpowiada."
   },
   "animSnail": {
     "message": "Parada ślimaków"
@@ -210,7 +228,7 @@
     "message": "Po włączeniu, użyj klawiszy ↑ / ↓ do szybkiego przeskakiwania między węzłami rozmowy."
   },
   "pxmzkv": {
-    "message": "📌 Oznacz ważne rozmowy"
+    "message": "Oznacz ważne rozmowy"
   },
   "kzxvpm": {
     "message": "Przytrzymaj węzeł rozmowy na osi czasu, aby oznaczyć go jako ważny."

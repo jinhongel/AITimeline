@@ -83,11 +83,29 @@
   "sidebarStarredManageTitle": {
     "message": "側邊欄收藏管理"
   },
+  "pinAction": {
+    "message": "標記重點"
+  },
+  "unpinAction": {
+    "message": "取消標記重點"
+  },
+  "starAction": {
+    "message": "收藏到資料夾"
+  },
+  "unstarAction": {
+    "message": "取消收藏"
+  },
+  "questionListTitle": {
+    "message": "提問列表"
+  },
+  "questionListEmpty": {
+    "message": "暫無提問"
+  },
   "animTabTitle": {
     "message": "趣味動畫"
   },
   "animTabDesc": {
-    "message": "選擇一個趣味動畫，顯示在輸入框上方。"
+    "message": "顯示在對話框上方，AI 回覆時小動物會歡快走動。"
   },
   "animSnail": {
     "message": "蝸牛爬行"
@@ -210,7 +228,7 @@
     "message": "啟用後，使用鍵盤 ↑ / ↓ 鍵，在對話節點間快速跳轉。"
   },
   "pxmzkv": {
-    "message": "📌 標記重點對話"
+    "message": "標記重點對話"
   },
   "kzxvpm": {
     "message": "長按時間軸上的對話節點，即可標記重點。"

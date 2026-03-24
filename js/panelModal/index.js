@@ -233,6 +233,12 @@ class PanelModal {
         const label = document.createElement('span');
         label.className = 'tab-label';
         label.textContent = tab.name;
+        if (tab.badge) {
+            const badge = document.createElement('span');
+            badge.className = 'tab-badge';
+            badge.textContent = tab.badge;
+            label.appendChild(badge);
+        }
         tabButton.appendChild(label);
         
         // 点击切换 tab

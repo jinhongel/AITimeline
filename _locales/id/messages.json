@@ -83,11 +83,29 @@
   "sidebarStarredManageTitle": {
     "message": "Kelola favorit bilah sisi"
   },
+  "pinAction": {
+    "message": "Tandai poin penting"
+  },
+  "unpinAction": {
+    "message": "Hapus tanda penting"
+  },
+  "starAction": {
+    "message": "Simpan ke folder"
+  },
+  "unstarAction": {
+    "message": "Hapus dari tersimpan"
+  },
+  "questionListTitle": {
+    "message": "Daftar Pertanyaan"
+  },
+  "questionListEmpty": {
+    "message": "Belum ada pertanyaan"
+  },
   "animTabTitle": {
     "message": "Animasi lucu"
   },
   "animTabDesc": {
-    "message": "Pilih animasi di atas kotak input."
+    "message": "Ditampilkan di atas kotak chat. Hewan-hewan lucu berjalan riang saat AI membalas."
   },
   "animSnail": {
     "message": "Parade siput"
@@ -210,7 +228,7 @@
     "message": "Saat diaktifkan, gunakan tombol ↑ / ↓ untuk melompat cepat antar node percakapan."
   },
   "pxmzkv": {
-    "message": "📌 Tandai percakapan penting"
+    "message": "Tandai percakapan penting"
   },
   "kzxvpm": {
     "message": "Tekan lama node percakapan di lini masa untuk menandainya sebagai penting."

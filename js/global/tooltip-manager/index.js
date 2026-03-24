@@ -31,6 +31,10 @@ class GlobalTooltipManager {
         // DOM 实例池（按类型复用）
         this.instances = new Map();
         
+        // 二级悬浮 tooltip（不影响主 tooltip 生命周期）
+        this._overlayEl = null;
+        this._overlayTimer = null;
+        
         // 定时器管理
         this.timers = {
             showDebounce: null,
@@ -90,10 +94,10 @@ class GlobalTooltipManager {
                     }
                 },
                 formula: {
-                    maxWidth: 250,
+                    maxWidth: 300,
                     showDelay: 0,
-                    hideDelay: 100,
-                    allowHover: false,
+                    hideDelay: 200,
+                    allowHover: true,
                     className: 'formula-tooltip timeline-tooltip-base',  // 只使用基础类，颜色由color配置控制
                     placement: 'top',
                     gap: 12,
@@ -219,6 +223,7 @@ class GlobalTooltipManager {
         this._log('Force hide all tooltips');
         this._clearAllTimers();
         this._hideImmediate();
+        this.hideOverlay();
         
         // ✅ 清理所有实例池中的tooltip DOM
         this.instances.forEach((tooltip, type) => {
@@ -252,6 +257,82 @@ class GlobalTooltipManager {
     }
     
     /**
+     * 显示二级悬浮 tooltip（不销毁主 tooltip）
+     * 用于主 tooltip 内部元素（如 pin/star 图标）的 hover 提示
+     * @param {HTMLElement} target - 触发元素
+     * @param {string} text - 提示文字
+     * @param {Object} options - 可选配置 { placement: 'top' }
+     */
+    showOverlay(target, text, options = {}) {
+        this.hideOverlay();
+        
+        if (!target || !target.isConnected) return;
+        
+        const el = document.createElement('div');
+        el.className = 'timeline-tooltip-overlay';
+        el.textContent = text;
+        el.style.position = 'fixed';
+        el.style.zIndex = '2147483649';
+        el.style.pointerEvents = 'none';
+        
+        // 自动检测主 tooltip 主题并反转
+        let theme = options.theme;
+        if (!theme) {
+            const parentTooltip = target.closest('[data-tooltip-theme]');
+            if (parentTooltip) {
+                theme = parentTooltip.getAttribute('data-tooltip-theme') === 'dark' ? 'dark' : 'light';
+            }
+        }
+        if (theme) el.setAttribute('data-theme', theme);
+        
+        document.body.appendChild(el);
+        
+        const targetRect = target.getBoundingClientRect();
+        const elRect = el.getBoundingClientRect();
+        const gap = 6;
+        
+        let top, left;
+        const placement = options.placement || 'top';
+        
+        if (placement === 'top') {
+            top = targetRect.top - elRect.height - gap;
+            left = targetRect.left + (targetRect.width - elRect.width) / 2;
+        } else {
+            top = targetRect.bottom + gap;
+            left = targetRect.left + (targetRect.width - elRect.width) / 2;
+        }
+        
+        if (left < 4) left = 4;
+        if (left + elRect.width > window.innerWidth - 4) {
+            left = window.innerWidth - elRect.width - 4;
+        }
+        if (top < 4) {
+            top = targetRect.bottom + gap;
+        }
+        
+        el.style.top = `${top}px`;
+        el.style.left = `${left}px`;
+        
+        requestAnimationFrame(() => { el.classList.add('visible'); });
+        
+        this._overlayEl = el;
+    }
+    
+    /**
+     * 隐藏二级悬浮 tooltip
+     */
+    hideOverlay() {
+        if (this._overlayTimer) {
+            clearTimeout(this._overlayTimer);
+            this._overlayTimer = null;
+        }
+        if (this._overlayEl) {
+            this._overlayEl.remove();
+            this._overlayEl = null;
+        }
+    }
+    
+    /**
      * 销毁管理器
      */
     destroy() {
@@ -259,6 +340,7 @@ class GlobalTooltipManager {
         
         // 清理所有定时器
         this._clearAllTimers();
+        this.hideOverlay();
         
         // 移除全局事件监听
         this._removeGlobalListeners();

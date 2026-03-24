@@ -323,6 +323,37 @@ class TimelineManager {
             this.cacheTooltipConfig();
         });
         
+        // ✅ 添加提问列表按钮（在收藏按钮上方）
+        let questionListBtn = document.querySelector('.ait-question-list-btn');
+        if (!questionListBtn) {
+            questionListBtn = document.createElement('button');
+            questionListBtn.className = 'ait-question-list-btn';
+            questionListBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>';
+            questionListBtn.setAttribute('aria-label', chrome.i18n.getMessage('questionListTitle') || 'Questions');
+            questionListBtn.style.display = 'none';
+
+            questionListBtn.addEventListener('mouseenter', () => {
+                window.globalTooltipManager.show(
+                    'question-list-btn',
+                    'button',
+                    questionListBtn,
+                    chrome.i18n.getMessage('questionListTitle') || 'Questions',
+                    { placement: 'left' }
+                );
+            });
+            questionListBtn.addEventListener('mouseleave', () => {
+                window.globalTooltipManager.hide();
+            });
+
+            wrapper.appendChild(questionListBtn);
+        }
+        this.ui.questionListBtn = questionListBtn;
+
+        // ✅ 绑定提问列表面板到 wrapper
+        if (window.questionListPopup) {
+            window.questionListPopup.bind(wrapper, timelineBar);
+        }
+
         // ✅ 添加收藏按钮（在 timeline-bar 下方 10px 处，垂直居中对齐）
         let starredBtn = document.querySelector('.timeline-starred-btn');
         if (!starredBtn) {
@@ -855,6 +886,8 @@ class TimelineManager {
     recalculateAndRenderMarkers() {
         this.perfStart('recalc');
         if (!this.conversationContainer || !this.ui.timelineBar || !this.scrollContainer) return;
+
+        if (window.questionListPopup) window.questionListPopup.onMarkersRebuilt();
 
         const selector = this.adapter.getUserMessageSelector();
         let userTurnElements = this.conversationContainer.querySelectorAll(selector);
@@ -1829,6 +1862,13 @@ class TimelineManager {
         };
         try { StorageAdapter.addChangeListener(this.onStorage); } catch {}
         
+        // ✅ 提问列表按钮点击事件
+        window.eventDelegateManager.on('click', '.ait-question-list-btn', () => {
+            if (window.questionListPopup) {
+                window.questionListPopup.toggle();
+            }
+        });
+
         // ✅ 收藏按钮点击事件（打开 Panel Modal 并显示收藏 tab）
         // 使用事件委托（解决长时间停留后事件失效问题）
         window.eventDelegateManager.on('click', '.timeline-starred-btn', () => {
@@ -2206,13 +2246,11 @@ class TimelineManager {
         const id = dot.dataset.targetTurnId;
         const isStarred = id && this.starred.has(id);
         
-        // 创建容器（水平：左侧内容区 + 右侧星标）
+        // 创建容器（垂直：内容区在上 + 操作区在下）
         const container = document.createElement('div');
-        container.style.display = 'flex';
-        container.style.alignItems = 'center';
-        container.style.gap = '8px';
+        container.className = 'timeline-tooltip-container';
         
-        // 左侧内容区（垂直：时间在上 + 文字在下）
+        // 内容区（垂直：时间在上 + 文字在下）
         const contentWrap = document.createElement('div');
         contentWrap.className = 'timeline-tooltip-content-wrap';
         
@@ -2237,51 +2275,86 @@ class TimelineManager {
             this.copyToClipboard(messageText, content);
         });
         
-        // 创建星标图标（放在内容右侧，垂直居中）
+        // 底部操作区（图钉 + 星标，水平排列）
+        const actions = document.createElement('div');
+        actions.className = 'timeline-tooltip-actions';
+
+        // 创建图钉图标
+        const isPinned = id && this.pinned.has(id);
+        const pinSpan = document.createElement('span');
+        pinSpan.className = 'timeline-tooltip-pin';
+        pinSpan.dataset.targetTurnId = id;
+        if (!isPinned) pinSpan.classList.add('not-pinned');
+        pinSpan.dataset.tip = isPinned
+            ? (chrome.i18n.getMessage('unpinAction') || '取消标记重点')
+            : (chrome.i18n.getMessage('pinAction') || '标记重点');
+        pinSpan.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            window.globalTooltipManager.hideOverlay();
+            const turnId = pinSpan.dataset.targetTurnId;
+            const ok = await this.togglePin(turnId);
+            if (ok) {
+                const nowPinned = this.pinned.has(turnId);
+                pinSpan.classList.toggle('not-pinned', !nowPinned);
+                pinSpan.dataset.tip = nowPinned
+                    ? (chrome.i18n.getMessage('unpinAction') || '取消标记重点')
+                    : (chrome.i18n.getMessage('pinAction') || '标记重点');
+            }
+        });
+        pinSpan.addEventListener('mouseenter', () => {
+            window.globalTooltipManager.showOverlay(pinSpan, pinSpan.dataset.tip, { placement: 'top' });
+        });
+        pinSpan.addEventListener('mouseleave', () => {
+            window.globalTooltipManager.hideOverlay();
+        });
+
+        // 创建星标图标
         const starSpan = document.createElement('span');
         starSpan.className = 'timeline-tooltip-star';
-        starSpan.dataset.targetTurnId = id; // 保存消息 ID
-        
-        // ✅ 根据当前收藏状态设置初始CSS类
-        if (!isStarred) {
-            starSpan.classList.add('not-starred');
-        }
-        
-        // ✅ 添加点击切换收藏事件
+        starSpan.dataset.targetTurnId = id;
+        if (!isStarred) starSpan.classList.add('not-starred');
+        starSpan.dataset.tip = isStarred
+            ? (chrome.i18n.getMessage('unstarAction') || '取消收藏')
+            : (chrome.i18n.getMessage('starAction') || '收藏到文件夹');
         starSpan.addEventListener('click', async (e) => {
-            e.stopPropagation(); // 阻止事件冒泡
+            e.stopPropagation();
+            window.globalTooltipManager.hideOverlay();
             const turnId = starSpan.dataset.targetTurnId;
-            
-            const result = await this.toggleStar(turnId); // 切换收藏状态（异步，可能显示modal）
-            
-            // 根据操作结果显示 toast 和更新样式
+            const result = await this.toggleStar(turnId);
             if (result && result.success) {
                 const toastColor = {
                     light: { backgroundColor: '#0d0d0d', textColor: '#ffffff', borderColor: '#262626' },
                     dark: { backgroundColor: '#ffffff', textColor: '#1f2937', borderColor: '#d1d5db' }
                 };
-                
                 if (result.action === 'star') {
-                    // 添加收藏成功
                     starSpan.classList.remove('not-starred');
+                    starSpan.dataset.tip = chrome.i18n.getMessage('unstarAction') || '取消收藏';
                     if (window.globalToastManager) {
                         window.globalToastManager.success(chrome.i18n.getMessage('kxpmzv'), null, { color: toastColor });
                     }
                 } else if (result.action === 'unstar') {
-                    // 取消收藏成功
                     starSpan.classList.add('not-starred');
+                    starSpan.dataset.tip = chrome.i18n.getMessage('starAction') || '收藏到文件夹';
                     if (window.globalToastManager) {
                         window.globalToastManager.info(chrome.i18n.getMessage('pzmvkx'), null, { color: toastColor });
                     }
                 }
             }
-            // 如果用户取消了操作（action === 'cancelled'），不显示 toast
         });
-        
+        starSpan.addEventListener('mouseenter', () => {
+            window.globalTooltipManager.showOverlay(starSpan, starSpan.dataset.tip, { placement: 'top' });
+        });
+        starSpan.addEventListener('mouseleave', () => {
+            window.globalTooltipManager.hideOverlay();
+        });
+
+        actions.appendChild(pinSpan);
+        actions.appendChild(starSpan);
+
         // 组装
         contentWrap.appendChild(content);
         container.appendChild(contentWrap);
-        container.appendChild(starSpan);
+        container.appendChild(actions);
         
         return container;
     }
@@ -3665,10 +3738,13 @@ class TimelineManager {
     
     // ✅ 更新收藏按钮显示状态
     async updateStarredBtnVisibility() {
+        if (this.ui.questionListBtn) {
+            this.ui.questionListBtn.style.display = 'flex';
+        }
         if (!this.ui.starredBtn) return;
         
-        // 始终显示收藏按钮，即使没有收藏记录
-        this.ui.starredBtn.style.display = 'flex';
+        // 隐藏收藏按钮（功能已合并到提问列表中）
+        this.ui.starredBtn.style.display = 'none';
         
         // 同步显示闪记按钮（受开关控制，默认开启）
         if (this.ui.notepadBtn) {
@@ -3877,7 +3953,6 @@ class TimelineManager {
             if (marker.pinned && marker.dotElement) {
                 const pinMarker = document.createElement('span');
                 pinMarker.className = 'timeline-pin-marker';
-                pinMarker.textContent = '📌';
                 pinMarker.dataset.markerId = marker.id;
                 
                 // 使用节点的 dotN 来定位图钉（与圆点位置一致）

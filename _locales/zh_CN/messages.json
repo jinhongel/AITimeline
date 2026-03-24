@@ -77,11 +77,29 @@
   "sidebarStarredManageTitle": {
     "message": "侧边栏收藏管理"
   },
+  "pinAction": {
+    "message": "标记重点"
+  },
+  "unpinAction": {
+    "message": "取消标记重点"
+  },
+  "starAction": {
+    "message": "收藏到文件夹"
+  },
+  "unstarAction": {
+    "message": "取消收藏"
+  },
+  "questionListTitle": {
+    "message": "提问列表"
+  },
+  "questionListEmpty": {
+    "message": "暂无提问"
+  },
   "animTabTitle": {
     "message": "趣味动画"
   },
   "animTabDesc": {
-    "message": "选择一个趣味动画，显示在输入框上方。"
+    "message": "显示在对话框上方，AI 回复时小动物会欢快走动。"
   },
   "animSnail": {
     "message": "蜗牛爬行"
@@ -204,7 +222,7 @@
     "message": "启用后，使用键盘 ↑ / ↓ 键，在对话节点间快速跳转。"
   },
   "pxmzkv": {
-    "message": "📌 标记重点对话"
+    "message": "标记重点对话"
   },
   "kzxvpm": {
     "message": "长按时间轴上的对话节点，即可标记重点。"

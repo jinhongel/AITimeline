@@ -11,6 +11,7 @@ class ZombieAnimation {
         this.maxCount = 7;
         this.growAt = [10, 100, 300, 500, 700, 900, 1100];
         this._el = null;
+        this.marchDuration = 50;
         this._leaderSize = 19;
         this._followerSize = 12;
         this._types = [

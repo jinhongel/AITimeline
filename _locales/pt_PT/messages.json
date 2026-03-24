@@ -83,11 +83,29 @@
   "sidebarStarredManageTitle": {
     "message": "Favoritos na barra lateral"
   },
+  "pinAction": {
+    "message": "Marcar como importante"
+  },
+  "unpinAction": {
+    "message": "Remover marca importante"
+  },
+  "starAction": {
+    "message": "Guardar na pasta"
+  },
+  "unstarAction": {
+    "message": "Remover dos guardados"
+  },
+  "questionListTitle": {
+    "message": "Perguntas"
+  },
+  "questionListEmpty": {
+    "message": "Sem perguntas ainda"
+  },
   "animTabTitle": {
     "message": "Animação divertida"
   },
   "animTabDesc": {
-    "message": "Escolha uma animação sobre a caixa de texto."
+    "message": "Exibido acima da caixa de chat. Animais fofos caminham alegremente quando a IA responde."
   },
   "animSnail": {
     "message": "Desfile de caracóis"
@@ -210,7 +228,7 @@
     "message": "Quando ativado, use as teclas ↑ / ↓ para saltar rapidamente entre os nós da conversa."
   },
   "pxmzkv": {
-    "message": "📌 Marcar conversas importantes"
+    "message": "Marcar conversas importantes"
   },
   "kzxvpm": {
     "message": "Mantenha premido um nó da conversa na cronologia para o marcar como importante."

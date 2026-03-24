@@ -23,7 +23,7 @@
     z-index: 30; /* ensure above site chrome */
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
     gap: 10px; /* 时间轴和收藏按钮之间的间距 */
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
@@ -257,18 +257,21 @@ html[data-timeline-theme="dark"] .ait-timeline-dot.active::after {
 /* 图钉图标（独立渲染到 .ait-chat-timeline-bar，使用和节点相同的定位方式） */
 .timeline-pin-marker {
     position: absolute !important;
-    left: -18px !important; /* 时间轴容器左侧18px，避开右侧滚动条 */
-    /* 使用和节点相同的 --n 变量定位 */
+    left: -18px !important;
     top: calc(16px + (100% - 32px) * var(--n, 0)) !important;
     transform: translateY(-50%) !important;
-    font-size: 15px !important;
-    line-height: 1 !important;
+    width: 16px !important;
+    height: 16px !important;
     pointer-events: none !important;
     z-index: 10 !important;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2)) !important;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgb(255, 125, 3)" stroke="rgb(255, 125, 3)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1 1 1 0 0 1 1 1z"/></svg>');
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2)) !important;
 }
 
 /* Floating tooltip element */
@@ -280,10 +283,8 @@ html[data-timeline-theme="dark"] .ait-timeline-dot.active::after {
     width: auto;
     min-width: 80px; /* 设置最小宽度，避免太窄 */
     
-    /* ✅ 修改：使用 flexbox 水平布局，垂直居中 */
     display: flex;
-    align-items: center;
-    gap: 12px; /* 内容和星标之间的间距 */
+    align-items: stretch;
     
     background-color: var(--timeline-tooltip-bg);
     color: var(--timeline-tooltip-text);
@@ -307,36 +308,99 @@ html[data-timeline-theme="dark"] .ait-timeline-dot.active::after {
     transition: opacity var(--timeline-tooltip-anim-in);
 }
 
-/* ✅ 修改：删除了 header 和 index 相关样式，因为新设计中不再需要 */
+/* Tooltip 内部容器（垂直：内容区在上 + 操作区在下） */
+.timeline-tooltip-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
 
-/* ✅ 星标图标样式（使用 SVG 绘制五角星） */
-.timeline-tooltip-star {
-    width: 18px; /* 星标宽度 */
-    height: 18px; /* 星标高度 */
-    flex-shrink: 0; /* 不允许收缩，保持固定大小 */
+/* 底部操作区（图钉 + 星标，水平排列） */
+.timeline-tooltip-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+/* ✅ 图钉图标样式（SVG，区分 light/dark 主题） */
+.timeline-tooltip-pin {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
     cursor: pointer;
     user-select: none;
     position: relative;
-    transition: none;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.15s;
 }
 
-/* 未收藏状态 - 空心五角星（浅色tooltip主题：白色边框） */
+/* 未标记 — 浅色 tooltip（黑色背景）：白色描边，低透明度 */
+.timeline-tooltip-pin.not-pinned {
+    opacity: 0.35;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1 1 1 0 0 1 1 1z"/></svg>');
+}
+
+.timeline-tooltip-pin.not-pinned:hover {
+    opacity: 0.7;
+}
+
+/* 未标记 — 深色 tooltip（白色背景）：深灰描边 */
+[data-tooltip-theme="dark"] .timeline-tooltip-pin.not-pinned {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%231f2937" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1 1 1 0 0 1 1 1z"/></svg>');
+}
+
+/* 已标记 — 橙色填充（与星标激活色统一） */
+.timeline-tooltip-pin:not(.not-pinned) {
+    opacity: 1;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgb(255, 125, 3)" stroke="rgb(255, 125, 3)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1 1 1 0 0 1 1 1z"/></svg>');
+}
+
+/* ✅ 星标图标样式（SVG，区分 light/dark 主题） */
+.timeline-tooltip-star {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.15s;
+}
+
+/* 未收藏 — 浅色 tooltip（黑色背景）：白色描边，低透明度 */
 .timeline-tooltip-star.not-starred {
+    opacity: 0.35;
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 26 26"><path fill="none" stroke="%23ffffff" stroke-width="1.5" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>');
 }
 
-/* 未收藏状态 - 深色tooltip主题（白色背景）：深灰色边框 */
+.timeline-tooltip-star.not-starred:hover {
+    opacity: 0.7;
+}
+
+/* 未收藏 — 深色 tooltip（白色背景）：深灰描边 */
 [data-tooltip-theme="dark"] .timeline-tooltip-star.not-starred {
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 26 26"><path fill="none" stroke="%231f2937" stroke-width="1.5" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>');
 }
 
-/* 收藏状态 - 实心五角星（橙色填充 rgb(255, 125, 3)） */
+/* 已收藏 — 橙色填充（与图钉激活色统一） */
 .timeline-tooltip-star:not(.not-starred) {
+    opacity: 1;
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 26 26"><path fill="rgb(255, 125, 3)" stroke="rgb(255, 125, 3)" stroke-width="0.5" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>');
 }
+
 
 /* Tooltip 内容包装（垂直：时间在上 + 文字在下） */
 .timeline-tooltip-content-wrap {
@@ -434,7 +498,52 @@ html[data-timeline-theme="dark"] [data-ait-time]::before {
 .ait-timeline-track::-webkit-scrollbar { width: 0; height: 0; }
 .ait-timeline-track { scrollbar-width: none; }
 
-/* ✅ 菜单按钮（三横线图标，在时间轴下方） */
+/* ✅ 提问列表按钮 */
+.ait-question-list-btn {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    transition: background-color 0.2s ease;
+    border-radius: 6px;
+    flex-shrink: 0;
+    color: #6b6b6b;
+}
+
+.ait-question-list-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.ait-question-list-btn:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.ait-question-list-btn.active {
+    color: #7450ff;
+    background-color: rgba(116, 80, 255, 0.12);
+}
+
+html[data-timeline-theme="dark"] .ait-question-list-btn {
+    color: #9a9a9a;
+}
+
+html[data-timeline-theme="dark"] .ait-question-list-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+html[data-timeline-theme="dark"] .ait-question-list-btn.active {
+    color: #a78bfa;
+    background-color: rgba(116, 80, 255, 0.2);
+}
+
+/* ✅ 菜单按钮（搜索图标，在时间轴下方） */
 .timeline-starred-btn {
     position: relative;
     width: 28px;

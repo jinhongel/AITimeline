@@ -77,11 +77,29 @@
   "sidebarStarredManageTitle": {
     "message": "Sidebar Starred"
   },
+  "pinAction": {
+    "message": "Mark Key Point"
+  },
+  "unpinAction": {
+    "message": "Unmark Key Point"
+  },
+  "starAction": {
+    "message": "Save to folder"
+  },
+  "unstarAction": {
+    "message": "Remove from saved"
+  },
+  "questionListTitle": {
+    "message": "Questions"
+  },
+  "questionListEmpty": {
+    "message": "No questions yet"
+  },
   "animTabTitle": {
     "message": "Fun Animation"
   },
   "animTabDesc": {
-    "message": "Choose a fun animation above the input box."
+    "message": "Displayed above the chat box. Cute animals walk around when AI replies."
   },
   "animSnail": {
     "message": "Snail Parade"
@@ -204,7 +222,7 @@
     "message": "When enabled, use ↑ / ↓ keys to quickly jump between conversation nodes."
   },
   "pxmzkv": {
-    "message": "📌 Mark Important Conversations"
+    "message": "Mark Important Conversations"
   },
   "kzxvpm": {
     "message": "Long press on a conversation node in the timeline to mark it as important."

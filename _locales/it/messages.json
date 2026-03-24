@@ -83,11 +83,29 @@
   "sidebarStarredManageTitle": {
     "message": "Preferiti barra laterale"
   },
+  "pinAction": {
+    "message": "Segna come importante"
+  },
+  "unpinAction": {
+    "message": "Rimuovi segno importante"
+  },
+  "starAction": {
+    "message": "Salva nella cartella"
+  },
+  "unstarAction": {
+    "message": "Rimuovi dai salvati"
+  },
+  "questionListTitle": {
+    "message": "Domande"
+  },
+  "questionListEmpty": {
+    "message": "Nessuna domanda ancora"
+  },
   "animTabTitle": {
     "message": "Animazione divertente"
   },
   "animTabDesc": {
-    "message": "Scegli un'animazione sopra la casella di input."
+    "message": "Visualizzato sopra la casella di chat. Simpatici animaletti camminano allegramente quando l'IA risponde."
   },
   "animSnail": {
     "message": "Parata di lumache"
@@ -210,7 +228,7 @@
     "message": "Quando attivato, usa i tasti ↑ / ↓ per saltare rapidamente tra i nodi della conversazione."
   },
   "pxmzkv": {
-    "message": "📌 Segna conversazioni importanti"
+    "message": "Segna conversazioni importanti"
   },
   "kzxvpm": {
     "message": "Tieni premuto un nodo della conversazione nella cronologia per segnarlo come importante."

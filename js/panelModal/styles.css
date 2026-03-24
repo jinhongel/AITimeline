@@ -16,47 +16,67 @@
 
 /* ========== 主容器 ========== */
 .ait-panel-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 99999;
-    display: none;
-    align-items: center;
-    justify-content: center;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 99999 !important;
+    display: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    float: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    box-sizing: border-box !important;
+    pointer-events: none !important;
 }
 
 .ait-panel-modal.visible {
-    display: flex;
+    display: flex !important;
+    pointer-events: auto !important;
 }
 
 /* ========== 遮罩层 ========== */
 .ait-panel-modal-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    cursor: pointer;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    cursor: pointer !important;
     animation: fadeIn 0.2s ease-out;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    float: none !important;
 }
 
 /* ========== 弹窗容器（居中） ========== */
 .ait-panel-modal-wrapper {
-    position: relative;
-    width: 820px;
-    max-width: 90vw;
-    height: 600px;
-    max-height: 80vh;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    display: flex;
-    overflow: hidden;
-    z-index: 1;
+    position: relative !important;
+    width: 820px !important;
+    max-width: 90vw !important;
+    height: 600px !important;
+    max-height: 80vh !important;
+    background: white !important;
+    border-radius: 12px !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+    display: flex !important;
+    overflow: hidden !important;
+    z-index: 1 !important;
     animation: modalFadeInScale 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
 }
 
 /* ========== 左侧边栏 ========== */
@@ -197,6 +217,21 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.panel-tab .tab-badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: #fff;
+    background: #e8453c;
+    letter-spacing: 0.3px;
+    margin-left: 4px;
+    vertical-align: middle;
+    transform: scale(0.9);
 }
 
 /* Footer 底部信息区域（左侧底部固定） */

@@ -6,6 +6,9 @@
     <a href="https://chromewebstore.google.com/detail/timeline-ai-chat/fgebdnlceacaiaeikopldglhffljjlhh">
       <img src="https://img.shields.io/badge/Chrome-安装扩展-4285F4?style=flat-square&logo=googlechrome&logoColor=white" alt="Chrome Web Store">
     </a>
+    <a href="https://microsoftedge.microsoft.com/addons/detail/ai-timeline%EF%BC%9A%E5%8A%A9%E4%BD%A0%E4%BD%BF%E7%94%A8-ai-%E6%95%88%E7%8E%87%E7%BF%BB%E5%80%8D-/ekednjjojnhlajfobalaaihkibbdcbab">
+      <img src="https://img.shields.io/badge/Edge-安装扩展-0078D7?style=flat-square&logo=microsoftedge&logoColor=white" alt="Edge Add-ons">
+    </a>
     <img src="https://img.shields.io/badge/用户-10000+-brightgreen?style=flat-square" alt="Users">
     <img src="https://img.shields.io/badge/版本-4.1.6-blue?style=flat-square" alt="Version">
     <img src="https://img.shields.io/badge/许可证-MIT-green?style=flat-square" alt="License">
@@ -13,7 +16,7 @@
 
   <h4><strong>简体中文</strong> | <a href="./README.en.md">English</a></h4>
 
-  <p><strong>提升你使用 AI 的效率，当你在浏览器上使用 AI 时，你会需要它，10,000+ 用户安装。</strong></p>
+  <p><strong>提升你使用 AI 的效率，当你在浏览器上使用 AI 时，你会需要它，22,000+ 用户安装。</strong></p>
 
   <img src="./READMEIMAGE/index.png" alt="AI Timeline 效果展示" width="800">
 </div>

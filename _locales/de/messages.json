@@ -83,11 +83,29 @@
   "sidebarStarredManageTitle": {
     "message": "Seitenleiste Favoriten"
   },
+  "pinAction": {
+    "message": "Als wichtig markieren"
+  },
+  "unpinAction": {
+    "message": "Markierung entfernen"
+  },
+  "starAction": {
+    "message": "In Ordner speichern"
+  },
+  "unstarAction": {
+    "message": "Gespeichertes entfernen"
+  },
+  "questionListTitle": {
+    "message": "Fragen"
+  },
+  "questionListEmpty": {
+    "message": "Noch keine Fragen"
+  },
   "animTabTitle": {
     "message": "Spaß-Animation"
   },
   "animTabDesc": {
-    "message": "Wähle eine Animation über dem Eingabefeld."
+    "message": "Wird über dem Chatfeld angezeigt. Niedliche Tiere laufen fröhlich herum, wenn die KI antwortet."
   },
   "animSnail": {
     "message": "Schneckenparade"
@@ -210,7 +228,7 @@
     "message": "Wenn aktiviert, können Sie mit ↑ / ↓ Tasten schnell zwischen Gesprächsknoten wechseln."
   },
   "pxmzkv": {
-    "message": "📌 Wichtige Gespräche markieren"
+    "message": "Wichtige Gespräche markieren"
   },
   "kzxvpm": {
     "message": "Drücken Sie lange auf einen Gesprächsknoten in der Zeitleiste, um ihn als wichtig zu markieren."

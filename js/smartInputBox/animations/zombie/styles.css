@@ -1,7 +1,7 @@
 /* 僵尸行走队列 */
 .zombie-parade { position: fixed; z-index: 8; height: 42px; overflow: visible; pointer-events: none; -webkit-mask-image: linear-gradient(to right, transparent, black 30px, black calc(100% - 30px), transparent); mask-image: linear-gradient(to right, transparent, black 30px, black calc(100% - 30px), transparent); }
 .zombie-track { width: 100%; height: 100%; position: relative; }
-.zombie-group { display: flex; align-items: flex-end; gap: 8px; position: absolute; bottom: 0; pointer-events: auto; cursor: pointer; animation: z-march 50s linear infinite; }
+.zombie-group { display: flex; align-items: flex-end; gap: 8px; position: absolute; bottom: 0; pointer-events: auto; cursor: pointer; animation: z-march 50s linear 1 forwards; }
 .zombie-group:hover, .zombie-group:hover * { animation-play-state: paused !important; }
 .zombie-item { display: inline-flex; flex-shrink: 0; }
 
@@ -11,7 +11,7 @@
 .z-bob-4 { animation: z-lurch-1 2.0s ease-in-out infinite 0.5s; }
 .z-bob-5 { animation: z-lurch-2 1.5s ease-in-out infinite 1.1s; }
 
-@keyframes z-march { 0%, 1% { transform: translateX(-100%); } 100% { transform: translateX(calc(var(--pw, 600px) + 10px)); } }
+@keyframes z-march { 0% { transform: translateX(-100%); } 100% { transform: translateX(calc(var(--pw, 600px) + 10px)); } }
 
 @keyframes z-lurch-1 {
     0%, 100% { transform: rotate(0deg); }

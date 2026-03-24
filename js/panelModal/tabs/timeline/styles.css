@@ -75,6 +75,15 @@
     font-weight: 500;
     color: #1f2937;
     margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.setting-label-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
 }
 
 .setting-hint {

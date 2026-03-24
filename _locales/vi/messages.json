@@ -83,11 +83,29 @@
   "sidebarStarredManageTitle": {
     "message": "Quản lý mục yêu thích"
   },
+  "pinAction": {
+    "message": "Đánh dấu điểm quan trọng"
+  },
+  "unpinAction": {
+    "message": "Bỏ đánh dấu quan trọng"
+  },
+  "starAction": {
+    "message": "Lưu vào thư mục"
+  },
+  "unstarAction": {
+    "message": "Bỏ lưu"
+  },
+  "questionListTitle": {
+    "message": "Danh sách câu hỏi"
+  },
+  "questionListEmpty": {
+    "message": "Chưa có câu hỏi"
+  },
   "animTabTitle": {
     "message": "Hoạt hình vui"
   },
   "animTabDesc": {
-    "message": "Chọn hoạt hình phía trên ô nhập."
+    "message": "Hiển thị phía trên hộp chat. Các chú thú dễ thương sẽ vui vẻ đi lại khi AI trả lời."
   },
   "animSnail": {
     "message": "Diễu hành ốc sên"
@@ -210,7 +228,7 @@
     "message": "Khi bật, sử dụng phím ↑ / ↓ để nhảy nhanh giữa các nút hội thoại."
   },
   "pxmzkv": {
-    "message": "📌 Đánh dấu hội thoại quan trọng"
+    "message": "Đánh dấu hội thoại quan trọng"
   },
   "kzxvpm": {
     "message": "Nhấn giữ nút hội thoại trên dòng thời gian để đánh dấu là quan trọng."

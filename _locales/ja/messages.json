@@ -83,11 +83,29 @@
   "sidebarStarredManageTitle": {
     "message": "サイドバーお気に入り管理"
   },
+  "pinAction": {
+    "message": "重要ポイントをマーク"
+  },
+  "unpinAction": {
+    "message": "マークを解除"
+  },
+  "starAction": {
+    "message": "フォルダに保存"
+  },
+  "unstarAction": {
+    "message": "保存を解除"
+  },
+  "questionListTitle": {
+    "message": "質問リスト"
+  },
+  "questionListEmpty": {
+    "message": "まだ質問がありません"
+  },
   "animTabTitle": {
     "message": "楽しいアニメ"
   },
   "animTabDesc": {
-    "message": "入力欄の上に楽しいアニメーションを表示します。"
+    "message": "チャットボックスの上に表示されます。AI が返信すると、かわいい動物たちが楽しく歩き回ります。"
   },
   "animSnail": {
     "message": "カタツムリ行進"
@@ -210,7 +228,7 @@
     "message": "有効にすると、↑ / ↓ キーで会話ノード間を素早く移動できます。"
   },
   "pxmzkv": {
-    "message": "📌 重要な会話をマーク"
+    "message": "重要な会話をマーク"
   },
   "kzxvpm": {
     "message": "タイムライン上の会話ノードを長押しすると、重要としてマークできます。"

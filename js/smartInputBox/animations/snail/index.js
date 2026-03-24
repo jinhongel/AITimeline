@@ -10,6 +10,7 @@ class SnailAnimation {
         this.maxCount = 7;
         this.growAt = [10, 100, 300, 500, 700, 900, 1100];
         this._el = null;
+        this.marchDuration = 60;
         this._leaderSize = 45;
         this._followerSize = 28;
         this._colorIds = ['b', 'c', 'd', 'e', 'f', 'g'];

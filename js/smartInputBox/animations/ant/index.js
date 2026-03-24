@@ -10,6 +10,7 @@ class AntAnimation {
         this.maxCount = 7;
         this.growAt = [10, 100, 300, 500, 700, 900, 1100];
         this._el = null;
+        this.marchDuration = 40;
         this._leaderSize = 26;
         this._followerSize = 16;
         this._followerColors = ['#4A3728', '#5A4738', '#4A3728', '#5A4738', '#4A3728'];
