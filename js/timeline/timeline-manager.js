@@ -2012,27 +2012,38 @@ class TimelineManager {
     smoothScrollTo(targetElement, duration = 600) {
         if (!targetElement || !this.scrollContainer) return;
         
-        // ✅ 跳转前重新计算位置，确保 padding 高度正确（由 isAIGenerating 实时控制）
         this._recalcMarkerPositions();
         
-        const containerRect = this.scrollContainer.getBoundingClientRect();
-        const targetRect = targetElement.getBoundingClientRect();
-        // 使用 adapter 的平台特定偏移量，不同平台可能因顶部固定导航等原因需要不同偏移
         const scrollOffset = this.adapter?.getScrollOffset?.() ?? 30;
-        const targetPosition = targetRect.top - containerRect.top + this.scrollContainer.scrollTop - scrollOffset;
         const startPosition = this.scrollContainer.scrollTop;
-        const distance = targetPosition - startPosition;
+        
+        // 计算初始目标位置
+        const getTargetPosition = () => {
+            const containerRect = this.scrollContainer.getBoundingClientRect();
+            const targetRect = targetElement.getBoundingClientRect();
+            return targetRect.top - containerRect.top + this.scrollContainer.scrollTop - scrollOffset;
+        };
+        
         let startTime = null;
 
         const animation = (currentTime) => {
+            if (!targetElement.isConnected) return;
             if (startTime === null) startTime = currentTime;
             const timeElapsed = currentTime - startTime;
-            const run = this.easeInOutQuad(timeElapsed, startPosition, distance, duration);
-            this.scrollContainer.scrollTop = run;
-            if (timeElapsed < duration) {
+            const progress = Math.min(timeElapsed / duration, 1);
+            const easedProgress = this.easeInOutQuad(progress, 0, 1, 1);
+            
+            // 每帧重新计算目标位置，应对 DOM 动态插入
+            const currentTarget = getTargetPosition();
+            const currentPosition = startPosition + (currentTarget - startPosition) * easedProgress;
+            
+            this.scrollContainer.scrollTop = currentPosition;
+            
+            if (progress < 1) {
                 requestAnimationFrame(animation);
             } else {
-                this.scrollContainer.scrollTop = targetPosition;
+                // 动画结束后做最终修正
+                this.scrollContainer.scrollTop = getTargetPosition();
             }
         };
         requestAnimationFrame(animation);
