@@ -234,10 +234,10 @@
     "message": "Tekan lama node percakapan di lini masa untuk menandainya sebagai penting."
   },
   "xmvkpz": {
-    "message": "Kotak chat"
+    "message": "Kotak input"
   },
   "kvzmxp": {
-    "message": "Tombol Enter untuk baris baru"
+    "message": "Baris baru & Kirim pesan"
   },
   "kpxvmz": {
     "message": "Salin rumus"
@@ -255,7 +255,7 @@
     "message": "Tombol Enter: tekan sekali untuk baris baru, dua kali untuk mengirim"
   },
   "mkpxvz": {
-    "message": "Saat diaktifkan, di kotak input chat AI, tekan Enter sekali untuk baris baru, tekan cepat dua kali untuk mengirim pesan."
+    "message": "Saat diaktifkan, di kotak input chat AI, tekan Enter untuk baris baru, {mode} untuk mengirim pesan."
   },
   "qoytxz": {
     "message": "Fitur ini diaktifkan secara default dan tidak dapat dimatikan"

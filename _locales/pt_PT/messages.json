@@ -234,10 +234,10 @@
     "message": "Mantenha premido um nó da conversa na cronologia para o marcar como importante."
   },
   "xmvkpz": {
-    "message": "Caixa de chat"
+    "message": "Caixa de entrada"
   },
   "kvzmxp": {
-    "message": "Tecla Enter para nova linha"
+    "message": "Quebra de linha e envio"
   },
   "kpxvmz": {
     "message": "Copiar fórmula"
@@ -255,7 +255,7 @@
     "message": "Tecla Enter: prima uma vez para nova linha, duas vezes para enviar"
   },
   "mkpxvz": {
-    "message": "Quando ativado, na caixa de entrada do chat de IA, prima Enter uma vez para nova linha, prima rapidamente duas vezes para enviar a mensagem."
+    "message": "Quando ativado, na caixa de entrada do chat de IA, prima Enter para nova linha, {mode} para enviar a mensagem."
   },
   "qoytxz": {
     "message": "Esta funcionalidade está ativada por predefinição e não pode ser desativada"

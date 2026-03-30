@@ -234,10 +234,10 @@
     "message": "Long press on a conversation node in the timeline to mark it as important."
   },
   "xmvkpz": {
-    "message": "Chat Box"
+    "message": "Input Box"
   },
   "kvzmxp": {
-    "message": "Enter Key for New Line"
+    "message": "Line Break & Send"
   },
   "kpxvmz": {
     "message": "Copy Formula"
@@ -255,7 +255,31 @@
     "message": "Enter key: Single press for new line, double press to send"
   },
   "mkpxvz": {
-    "message": "When enabled, press Enter once for a new line in the AI chat input box; press Enter twice quickly to send the message."
+    "message": "When enabled, press Enter for a new line in the AI chat input box. {mode} to send messages."
+  },
+  "smartEnterModeDoubleEnter": {
+    "message": "Quick double Enter"
+  },
+  "smartEnterModeDoubleEnterDesc": {
+    "message": "Press Enter once for a new line, press twice quickly to send"
+  },
+  "smartEnterModeCtrlEnter": {
+    "message": "to send"
+  },
+  "smartEnterModeCtrlEnterDesc": {
+    "message": "Enter for new line, {ctrl} + Enter to send"
+  },
+  "smartEnterModeShiftEnter": {
+    "message": "to send"
+  },
+  "smartEnterModeShiftEnterDesc": {
+    "message": "Enter for new line, Shift + Enter to send"
+  },
+  "smartEnterToastCtrlEnter": {
+    "message": "Enter: new line, {ctrl}+Enter: send"
+  },
+  "smartEnterToastShiftEnter": {
+    "message": "Enter: new line, Shift+Enter: send"
   },
   "qoytxz": {
     "message": "This feature is enabled by default and cannot be turned off"
@@ -495,7 +519,7 @@
     "message": "Recommend to Friends"
   },
   "aboutShareContent": {
-    "message": "If this extension has been helpful, feel free to post a review on Xiaohongshu, Bilibili, X, Reddit, YouTube, or other platforms, and share it with classmates and friends so more people can discover it. ❤️"
+    "message": "If the Timeline extension has helped you, feel free to post a recommendation on Xiaohongshu, Bilibili, X, Reddit, YouTube, or other platforms, and share it with friends and classmates. ❤️"
   },
   "nativeMenuStarToFolder": {
     "message": "Star to Folder"

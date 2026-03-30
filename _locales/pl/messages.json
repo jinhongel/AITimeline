@@ -234,10 +234,10 @@
     "message": "Przytrzymaj węzeł rozmowy na osi czasu, aby oznaczyć go jako ważny."
   },
   "xmvkpz": {
-    "message": "Pole czatu"
+    "message": "Pole wejściowe"
   },
   "kvzmxp": {
-    "message": "Klawisz Enter do nowej linii"
+    "message": "Nowa linia i wysyłanie"
   },
   "kpxvmz": {
     "message": "Kopiuj formułę"
@@ -255,7 +255,7 @@
     "message": "Klawisz Enter: naciśnij raz dla nowej linii, dwa razy dla wysłania"
   },
   "mkpxvz": {
-    "message": "Po włączeniu, w polu wprowadzania czatu AI, naciśnij Enter raz dla nowej linii, naciśnij szybko dwa razy, aby wysłać wiadomość."
+    "message": "Po włączeniu, w polu wprowadzania czatu AI, naciśnij Enter dla nowej linii, {mode} aby wysłać wiadomość."
   },
   "qoytxz": {
     "message": "Ta funkcja jest domyślnie włączona i nie może być wyłączona"

@@ -234,10 +234,10 @@
     "message": "長按時間軸上的對話節點，即可標記重點。"
   },
   "xmvkpz": {
-    "message": "對話框"
+    "message": "輸入框"
   },
   "kvzmxp": {
-    "message": "鍵盤 Enter 鍵換行"
+    "message": "換行與發送訊息"
   },
   "kpxvmz": {
     "message": "複製公式"
@@ -255,7 +255,31 @@
     "message": "Enter鍵：單擊換行，雙擊發送訊息"
   },
   "mkpxvz": {
-    "message": "啟用後，在 AI 對話輸入框中，單擊 Enter 鍵換行，快速雙擊 Enter 鍵發送訊息。"
+    "message": "啟用後，在 AI 對話輸入框中，可通過 Enter 鍵換行，{mode} 發送訊息。"
+  },
+  "smartEnterModeDoubleEnter": {
+    "message": "快速雙擊 Enter"
+  },
+  "smartEnterModeDoubleEnterDesc": {
+    "message": "單擊 Enter 換行，快速雙擊 Enter 發送訊息"
+  },
+  "smartEnterModeCtrlEnter": {
+    "message": "發送訊息"
+  },
+  "smartEnterModeCtrlEnterDesc": {
+    "message": "Enter 換行，{ctrl} + Enter 發送訊息"
+  },
+  "smartEnterModeShiftEnter": {
+    "message": "發送訊息"
+  },
+  "smartEnterModeShiftEnterDesc": {
+    "message": "Enter 換行，Shift + Enter 發送訊息"
+  },
+  "smartEnterToastCtrlEnter": {
+    "message": "Enter鍵：直接換行，{ctrl}+Enter 發送"
+  },
+  "smartEnterToastShiftEnter": {
+    "message": "Enter鍵：直接換行，Shift+Enter 發送"
   },
   "qoytxz": {
     "message": "此功能預設開啟，無法關閉"
@@ -513,7 +537,7 @@
     "message": "推薦給朋友"
   },
   "aboutShareContent": {
-    "message": "如果這個插件幫到了你，歡迎在 小紅書、B站、X、Reddit、YouTube 等平台發測評，也歡迎分享給同學、朋友，讓更多人使用到它。❤️"
+    "message": "如果 Timeline 插件幫到了你，歡迎在小紅書、B站、X、Reddit、YouTube 等平台發帖推薦，也歡迎分享給朋友、同學。❤️"
   },
   "formulaCopyGeneric": {
     "message": "複製公式"

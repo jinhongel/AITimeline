@@ -234,10 +234,10 @@
     "message": "Nhấn giữ nút hội thoại trên dòng thời gian để đánh dấu là quan trọng."
   },
   "xmvkpz": {
-    "message": "Hộp chat"
+    "message": "Hộp nhập liệu"
   },
   "kvzmxp": {
-    "message": "Phím Enter để xuống dòng"
+    "message": "Xuống dòng & Gửi tin nhắn"
   },
   "kpxvmz": {
     "message": "Sao chép công thức"
@@ -255,7 +255,7 @@
     "message": "Phím Enter: nhấn một lần để xuống dòng, hai lần để gửi"
   },
   "mkpxvz": {
-    "message": "Khi bật, trong hộp nhập chat AI, nhấn Enter một lần để xuống dòng, nhấn nhanh hai lần để gửi tin nhắn."
+    "message": "Khi bật, trong hộp nhập chat AI, nhấn Enter để xuống dòng, {mode} để gửi tin nhắn."
   },
   "qoytxz": {
     "message": "Tính năng này được bật theo mặc định và không thể tắt"

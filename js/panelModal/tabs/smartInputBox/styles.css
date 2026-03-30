@@ -74,6 +74,35 @@
     box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
+/* ==================== 内联 Dropdown Trigger 样式 ==================== */
+
+.smart-enter-mode-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    color: #7450ff;
+    cursor: pointer;
+    border-bottom: 1px dashed #7450ff;
+    font-weight: 500;
+    transition: all 0.2s;
+    padding: 0 1px;
+}
+
+.smart-enter-mode-trigger:hover {
+    color: #5a3dd6;
+    border-bottom-color: #5a3dd6;
+}
+
+.smart-enter-mode-trigger svg {
+    flex-shrink: 0;
+    opacity: 0.7;
+    transition: transform 0.2s;
+}
+
+.smart-enter-mode-trigger:hover svg {
+    transform: translateY(1px);
+}
+
 /* ==================== 平台列表样式 ==================== */
 
 /* 平台列表外层容器 */

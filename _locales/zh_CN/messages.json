@@ -228,10 +228,10 @@
     "message": "长按时间轴上的对话节点，即可标记重点。"
   },
   "xmvkpz": {
-    "message": "对话框"
+    "message": "输入框"
   },
   "kvzmxp": {
-    "message": "键盘 Enter 键换行"
+    "message": "换行与发送消息"
   },
   "kpxvmz": {
     "message": "复制公式"
@@ -261,7 +261,31 @@
     "message": "Enter键：单击换行，双击发送消息"
   },
   "mkpxvz": {
-    "message": "启用后，在 AI 对话输入框中，单击 Enter 键换行，快速双击 Enter 键发送消息。"
+    "message": "启用后，在 AI 对话输入框中，可通过 Enter 键换行，{mode} 发送消息。"
+  },
+  "smartEnterModeDoubleEnter": {
+    "message": "快速双击 Enter"
+  },
+  "smartEnterModeDoubleEnterDesc": {
+    "message": "单击 Enter 换行，快速双击 Enter 发送消息"
+  },
+  "smartEnterModeCtrlEnter": {
+    "message": "发送消息"
+  },
+  "smartEnterModeCtrlEnterDesc": {
+    "message": "Enter 换行，{ctrl} + Enter 发送消息"
+  },
+  "smartEnterModeShiftEnter": {
+    "message": "发送消息"
+  },
+  "smartEnterModeShiftEnterDesc": {
+    "message": "Enter 换行，Shift + Enter 发送消息"
+  },
+  "smartEnterToastCtrlEnter": {
+    "message": "Enter键：直接换行，{ctrl}+Enter 发送"
+  },
+  "smartEnterToastShiftEnter": {
+    "message": "Enter键：直接换行，Shift+Enter 发送"
   },
   "qoytxz": {
     "message": "此功能默认开启，无法关闭"
@@ -576,7 +600,7 @@
     "message": "推荐给朋友"
   },
   "aboutShareContent": {
-    "message": "如果这个插件帮到了你，欢迎在 小红书、B站、X、Reddit、YouTube 等平台发测评，也欢迎分享给同学、朋友，让更多人使用到它。❤️"
+    "message": "如果 Timeline 插件帮到了你，欢迎在 小红书、B站、X、Reddit、YouTube 等平台发帖推荐，也欢迎分享给朋友、同学。❤️"
   },
   "nativeMenuStarToFolder": {
     "message": "收藏到文件夹"

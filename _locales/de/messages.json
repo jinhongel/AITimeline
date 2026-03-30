@@ -234,10 +234,10 @@
     "message": "Drücken Sie lange auf einen Gesprächsknoten in der Zeitleiste, um ihn als wichtig zu markieren."
   },
   "xmvkpz": {
-    "message": "Chat-Box"
+    "message": "Eingabefeld"
   },
   "kvzmxp": {
-    "message": "Enter-Taste für Zeilenumbruch"
+    "message": "Zeilenumbruch und Senden"
   },
   "kpxvmz": {
     "message": "Formel kopieren"
@@ -255,7 +255,7 @@
     "message": "Enter-Taste: Einmal für Zeilenumbruch, doppelt für Senden"
   },
   "mkpxvz": {
-    "message": "Wenn aktiviert, erzeugt einmaliges Drücken von Enter einen Zeilenumbruch, schnelles doppeltes Drücken sendet die Nachricht."
+    "message": "Wenn aktiviert, erzeugt Enter einen Zeilenumbruch im AI-Chat-Eingabefeld. {mode} sendet die Nachricht."
   },
   "qoytxz": {
     "message": "Diese Funktion ist standardmäßig aktiviert und kann nicht deaktiviert werden"

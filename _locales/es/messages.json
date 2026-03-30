@@ -234,10 +234,10 @@
     "message": "Mantenga presionado un nodo de conversación en la línea de tiempo para marcarlo como importante."
   },
   "xmvkpz": {
-    "message": "Cuadro de chat"
+    "message": "Cuadro de entrada"
   },
   "kvzmxp": {
-    "message": "Tecla Enter para nueva línea"
+    "message": "Salto de línea y envío"
   },
   "kpxvmz": {
     "message": "Copiar fórmula"
@@ -255,7 +255,7 @@
     "message": "Tecla Enter: presione una vez para nueva línea, dos veces para enviar"
   },
   "mkpxvz": {
-    "message": "Cuando está habilitado, en el cuadro de entrada de chat de IA, presione Enter una vez para nueva línea, presione rápidamente dos veces para enviar el mensaje."
+    "message": "Cuando está habilitado, en el cuadro de entrada de chat de IA, presione Enter para nueva línea, {mode} para enviar el mensaje."
   },
   "qoytxz": {
     "message": "Esta función está habilitada de forma predeterminada y no se puede desactivar"

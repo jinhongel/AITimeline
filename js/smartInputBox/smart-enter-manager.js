@@ -20,12 +20,16 @@ class SmartEnterManager {
         // ✅ 平台设置（内存缓存）
         this.platformSettings = {};
         
+        // ✅ 发送模式（内存缓存）
+        this.smartEnterMode = SMART_ENTER_MODES.DOUBLE_ENTER;
+        
         // 状态
         this.state = {
             lastEnterTime: 0,
             enterCount: 0,
             savedSelection: null,  // 保存的光标位置/选区
-            allowNextEnter: false  // 是否允许下一次 Enter 通过（用于发送）
+            allowNextEnter: false,  // 是否允许下一次 Enter 通过（用于发送）
+            isInsertingNewline: false  // 是否正在插入换行（合成事件不应被拦截）
         };
         
         // 定时器
@@ -97,11 +101,13 @@ class SmartEnterManager {
      */
     async _loadPlatformSettings() {
         try {
-            const result = await chrome.storage.local.get('smartInputPlatformSettings');
+            const result = await chrome.storage.local.get(['smartInputPlatformSettings', 'smartEnterMode']);
             this.platformSettings = result.smartInputPlatformSettings || {};
+            this.smartEnterMode = result.smartEnterMode || SMART_ENTER_MODES.DOUBLE_ENTER;
         } catch (e) {
             console.error('[SmartInputBox] Failed to load platform settings:', e);
             this.platformSettings = {};
+            this.smartEnterMode = SMART_ENTER_MODES.DOUBLE_ENTER;
         }
     }
     
@@ -139,6 +145,10 @@ class SmartEnterManager {
                 // ✅ 监听平台设置变化
                 if (changes.smartInputPlatformSettings) {
                     this.platformSettings = changes.smartInputPlatformSettings.newValue || {};
+                }
+                // ✅ 监听发送模式变化
+                if (changes.smartEnterMode) {
+                    this.smartEnterMode = changes.smartEnterMode.newValue || SMART_ENTER_MODES.DOUBLE_ENTER;
                 }
             }
         };
@@ -320,80 +330,105 @@ class SmartEnterManager {
             return;
         }
         
-        // 如果按了 Shift/Ctrl/Alt/Meta，不处理（允许原生行为）
-        if (e.shiftKey || e.ctrlKey || e.altKey || e.metaKey) {
-            return;
-        }
-        
-        // 如果是我们触发的 Enter（用于发送），允许通过
-        if (this.state.allowNextEnter) {
+        // 如果是我们触发的 Enter（用于发送或插入换行），允许通过
+        if (this.state.allowNextEnter || this.state.isInsertingNewline) {
             return;
         }
         
         // ✅ 检查当前平台是否启用
         if (!this._isPlatformEnabled()) {
-            // 当前平台未启用，不拦截，允许原生行为
             return;
         }
         
-        // 功能已启用，拦截并处理
+        const mode = this.smartEnterMode || SMART_ENTER_MODES.DOUBLE_ENTER;
+        
+        if (mode === SMART_ENTER_MODES.DOUBLE_ENTER) {
+            this._handleDoubleEnterMode(inputElement, e);
+        } else if (mode === SMART_ENTER_MODES.CTRL_ENTER) {
+            this._handleCtrlEnterMode(inputElement, e);
+        } else if (mode === SMART_ENTER_MODES.SHIFT_ENTER) {
+            this._handleShiftEnterMode(inputElement, e);
+        }
+    }
+    
+    /**
+     * 模式1：快速双击 Enter 发送（原有逻辑）
+     */
+    _handleDoubleEnterMode(inputElement, e) {
+        if (e.shiftKey || e.ctrlKey || e.altKey || e.metaKey) {
+            return;
+        }
+        
         e.preventDefault();
         e.stopPropagation();
         
         const now = Date.now();
         const timeSinceLastEnter = now - this.state.lastEnterTime;
         
-        // 判断是否在检测窗口期内
         if (this.state.enterCount > 0 && timeSinceLastEnter < this.config.doubleClickInterval) {
-            // 在窗口期内，增加计数
             this.state.enterCount++;
             
-            // 检查是否达到双击（>= 2次）
             if (this.state.enterCount >= 2) {
-                // 立即取消定时器
                 if (this.newlineTimer) {
                     clearTimeout(this.newlineTimer);
                     this.newlineTimer = null;
                 }
-                
-                // 立即触发发送
                 this._triggerSend(inputElement);
-                
-                // 重置状态
                 this._resetState();
             }
         } else {
-            // 窗口期外，开始新的检测周期
-            
-            // 取消之前的定时器（如果有）
             if (this.newlineTimer) {
                 clearTimeout(this.newlineTimer);
                 this.newlineTimer = null;
             }
             
-            // 保存当前光标位置
             this._saveSelection(inputElement);
-            
-            // 重置并开始计数
             this.state.enterCount = 1;
             this.state.lastEnterTime = now;
             
-            // 启动检测定时器（300ms后执行）
             this.newlineTimer = setTimeout(() => {
-                // 立即清除定时器引用（防止input事件重复处理）
                 this.newlineTimer = null;
-                
-                // 只处理单击情况（双击已经立即处理了）
                 if (this.state.enterCount === 1) {
-                    // 检查输入框是否有内容
                     if (this.adapter.canSend(inputElement)) {
                         this._insertNewlineAtSavedPosition(inputElement);
                     }
                 }
-                
-                // 重置状态
                 this._resetState();
             }, this.config.doubleClickInterval);
+        }
+    }
+    
+    /**
+     * 模式2：Ctrl/Cmd + Enter 发送
+     * Enter 即时换行，Ctrl/Cmd+Enter 发送消息
+     */
+    _handleCtrlEnterMode(inputElement, e) {
+        if ((e.ctrlKey || e.metaKey) && !e.shiftKey && !e.altKey) {
+            e.preventDefault();
+            e.stopPropagation();
+            this._triggerSend(inputElement);
+        } else if (!e.shiftKey && !e.altKey && !e.ctrlKey && !e.metaKey) {
+            e.preventDefault();
+            e.stopPropagation();
+            this._insertNewline(inputElement);
+            this._showNewlineToast(inputElement);
+        }
+    }
+    
+    /**
+     * 模式3：Shift + Enter 发送
+     * Enter 即时换行，Shift+Enter 发送消息
+     */
+    _handleShiftEnterMode(inputElement, e) {
+        if (e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey) {
+            e.preventDefault();
+            e.stopPropagation();
+            this._triggerSend(inputElement);
+        } else if (!e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey) {
+            e.preventDefault();
+            e.stopPropagation();
+            this._insertNewline(inputElement);
+            this._showNewlineToast(inputElement);
         }
     }
     
@@ -483,13 +518,20 @@ class SmartEnterManager {
             const result = await chrome.storage.local.get('smartEnterToastCount');
             const count = result.smartEnterToastCount || 0;
             
-            // 如果已提示超过30次，不再提示
-            if (count >= 30) {
+            if (count >= 5) {
                 return;
             }
             
-            // 显示Toast
-            const message = chrome.i18n.getMessage('vxmkpz');
+            // 根据模式选择 Toast 消息
+            const mode = this.smartEnterMode || SMART_ENTER_MODES.DOUBLE_ENTER;
+            let toastKey = 'vxmkpz';
+            if (mode === SMART_ENTER_MODES.CTRL_ENTER) {
+                toastKey = 'smartEnterToastCtrlEnter';
+            } else if (mode === SMART_ENTER_MODES.SHIFT_ENTER) {
+                toastKey = 'smartEnterToastShiftEnter';
+            }
+            const ctrlLabel = navigator.platform.toUpperCase().indexOf('MAC') >= 0 ? '⌘' : 'Ctrl';
+            const message = chrome.i18n.getMessage(toastKey).replace('{ctrl}', ctrlLabel);
             window.globalToastManager.info(message, inputElement, {
                 duration: 2500,
                 icon: '',  // 不显示图标
@@ -526,12 +568,15 @@ class SmartEnterManager {
             
             if (isContentEditable) {
                 // contenteditable 元素：模拟 Shift+Enter 按键事件
-                // 让 ChatGPT 原生处理换行，确保格式正确
+                // 让平台原生处理换行，确保格式正确
                 
                 // 确保元素有焦点
                 if (document.activeElement !== inputElement) {
                     inputElement.focus();
                 }
+                
+                // 标记正在插入换行，防止合成事件被 _handleKeyDown 再次拦截
+                this.state.isInsertingNewline = true;
                 
                 // 创建 Shift+Enter 键盘事件
                 const shiftEnterEvent = new KeyboardEvent('keydown', {
@@ -544,7 +589,7 @@ class SmartEnterManager {
                     cancelable: true
                 });
                 
-                // 触发事件，让 ChatGPT 原生处理换行
+                // 触发事件，让平台原生处理换行
                 inputElement.dispatchEvent(shiftEnterEvent);
                 
                 // 触发 keypress 和 keyup 事件
@@ -569,6 +614,9 @@ class SmartEnterManager {
                     cancelable: true
                 });
                 inputElement.dispatchEvent(shiftEnterUp);
+                
+                // 清除标记
+                this.state.isInsertingNewline = false;
             } else {
                 // 普通 textarea/input 元素
                 
@@ -645,6 +693,7 @@ class SmartEnterManager {
         this.state.enterCount = 0;
         this.state.savedSelection = null;
         this.state.allowNextEnter = false;
+        this.state.isInsertingNewline = false;
         
         // 清除所有定时器
         if (this.newlineTimer) {

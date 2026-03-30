@@ -154,7 +154,7 @@ class StarredTreeRenderer {
 
         const header = document.createElement('div');
         header.className = 'ait-folder-header';
-        if (this.opts.scene === 'sidebar' && level > 0) header.draggable = true;
+        if (level > 0) header.draggable = true;
 
         const toggle = document.createElement('span');
         toggle.className = `ait-folder-toggle ${isExpanded ? 'expanded' : ''}`;
@@ -253,7 +253,7 @@ class StarredTreeRenderer {
         const el = document.createElement('div');
         el.className = 'timeline-starred-item';
         el.dataset.turnId = item.turnId;
-        if (this.opts.scene === 'sidebar') el.draggable = true;
+        el.draggable = true;
 
         if (this._isCurrentPage(item)) {
             el.classList.add('active');
@@ -390,7 +390,7 @@ class StarredTreeRenderer {
         let _itemCD = null;
 
         const onItemMouseDown = (e) => {
-            if (this.opts.scene !== 'sidebar' || e.button !== 0) return;
+            if (e.button !== 0) return;
             if (e.target.closest('.timeline-starred-item-more') || e.target.closest('.timeline-starred-item-actions')) return;
             const itemEl = e.target.closest('.timeline-starred-item');
             if (!itemEl) return;
@@ -472,9 +472,9 @@ class StarredTreeRenderer {
                     }
                 } else {
                     const listContainer = this.opts.getListContainer();
-                    const starredRoot = listContainer?.closest('.ait-sidebar-starred');
-                    if (starredRoot) {
-                        const rect = starredRoot.getBoundingClientRect();
+                    const boundary = listContainer?.closest('.ait-sidebar-starred') || listContainer?.closest('.starred-tab-container') || listContainer;
+                    if (boundary) {
+                        const rect = boundary.getBoundingClientRect();
                         const outside = e.clientX < rect.left || e.clientX > rect.right ||
                                         e.clientY < rect.top || e.clientY > rect.bottom;
                         if (outside) {
@@ -505,7 +505,6 @@ class StarredTreeRenderer {
 
         const onDragStart = (e) => {
             if (_itemCD) { e.preventDefault(); return; }
-            if (this.opts.scene !== 'sidebar') return;
 
             const headerEl = e.target.closest('.ait-folder-header');
             if (headerEl) {

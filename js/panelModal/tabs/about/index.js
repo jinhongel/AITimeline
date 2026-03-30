@@ -109,7 +109,7 @@ class AboutTab extends BaseTab {
                 <div class="about-section-body">
                     <div class="about-section-title">${chrome.i18n.getMessage('aboutShareTitle') || '推荐给朋友'}</div>
                     <div class="about-section-content">
-                        ${chrome.i18n.getMessage('aboutShareContent') || '如果这个插件帮到了你，欢迎分享到 小红书、B站、X、Reddit、YouTube 等等，也欢迎分享给朋友、同学、同事，让更多人使用到它。❤️'}
+                        ${chrome.i18n.getMessage('aboutShareContent') || '如果 Timeline 插件帮到了你，欢迎在 小红书、B站、X、Reddit、YouTube 等平台发帖推荐，也欢迎分享给朋友、同学。❤️'}
                     </div>
                 </div>
             </div>

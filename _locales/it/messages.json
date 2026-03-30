@@ -234,10 +234,10 @@
     "message": "Tieni premuto un nodo della conversazione nella cronologia per segnarlo come importante."
   },
   "xmvkpz": {
-    "message": "Casella di chat"
+    "message": "Casella di input"
   },
   "kvzmxp": {
-    "message": "Tasto Invio per andare a capo"
+    "message": "A capo e invio"
   },
   "kpxvmz": {
     "message": "Copia formula"
@@ -255,7 +255,7 @@
     "message": "Tasto Invio: premi una volta per andare a capo, due volte per inviare"
   },
   "mkpxvz": {
-    "message": "Quando attivato, nella casella di input della chat IA, premi Invio una volta per andare a capo, premi rapidamente due volte per inviare il messaggio."
+    "message": "Quando attivato, nella casella di input della chat IA, premi Invio per andare a capo, {mode} per inviare il messaggio."
   },
   "qoytxz": {
     "message": "Questa funzione è attivata per impostazione predefinita e non può essere disattivata"

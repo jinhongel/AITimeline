@@ -234,10 +234,10 @@
     "message": "Appuyez longuement sur un nœud de conversation dans la chronologie pour le marquer comme important."
   },
   "xmvkpz": {
-    "message": "Zone de chat"
+    "message": "Zone de saisie"
   },
   "kvzmxp": {
-    "message": "Touche Entrée pour retour à la ligne"
+    "message": "Retour à la ligne et envoi"
   },
   "kpxvmz": {
     "message": "Copier la formule"
@@ -255,7 +255,7 @@
     "message": "Touche Entrée : appuyez une fois pour retour à la ligne, deux fois pour envoyer"
   },
   "mkpxvz": {
-    "message": "Lorsque activé, dans la zone de saisie du chat IA, appuyez sur Entrée une fois pour retour à la ligne, appuyez rapidement deux fois pour envoyer le message."
+    "message": "Lorsque activé, dans la zone de saisie du chat IA, appuyez sur Entrée pour retour à la ligne, {mode} pour envoyer le message."
   },
   "qoytxz": {
     "message": "Cette fonctionnalité est activée par défaut et ne peut pas être désactivée"

@@ -4,6 +4,12 @@
  * 定义智能 Enter 功能的配置参数
  */
 
+const SMART_ENTER_MODES = {
+    DOUBLE_ENTER: 'doubleEnter',
+    CTRL_ENTER: 'ctrlEnter',
+    SHIFT_ENTER: 'shiftEnter'
+};
+
 const SMART_ENTER_CONFIG = {
     // 双击 Enter 的检测间隔（毫秒）
     // 300ms：快速双击才会发送，单击后稍等即换行

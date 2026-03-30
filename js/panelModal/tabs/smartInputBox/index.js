@@ -2,7 +2,7 @@
  * Smart Input Box Settings Tab - 智能输入框设置
  * 
  * 功能：
- * - 单击 Enter 换行，快速双击 Enter 发送
+ * - Enter 换行 + 多种发送模式（通过内联 Dropdown 选择）
  * - 控制各平台的智能输入功能
  */
 
@@ -14,6 +14,21 @@ class SmartInputBoxTab extends BaseTab {
         this.icon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
         </svg>`;
+        
+        this._isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+        this._ctrlLabel = this._isMac ? '⌘' : 'Ctrl';
+    }
+    
+    /**
+     * 获取模式的显示文字（用于 Dropdown trigger 和选项）
+     */
+    _getModeLabel(mode) {
+        switch (mode) {
+            case 'ctrlEnter': return `${this._ctrlLabel} + Enter`;
+            case 'shiftEnter': return 'Shift + Enter';
+            case 'doubleEnter':
+            default: return chrome.i18n.getMessage('smartEnterModeDoubleEnter');
+        }
     }
     
     /**
@@ -61,10 +76,19 @@ class SmartInputBoxTab extends BaseTab {
         const divider = '<div class="divider"></div>';
         
         // ==================== Enter 换行控制模块 ====================
+        // 提示文字中嵌入 Dropdown trigger
+        const hintTemplate = chrome.i18n.getMessage('mkpxvz');
+        const defaultLabel = this._getModeLabel('doubleEnter');
+        const triggerHtml = `<span class="smart-enter-mode-trigger" id="smart-enter-mode-trigger">${defaultLabel}<svg viewBox="0 0 12 12" width="10" height="10"><path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>`;
+        const hintHtml = hintTemplate.includes('{mode}')
+            ? hintTemplate.replace('{mode}', triggerHtml)
+            : hintTemplate;
+        
         const enterKeySection = `
             <div class="platform-list">
                 <div class="platform-list-title">${chrome.i18n.getMessage('kvzmxp')}</div>
-                <div class="platform-list-hint">${chrome.i18n.getMessage('mkpxvz')}</div>
+                <div class="platform-list-hint">${hintHtml}</div>
+                
                 <div class="platform-list-container">
                     ${smartInputPlatforms.map(platform => `
                         <div class="platform-item">
@@ -92,13 +116,9 @@ class SmartInputBoxTab extends BaseTab {
     async mounted() {
         super.mounted();
         
-        // 加载追问功能设置
         await this.loadQuickAskSettings();
-        
-        // 加载返回底部设置
         await this.loadScrollToBottomSettings();
-        
-        // 加载平台设置
+        await this.loadEnterModeSettings();
         await this.loadPlatformSettings();
     }
     
@@ -110,23 +130,17 @@ class SmartInputBoxTab extends BaseTab {
         if (!quickAskToggle) return;
         
         try {
-            // 读取当前状态（默认开启）
             const result = await chrome.storage.local.get('quickAskEnabled');
-            // 默认值为 true（开启）
             quickAskToggle.checked = result.quickAskEnabled !== false;
         } catch (e) {
             quickAskToggle.checked = true;
         }
         
-        // 监听开关变化
         this.addEventListener(quickAskToggle, 'change', async (e) => {
             try {
                 const enabled = e.target.checked;
-                
-                // 保存到 Storage
                 await chrome.storage.local.set({ quickAskEnabled: enabled });
                 
-                // 通知 QuickAsk 模块
                 if (window.AIChatTimelineQuickAsk) {
                     if (enabled) {
                         window.AIChatTimelineQuickAsk.enable();
@@ -149,20 +163,15 @@ class SmartInputBoxTab extends BaseTab {
         if (!scrollToBottomToggle) return;
         
         try {
-            // 读取当前状态（默认开启）
             const result = await chrome.storage.local.get('scrollToBottomEnabled');
-            // 默认值为 true（开启）
             scrollToBottomToggle.checked = result.scrollToBottomEnabled !== false;
         } catch (e) {
             scrollToBottomToggle.checked = true;
         }
         
-        // 监听开关变化
         this.addEventListener(scrollToBottomToggle, 'change', async (e) => {
             try {
                 const enabled = e.target.checked;
-                
-                // 保存到 Storage
                 await chrome.storage.local.set({ scrollToBottomEnabled: enabled });
             } catch (e) {
                 console.error('[SmartInputBoxTab] Failed to save scroll to bottom setting:', e);
@@ -172,40 +181,77 @@ class SmartInputBoxTab extends BaseTab {
     }
     
     /**
-     * 加载并初始化 Enter 换行平台设置
+     * 加载 Enter 发送模式设置 + 绑定 Dropdown
+     */
+    async loadEnterModeSettings() {
+        const trigger = document.getElementById('smart-enter-mode-trigger');
+        if (!trigger) return;
+        
+        // 加载当前模式并更新 trigger 文字
+        try {
+            const result = await chrome.storage.local.get('smartEnterMode');
+            const currentMode = result.smartEnterMode || 'doubleEnter';
+            this._updateTriggerText(trigger, currentMode);
+        } catch (e) { /* 保持默认 */ }
+        
+        // 绑定点击事件，显示 Dropdown
+        this.addEventListener(trigger, 'click', (e) => {
+            const DropdownManager = window.globalDropdownManager;
+            if (!DropdownManager) return;
+            
+            const setMode = async (mode) => {
+                try {
+                    await chrome.storage.local.set({ smartEnterMode: mode, smartEnterToastCount: 0 });
+                    this._updateTriggerText(trigger, mode);
+                } catch (err) {
+                    console.error('[SmartInputBoxTab] Failed to save enter mode:', err);
+                }
+            };
+            
+            DropdownManager.show({
+                trigger: e.target.closest('.smart-enter-mode-trigger'),
+                items: [
+                    { label: this._getModeLabel('doubleEnter'), value: 'doubleEnter', onClick: () => setMode('doubleEnter') },
+                    { label: this._getModeLabel('ctrlEnter'), value: 'ctrlEnter', onClick: () => setMode('ctrlEnter') },
+                    { label: this._getModeLabel('shiftEnter'), value: 'shiftEnter', onClick: () => setMode('shiftEnter') }
+                ],
+                width: 180,
+                position: 'bottom-left'
+            });
+        });
+    }
+    
+    /**
+     * 更新 trigger 显示文字
+     */
+    _updateTriggerText(trigger, mode) {
+        const label = this._getModeLabel(mode);
+        trigger.innerHTML = `${label}<svg viewBox="0 0 12 12" width="10" height="10"><path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    }
+    
+    /**
+     * 加载并初始化平台设置
      */
     async loadPlatformSettings() {
         try {
-            // 从 Storage 读取平台设置
             const result = await chrome.storage.local.get('smartInputPlatformSettings');
             const platformSettings = result.smartInputPlatformSettings || {};
             
-            // 为每个平台开关设置状态和事件
             const platformToggles = document.querySelectorAll('.platform-toggle');
             platformToggles.forEach(toggle => {
                 const platformId = toggle.getAttribute('data-platform-id');
                 
-                // 设置初始状态（默认关闭）
                 toggle.checked = platformSettings[platformId] === true;
                 
-                // 监听开关变化
                 this.addEventListener(toggle, 'change', async (e) => {
                     try {
                         const enabled = e.target.checked;
-                        
-                        // 读取当前所有设置
                         const result = await chrome.storage.local.get('smartInputPlatformSettings');
                         const settings = result.smartInputPlatformSettings || {};
-                        
-                        // 更新当前平台
                         settings[platformId] = enabled;
-                        
-                        // 保存到 Storage
                         await chrome.storage.local.set({ smartInputPlatformSettings: settings });
                     } catch (e) {
                         console.error('[SmartInputBoxTab] Failed to save platform setting:', e);
-                        
-                        // 保存失败，恢复开关状态
                         toggle.checked = !toggle.checked;
                     }
                 });
@@ -222,4 +268,3 @@ class SmartInputBoxTab extends BaseTab {
         super.unmounted();
     }
 }
-
