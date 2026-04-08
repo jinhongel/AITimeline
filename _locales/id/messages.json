@@ -499,25 +499,25 @@
     "message": "Tentang ekstensi"
   },
   "aboutPluginContent": {
-    "message": "Timeline adalah ekstensi peningkatan untuk percakapan AI, dengan timeline percakapan, catatan cepat, salin rumus LaTeX, prompt kustom, dan banyak lagi. Mendukung ChatGPT, Gemini, Claude, DeepSeek, Kimi, Doubao, Qwen dan semua platform AI utama — gunakan dan gandakan pengalaman chat AI Anda."
+    "message": "Timeline adalah ekstensi produktivitas untuk percakapan AI di browser, dengan timeline, folder, sorotan teks, salin rumus LaTeX, prompt kustom, dan banyak lagi — ledakkan efisiensi Anda. Mendukung ChatGPT, Gemini, Claude, DeepSeek, Kimi, Doubao, Qwen dan semua platform AI utama."
   },
   "aboutDataSecurityTitle": {
     "message": "Keamanan Data"
   },
   "aboutDataSecurityContent": {
-    "message": "Semua data kamu di ekstensi ini disimpan secara lokal di browser atau di Google Drive kamu, tanpa melewati server pihak ketiga mana pun. Ekstensi tidak mengumpulkan, mengunggah, atau membagikan konten percakapan atau informasi pribadi kamu. Proyek ini bersifat open-source di GitHub, dan kode dapat ditinjau kapan saja."
+    "message": "Semua data kamu disimpan secara lokal di browser atau di Google Drive kamu. Ekstensi tidak mengumpulkan, mengunggah, atau membagikan konten percakapan atau informasi pribadi kamu. Proyek ini bersifat open-source di GitHub, dan kode dapat ditinjau kapan saja."
   },
   "aboutDeveloperTitle": {
     "message": "Umpan Balik"
   },
   "aboutDeveloperContent": {
-    "message": "Proyek ini dipelihara bersama oleh saya dan Claude, dengan ritme 1–2 versi baru setiap minggu. Untuk meminta fitur atau melaporkan bug, hubungi saya melalui salah satu saluran di bawah (saya pasti akan membalas ketika melihatnya):"
+    "message": "Proyek ini dipelihara bersama oleh saya dan Claude Opus 4.6, dengan ritme 1–2 versi baru setiap minggu. Untuk meminta fitur atau melaporkan bug, hubungi saya melalui saluran di bawah (saya pasti akan membalas ketika melihatnya):"
   },
   "aboutShareTitle": {
     "message": "Rekomendasikan ke teman"
   },
   "aboutShareContent": {
-    "message": "Jika ekstensi ini membantu, silakan tulis ulasan di Xiaohongshu, Bilibili, X, Reddit, YouTube, atau platform lainnya, dan bagikan ke teman sekelas dan teman. ❤️"
+    "message": "Jika Timeline berguna, silakan tulis ulasan di Xiaohongshu, Bilibili, X, Reddit, YouTube, atau platform lainnya, dan bagikan ke teman sekelas dan teman agar lebih banyak orang bisa menggunakannya. Terima kasih. ❤️"
   },
   "nativeMenuStarToFolder": {
     "message": "Star to Folder"

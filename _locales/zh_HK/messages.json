@@ -508,25 +508,25 @@
     "message": "插件簡介"
   },
   "aboutPluginContent": {
-    "message": "Timeline 是專為 AI 對話開發的增強插件，擁有對話時間軸、閃記、複製 LaTeX 公式、自訂提示詞等超多功能。支援 ChatGPT、Gemini、Claude、DeepSeek、Kimi、豆包、千問等所有主流 AI 平台，用上它，AI 對話體驗翻倍。"
+    "message": "Timeline 是專為瀏覽器端 AI 對話開發的提效插件，擁有時間軸、資料夾、文字醒目標示、複製 LaTeX 公式、自訂提示詞等超多功能，把效率拉爆。支援 ChatGPT、Gemini、Claude、DeepSeek、Kimi、豆包、千問等所有主流 AI 平台。"
   },
   "aboutDataSecurityTitle": {
     "message": "數據安全"
   },
   "aboutDataSecurityContent": {
-    "message": "你在本插件內的所有數據都存儲在你的瀏覽器本地或你的 Google Drive 中，不經過任何第三方伺服器。插件不會收集、上傳或分享你的任何對話內容和個人信息，本項目已在GitHub開源，可隨時審查代碼。"
+    "message": "你的所有數據都存儲在瀏覽器本地或你的 Google Drive 中，插件不會收集、上傳或分享你的任何對話內容和個人信息，本項目已在 GitHub 開源，可隨時審查代碼。"
   },
   "aboutDeveloperTitle": {
     "message": "提需求"
   },
   "aboutDeveloperContent": {
-    "message": "本專案由我和 Claude 共同維護，每週 1～2 個新版本的更新節奏。如果想提需求或回饋 bug，可透過以下任一管道進行回饋（我看到一定會回覆）："
+    "message": "本專案由我和 Claude Opus 4.6 共同維護，每週 1~2 新版本的更新節奏。如果想提需求或回饋 bug，可透過以下管道進行回饋（我看到一定會回覆）："
   },
   "aboutShareTitle": {
     "message": "推薦給朋友"
   },
   "aboutShareContent": {
-    "message": "如果 Timeline 插件幫到了你，歡迎在小紅書、B站、X、Reddit、YouTube 等平台發帖推薦，也歡迎分享給朋友、同學。❤️"
+    "message": "如果 Timeline 插件好用，歡迎在小紅書、B站、X、Reddit、YouTube 等平台發帖推薦，也歡迎分享給朋友、同學，讓更多人用上它。謝謝。❤️"
   },
   "formulaCopyGeneric": {
     "message": "複製公式"
@@ -670,7 +670,7 @@
     "message": "GitHub 開源"
   },
   "aboutBtnDocs": {
-    "message": "官方文件"
+    "message": "功能文檔"
   },
   "aboutFeedbackStore": {
     "message": "Chrome 商店評價區"

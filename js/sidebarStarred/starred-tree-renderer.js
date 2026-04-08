@@ -636,6 +636,7 @@ class StarredTreeRenderer {
                 } else if (position === 'before' || position === 'after') {
                     try {
                         await this.folderManager.moveFolderToPosition(this._dragState.id, targetFolderId, position);
+                        this._toastAtFolder(folderEl, 'dragMoveSuccess', 'Moved');
                         await this.opts.onAfterAction();
                     } catch (err) {
                         console.error('[StarredTreeRenderer] Folder reorder failed:', err);

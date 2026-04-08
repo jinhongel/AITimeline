@@ -499,25 +499,25 @@
     "message": "Sobre a extensão"
   },
   "aboutPluginContent": {
-    "message": "Timeline é uma extensão de aprimoramento para conversas com IA, com timeline de conversas, notas rápidas, cópia de fórmulas LaTeX, prompts personalizados e muito mais. Compatível com ChatGPT, Gemini, Claude, DeepSeek, Kimi, Doubao, Qwen e todas as principais plataformas de IA — use-o e duplique a sua experiência de chat com IA."
+    "message": "Timeline é uma extensão de produtividade para conversas com IA no navegador, com timeline, pastas, destaque de texto, cópia de fórmulas LaTeX, prompts personalizados e muito mais — leve a sua eficiência ao máximo. Compatível com ChatGPT, Gemini, Claude, DeepSeek, Kimi, Doubao, Qwen e todas as principais plataformas de IA."
   },
   "aboutDataSecurityTitle": {
     "message": "Segurança de dados"
   },
   "aboutDataSecurityContent": {
-    "message": "Todos os seus dados nesta extensão são armazenados localmente no seu navegador ou no seu Google Drive, sem passar por servidores de terceiros. A extensão não recolhe, carrega ou partilha qualquer conteúdo das suas conversas ou informações pessoais. Este projeto é de código aberto no GitHub, e o código está disponível para revisão a qualquer momento."
+    "message": "Todos os seus dados são armazenados localmente no seu navegador ou no seu Google Drive. A extensão não recolhe, carrega ou partilha qualquer conteúdo das suas conversas ou informações pessoais. Este projeto é de código aberto no GitHub, e o código está disponível para revisão a qualquer momento."
   },
   "aboutDeveloperTitle": {
     "message": "Feedback"
   },
   "aboutDeveloperContent": {
-    "message": "Este projeto é co-mantido por mim e pelo Claude, com um ritmo de 1 a 2 novas versões por semana. Para solicitar uma funcionalidade ou reportar um bug, contacte-me através de qualquer um dos canais abaixo (responderei assim que vir):"
+    "message": "Este projeto é co-mantido por mim e pelo Claude Opus 4.6, com um ritmo de 1 a 2 novas versões por semana. Para solicitar uma funcionalidade ou reportar um bug, contacte-me através dos canais abaixo (responderei assim que vir):"
   },
   "aboutShareTitle": {
     "message": "Recomendar a amigos"
   },
   "aboutShareContent": {
-    "message": "Se esta extensão o ajudou, sinta-se à vontade para publicar uma avaliação no Xiaohongshu, Bilibili, X, Reddit, YouTube ou outras plataformas, e partilhá-la com colegas de turma e amigos. ❤️"
+    "message": "Se achar o Timeline útil, sinta-se à vontade para publicar uma avaliação no Xiaohongshu, Bilibili, X, Reddit, YouTube ou outras plataformas, e partilhá-lo com colegas e amigos para que mais pessoas o possam usar. Obrigado. ❤️"
   },
   "nativeMenuStarToFolder": {
     "message": "Star to Folder"

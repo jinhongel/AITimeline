@@ -499,25 +499,25 @@
     "message": "Über diese Erweiterung"
   },
   "aboutPluginContent": {
-    "message": "Timeline ist eine Erweiterung zur Verbesserung von KI-Gesprächen mit Zeitleiste, Schnellnotizen, LaTeX-Formelkopie, benutzerdefinierten Prompts und vielem mehr. Unterstützt ChatGPT, Gemini, Claude, DeepSeek, Kimi, Doubao, Qwen und alle wichtigen KI-Plattformen — nutzen Sie es und verdoppeln Sie Ihr KI-Chat-Erlebnis."
+    "message": "Timeline ist eine Produktivitätserweiterung für browserbasierte KI-Gespräche mit Zeitleiste, Ordnern, Texthervorhebung, LaTeX-Formelkopie, benutzerdefinierten Prompts und vielem mehr — für maximale Effizienz. Unterstützt ChatGPT, Gemini, Claude, DeepSeek, Kimi, Doubao, Qwen und alle wichtigen KI-Plattformen."
   },
   "aboutDataSecurityTitle": {
     "message": "Datensicherheit"
   },
   "aboutDataSecurityContent": {
-    "message": "Alle Ihre Daten innerhalb dieser Erweiterung werden lokal in Ihrem Browser oder in Ihrem Google Drive gespeichert, ohne über Drittanbieter-Server zu gehen. Die Erweiterung sammelt, lädt hoch oder teilt keine Ihrer Gesprächsinhalte oder persönlichen Informationen. Dieses Projekt ist auf GitHub quelloffen, und der Code kann jederzeit überprüft werden."
+    "message": "Alle Ihre Daten werden lokal in Ihrem Browser oder in Ihrem Google Drive gespeichert. Die Erweiterung sammelt, lädt hoch oder teilt keine Ihrer Gesprächsinhalte oder persönlichen Informationen. Dieses Projekt ist auf GitHub quelloffen, und der Code kann jederzeit überprüft werden."
   },
   "aboutDeveloperTitle": {
     "message": "Feedback"
   },
   "aboutDeveloperContent": {
-    "message": "Dieses Projekt wird von mir und Claude gemeinsam gepflegt, mit 1–2 neuen Versionen pro Woche. Um ein Feature anzufordern oder einen Bug zu melden, wende dich über einen der folgenden Kanäle an mich (ich antworte auf jeden Fall, wenn ich es sehe):"
+    "message": "Dieses Projekt wird von mir und Claude Opus 4.6 gemeinsam gepflegt, mit 1–2 neuen Versionen pro Woche. Um ein Feature anzufordern oder einen Bug zu melden, wende dich über die folgenden Kanäle an mich (ich antworte auf jeden Fall, wenn ich es sehe):"
   },
   "aboutShareTitle": {
     "message": "Freunden empfehlen"
   },
   "aboutShareContent": {
-    "message": "Wenn Ihnen diese Erweiterung geholfen hat, schreiben Sie gerne eine Bewertung auf Xiaohongshu, Bilibili, X, Reddit, YouTube oder anderen Plattformen, und teilen Sie sie mit Kommilitonen und Freunden. ❤️"
+    "message": "Wenn Sie Timeline nützlich finden, schreiben Sie gerne eine Bewertung auf Xiaohongshu, Bilibili, X, Reddit, YouTube oder anderen Plattformen, und teilen Sie es mit Kommilitonen und Freunden, damit mehr Menschen es nutzen können. Danke. ❤️"
   },
   "nativeMenuStarToFolder": {
     "message": "Star to Folder"
@@ -646,7 +646,7 @@
     "message": "GitHub"
   },
   "aboutBtnDocs": {
-    "message": "Dokumentation"
+    "message": "Funktionsdoku"
   },
   "aboutFeedbackStore": {
     "message": "Chrome Store Bewertungen"

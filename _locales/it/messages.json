@@ -499,25 +499,25 @@
     "message": "Informazioni sull'estensione"
   },
   "aboutPluginContent": {
-    "message": "Timeline è un'estensione di potenziamento per le conversazioni IA, con timeline delle conversazioni, note rapide, copia formule LaTeX, prompt personalizzati e molto altro. Compatibile con ChatGPT, Gemini, Claude, DeepSeek, Kimi, Doubao, Qwen e tutte le principali piattaforme IA — usalo e raddoppia la tua esperienza di chat con l'IA."
+    "message": "Timeline è un'estensione di produttività per le conversazioni IA nel browser, con timeline, cartelle, evidenziazione testo, copia formule LaTeX, prompt personalizzati e molto altro — porta la tua efficienza al massimo. Compatibile con ChatGPT, Gemini, Claude, DeepSeek, Kimi, Doubao, Qwen e tutte le principali piattaforme IA."
   },
   "aboutDataSecurityTitle": {
     "message": "Sicurezza dei dati"
   },
   "aboutDataSecurityContent": {
-    "message": "Tutti i tuoi dati all'interno di questa estensione sono archiviati localmente nel tuo browser o nel tuo Google Drive, senza passare per server di terze parti. L'estensione non raccoglie, carica o condivide alcun contenuto delle tue conversazioni o informazioni personali. Questo progetto è open-source su GitHub e il codice è disponibile per la revisione in qualsiasi momento."
+    "message": "Tutti i tuoi dati sono archiviati localmente nel tuo browser o nel tuo Google Drive. L'estensione non raccoglie, carica o condivide alcun contenuto delle tue conversazioni o informazioni personali. Questo progetto è open-source su GitHub e il codice è disponibile per la revisione in qualsiasi momento."
   },
   "aboutDeveloperTitle": {
     "message": "Feedback"
   },
   "aboutDeveloperContent": {
-    "message": "Questo progetto è co-mantenuto da me e Claude, con un ritmo di 1–2 nuove versioni a settimana. Per richiedere una funzione o segnalare un bug, contattami tramite uno dei canali seguenti (risponderò di sicuro appena lo vedo):"
+    "message": "Questo progetto è co-mantenuto da me e Claude Opus 4.6, con un ritmo di 1–2 nuove versioni a settimana. Per richiedere una funzione o segnalare un bug, contattami tramite i canali seguenti (risponderò di sicuro appena lo vedo):"
   },
   "aboutShareTitle": {
     "message": "Consiglia agli amici"
   },
   "aboutShareContent": {
-    "message": "Se questa estensione ti è stata utile, sentiti libero di pubblicare una recensione su Xiaohongshu, Bilibili, X, Reddit, YouTube o altre piattaforme, e di condividerla con compagni e amici. ❤️"
+    "message": "Se trovi Timeline utile, sentiti libero di pubblicare una recensione su Xiaohongshu, Bilibili, X, Reddit, YouTube o altre piattaforme, e di condividerlo con compagni e amici affinché più persone possano usarlo. Grazie. ❤️"
   },
   "nativeMenuStarToFolder": {
     "message": "Star to Folder"

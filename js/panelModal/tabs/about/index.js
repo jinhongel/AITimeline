@@ -24,6 +24,10 @@ class AboutTab extends BaseTab {
 
         container.innerHTML = `
             <div class="about-share-actions">
+                <a href="https://timeline4ai.com/#/guide?section=timeline" target="_blank" class="about-share-action-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+                    ${chrome.i18n.getMessage('aboutBtnDocs') || '功能文档'}
+                </a>
                 <a href="https://chromewebstore.google.com/detail/fgebdnlceacaiaeikopldglhffljjlhh?utm_source=item-share-cb" target="_blank" class="about-share-action-btn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
                     ${chrome.i18n.getMessage('aboutBtnChrome') || 'Chrome 安装'}
@@ -40,10 +44,6 @@ class AboutTab extends BaseTab {
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
                     ${chrome.i18n.getMessage('aboutBtnGithub') || 'GitHub 开源'}
                 </a>
-                <a href="https://timeline4ai.com/#/guide?section=timeline" target="_blank" class="about-share-action-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-                    ${chrome.i18n.getMessage('aboutBtnDocs') || '官方文档'}
-                </a>
             </div>
 
             <div class="about-section">
@@ -55,7 +55,7 @@ class AboutTab extends BaseTab {
                 </div>
                 <div class="about-section-body">
                     <div class="about-section-title">${chrome.i18n.getMessage('aboutPluginTitle') || '插件简介'}</div>
-                    <div class="about-section-content">${chrome.i18n.getMessage('aboutPluginContent') || '专门为 AI 对话开发的提效插件，拥有 对话时间轴、闪记、复制 LaTeX 公式、自定义提示词等超多功能。支持 ChatGPT、Gemini、DeepSeek、Kimi、Claude 等主流平台，它的使命是助你使用 AI 的效率翻倍。'}</div>
+                    <div class="about-section-content">${chrome.i18n.getMessage('aboutPluginContent') || 'Timeline 是专为浏览器端 AI 对话开发的提效插件，拥有 时间轴、文件夹、文本高亮、复制 LaTeX 公式、自定义提示词等超多功能，把效率拉爆。支持 ChatGPT、Gemini、Claude、DeepSeek、Kimi、豆包、千问等所有主流 AI 平台。'}</div>
                 </div>
             </div>
 
@@ -67,7 +67,7 @@ class AboutTab extends BaseTab {
                 </div>
                 <div class="about-section-body">
                     <div class="about-section-title">${chrome.i18n.getMessage('aboutDataSecurityTitle') || '数据安全'}</div>
-                    <div class="about-section-content">${chrome.i18n.getMessage('aboutDataSecurityContent') || '你在本插件内的所有数据都存储在你的浏览器本地或你的 Google Drive 中，不经过任何第三方服务器。插件不会收集、上传或分享你的任何对话内容和个人信息，本项目已在GitHub开源，可随时审查代码。'}</div>
+                    <div class="about-section-content">${chrome.i18n.getMessage('aboutDataSecurityContent') || '你的所有数据都存储在浏览器本地或你的 Google Drive 中，插件不会收集、上传或分享你的任何对话内容和个人信息，本项目已在 GitHub 开源，可随时审查代码。'}</div>
                 </div>
             </div>
 
@@ -81,7 +81,7 @@ class AboutTab extends BaseTab {
                 <div class="about-section-body">
                     <div class="about-section-title">${chrome.i18n.getMessage('aboutDeveloperTitle') || '开发者'}</div>
                     <div class="about-section-content">
-                        ${chrome.i18n.getMessage('aboutDeveloperContent') || '这个项目是我一个人在维护，每周 1～2 个新版本的更新节奏。如果想反馈 bug 或功能建议，可通过以下任一渠道进行反馈（我看到一定会回复）：'}
+                        ${chrome.i18n.getMessage('aboutDeveloperContent') || '本项目由我和 Claude Opus 4.6 共同维护，每周 1~2 新版本的更新节奏。如果想提需求或反馈 bug，可通过以下渠道进行反馈（我看到一定会回复）：'}
                         <div class="about-feedback-blocks">
                             <a href="https://chromewebstore.google.com/detail/fgebdnlceacaiaeikopldglhffljjlhh?utm_source=item-share-cb" target="_blank" class="about-feedback-block">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
@@ -109,7 +109,7 @@ class AboutTab extends BaseTab {
                 <div class="about-section-body">
                     <div class="about-section-title">${chrome.i18n.getMessage('aboutShareTitle') || '推荐给朋友'}</div>
                     <div class="about-section-content">
-                        ${chrome.i18n.getMessage('aboutShareContent') || '如果 Timeline 插件帮到了你，欢迎在 小红书、B站、X、Reddit、YouTube 等平台发帖推荐，也欢迎分享给朋友、同学。❤️'}
+                        ${chrome.i18n.getMessage('aboutShareContent') || '如果 Timeline 插件好用，欢迎在 小红书、B站、X、Reddit、YouTube 等平台发帖推荐，也欢迎分享给朋友、同学，让更多人用上它。谢谢。❤️'}
                     </div>
                 </div>
             </div>

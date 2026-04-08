@@ -23,6 +23,7 @@ class QuickAskManager {
         this.isEnabled = false;
         this._boundHandlers = null;
         this._position = 'topLeft'; // 默认位置
+        this._adapterRegistry = null; // 独立查找对话容器用，延迟初始化
     }
     
     /**
@@ -236,6 +237,35 @@ class QuickAskManager {
     }
     
     /**
+     * 独立获取对话容器（不依赖时间轴模块）
+     * 优先复用 timeline 已定位的容器，否则通过 adapter 独立查找
+     * @returns {Element|null}
+     */
+    _getConversationContainer() {
+        const tlContainer = window.timelineManager?.conversationContainer;
+        if (tlContainer && tlContainer.isConnected) return tlContainer;
+
+        try {
+            if (!this._adapterRegistry) {
+                if (typeof SiteAdapterRegistry === 'undefined') return null;
+                this._adapterRegistry = new SiteAdapterRegistry();
+            }
+            const adapter = this._adapterRegistry.detectAdapter();
+            if (!adapter) return null;
+
+            const selector = adapter.getUserMessageSelector();
+            if (!selector) return null;
+
+            const firstMsg = document.querySelector(selector);
+            if (!firstMsg) return null;
+
+            return adapter.findConversationContainer(firstMsg);
+        } catch (e) {
+            return null;
+        }
+    }
+
+    /**
      * 检查选区是否有效（必须在聊天对话区域内，且不在输入框等区域内）
      */
     _isValidSelection(selection) {
@@ -262,8 +292,7 @@ class QuickAskManager {
         }
         
         // 必须在聊天对话区域内（白名单机制）
-        // 优先使用 timeline 已定位的对话容器（最精确）
-        const convContainer = window.timelineManager?.conversationContainer;
+        const convContainer = this._getConversationContainer();
         if (convContainer && convContainer.isConnected) {
             if (convContainer.contains(element)) return true;
             // Firefox 上 conversationContainer 可能定位偏小，检查是否在同一滚动区域内
@@ -271,7 +300,7 @@ class QuickAskManager {
             if (convParent && convParent.contains(element)) return true;
         }
         
-        // 降级：timeline 未初始化时，限制在 <main> 区域内（排除侧边栏/导航）
+        // 降级：限制在 <main> 区域内（排除侧边栏/导航）
         if (element.closest('main, [role="main"]')) {
             return true;
         }
@@ -664,6 +693,7 @@ class QuickAskManager {
             this.buttonElement.remove();
             this.buttonElement = null;
         }
+        this._adapterRegistry = null;
     }
 }
 
