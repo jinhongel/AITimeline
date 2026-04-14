@@ -10,7 +10,7 @@
   </p>
   <p>
     <img src="https://img.shields.io/badge/用户-22,000+-brightgreen?style=flat-square" alt="Users">
-    <img src="https://img.shields.io/badge/许可证-MIT-green?style=flat-square" alt="License">
+    <img src="https://img.shields.io/badge/许可证-GPL--3.0-blue?style=flat-square" alt="License">
     <a href="https://github.com/houyanchao/AITimeline"><img src="https://img.shields.io/badge/GitHub-开源-181717?style=flat-square&logo=github" alt="GitHub"></a>
   </p>
 
@@ -114,21 +114,21 @@
 
 ## 🌐 支持平台
 
-| 平台 | 时间轴 | 智能输入 | 输入动画 | 快捷追问 | 提问时间 | 侧边栏收藏 | 回到底部 |
-|------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| ChatGPT | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
-| Gemini | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
-| Claude | ✅ | ✅ | — | ✅ | — | ✅ | — |
-| Kimi | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
-| 豆包 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
-| 千问 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
-| Qwen 国际版 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
-| Grok | ✅ | ✅ | ✅ | ✅ | — | — | — |
-| Perplexity | ✅ | ✅ | — | ✅ | — | — | — |
-| 元宝 | ✅ | ✅ | ✅ | ✅ | — | — | — |
-| 文心一言 | ✅ | — | — | ✅ | — | — | — |
-| NotebookLM | — | ✅ | — | ✅ | — | — | — |
+| 平台 | 时间轴 | 文本高亮 | 智能输入 | 输入动画 | 快捷追问 | 提问时间 | 侧边栏收藏 | 回到底部 |
+|------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| ChatGPT | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Gemini | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| DeepSeek | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Claude | ✅ | ✅ | ✅ | — | ✅ | — | ✅ | — |
+| Kimi | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| 豆包 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| 千问 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Qwen 国际版 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Grok | ✅ | ✅ | ✅ | ✅ | ✅ | — | — | — |
+| Perplexity | ✅ | ✅ | ✅ | — | ✅ | — | — | — |
+| 元宝 | ✅ | ✅ | ✅ | ✅ | ✅ | — | — | — |
+| 文心一言 | ✅ | ✅ | — | — | ✅ | — | — | — |
+| NotebookLM | — | ✅ | ✅ | — | ✅ | — | — | — |
 
 > 💡 **公式复制**和**代码运行器**不受平台限制，在所有页面上检测到对应内容即自动激活。
 
@@ -165,16 +165,12 @@
 - [ ] 通过隐藏对话节点解决 GPT 卡顿
 - [ ] 支持一键同步到 NotebookLM
 - [ ] 优化 Gemini 中 Canvas 自动打开
-- [ ] 数据云同步
+- [x] 数据云同步
 
 ## 💬 联系与反馈
 
 - **问题反馈**：[GitHub Issues](../../issues)
 - **邮件联系**：houyanchao@outlook.com
-
-## 📄 开源协议
-
-本项目基于 [MIT License](./LICENSE) 开源
 
 ## 🙏 致谢
 

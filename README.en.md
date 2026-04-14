@@ -10,7 +10,7 @@
   </p>
   <p>
     <img src="https://img.shields.io/badge/Users-22,000+-brightgreen?style=flat-square" alt="Users">
-    <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License">
+    <img src="https://img.shields.io/badge/License-GPL--3.0-blue?style=flat-square" alt="License">
     <a href="https://github.com/houyanchao/AITimeline"><img src="https://img.shields.io/badge/GitHub-Open_Source-181717?style=flat-square&logo=github" alt="GitHub"></a>
   </p>
 
@@ -114,21 +114,21 @@
 
 ## 🌐 Supported Platforms
 
-| Platform | Timeline | Smart Input | Animations | Quick Quote | Chat Times | Sidebar Bookmarks | Scroll to Bottom |
-|----------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| ChatGPT | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
-| Gemini | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
-| Claude | ✅ | ✅ | — | ✅ | — | ✅ | — |
-| Kimi | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
-| Doubao | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
-| Qwen | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
-| Qwen Intl | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
-| Grok | ✅ | ✅ | ✅ | ✅ | — | — | — |
-| Perplexity | ✅ | ✅ | — | ✅ | — | — | — |
-| Yuanbao | ✅ | ✅ | ✅ | ✅ | — | — | — |
-| Yiyan | ✅ | — | — | ✅ | — | — | — |
-| NotebookLM | — | ✅ | — | ✅ | — | — | — |
+| Platform | Timeline | Text Highlight | Smart Input | Animations | Quick Quote | Chat Times | Sidebar Bookmarks | Scroll to Bottom |
+|----------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| ChatGPT | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Gemini | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| DeepSeek | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Claude | ✅ | ✅ | ✅ | — | ✅ | — | ✅ | — |
+| Kimi | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Doubao | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Qwen | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Qwen Intl | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Grok | ✅ | ✅ | ✅ | ✅ | ✅ | — | — | — |
+| Perplexity | ✅ | ✅ | ✅ | — | ✅ | — | — | — |
+| Yuanbao | ✅ | ✅ | ✅ | ✅ | ✅ | — | — | — |
+| Yiyan | ✅ | ✅ | — | — | ✅ | — | — | — |
+| NotebookLM | — | ✅ | ✅ | — | ✅ | — | — | — |
 
 > 💡 **Formula Copy** and **Code Runner** work on all pages — they activate automatically when matching content is detected.
 
@@ -165,16 +165,12 @@ Supporting **42 languages** with global coverage.
 - [ ] Fix GPT lag by hiding conversation nodes
 - [ ] One-click sync to NotebookLM
 - [ ] Optimize Gemini Canvas auto-open
-- [ ] Cloud sync
+- [x] Cloud sync
 
 ## 💬 Contact & Support
 
 - **Bug reports**: [GitHub Issues](../../issues)
 - **Email**: houyanchao@outlook.com
-
-## 📄 License
-
-This project is open source under the [MIT License](./LICENSE)
 
 ## 🙏 Credits
 
