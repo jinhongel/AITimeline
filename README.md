@@ -9,7 +9,7 @@
     <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-timeline-ai"><img src="https://img.shields.io/badge/Firefox-安装-FF7139?style=for-the-badge&logo=firefoxbrowser&logoColor=white" alt="Firefox"></a>
   </p>
   <p>
-    <img src="https://img.shields.io/badge/用户-22,000+-brightgreen?style=flat-square" alt="Users">
+    <img src="https://img.shields.io/badge/用户-30,000+-brightgreen?style=flat-square" alt="Users">
     <img src="https://img.shields.io/badge/许可证-GPL--3.0-blue?style=flat-square" alt="License">
     <a href="https://github.com/houyanchao/AITimeline"><img src="https://img.shields.io/badge/GitHub-开源-181717?style=flat-square&logo=github" alt="GitHub"></a>
   </p>
