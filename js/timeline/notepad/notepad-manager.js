@@ -1,20 +1,23 @@
 /**
- * NotepadManager - 闪记管理器（单条模式）
+ * NotepadManager - 闪记管理器（多笔记模式）
  * 全局共享、持久化到 chrome.storage，纯文本
  * 拖拽 / 调整大小交互逻辑与 FloatingRunnerContainer 保持一致
- *
- * [多笔记模式已注释，后续可放开]
  */
 class NotepadManager {
     constructor() {
         this.panel = null;
         this.textarea = null;
+        this.listContainer = null;
+        this.listBtn = null;
+        this.addBtn = null;
         this.isOpen = false;
         this.saveTimeout = null;
 
         this.activeNoteId = null;
+        this.currentView = 'edit'; // 'edit' | 'list'
+        this.MAX_NOTES = 50;
 
-        // 笔记数组 [{id, content, updatedAt}]（单条模式下始终只有 1 条）
+        // 笔记数组 [{id, content, updatedAt}]
         this.notes = [];
 
         // 存储 key
@@ -56,8 +59,11 @@ class NotepadManager {
     async init() {
         this.createPanel();
         await this.loadNotes();
-        this._ensureSingleNote();
-        this._openSingleNote();
+        if (!this.notes.length) {
+            this.createNote();
+        } else {
+            this.openNote(this.notes[this.notes.length - 1].id);
+        }
         this.bindEvents();
     }
 
@@ -82,7 +88,6 @@ class NotepadManager {
                     ${chrome.i18n.getMessage('notepadTitle') || '闪记'}
                 </span>
                 <div class="ait-notepad-header-right">
-                    <!-- [多笔记模式] 列表/新增按钮，暂时隐藏
                     <button class="ait-notepad-list-btn" title="${chrome.i18n.getMessage('notepadAllNotes') || '全部笔记'}">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -103,7 +108,6 @@ class NotepadManager {
                             <line x1="5" y1="12" x2="19" y2="12"/>
                         </svg>
                     </button>
-                    -->
                     <button class="ait-notepad-close-btn" title="${chrome.i18n.getMessage('notepadClose') || '关闭'}">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -115,6 +119,7 @@ class NotepadManager {
                 </div>
             </div>
             <div class="ait-notepad-body">
+                <div class="ait-notepad-list"></div>
                 <textarea class="ait-notepad-editor" placeholder="${chrome.i18n.getMessage('notepadPlaceholder') || '想到什么就写什么，无需排版…'}"></textarea>
             </div>
             <div class="ait-notepad-resize-handle" data-direction="se"></div>
@@ -130,6 +135,9 @@ class NotepadManager {
         document.body.appendChild(panel);
         this.panel = panel;
         this.textarea = panel.querySelector('.ait-notepad-editor');
+        this.listContainer = panel.querySelector('.ait-notepad-list');
+        this.listBtn = panel.querySelector('.ait-notepad-list-btn');
+        this.addBtn = panel.querySelector('.ait-notepad-add-btn');
     }
 
     // ─── Events ───────────────────────────────────────────────────────────────
@@ -171,7 +179,6 @@ class NotepadManager {
             this.close();
         });
 
-        /* [多笔记模式] 列表/新增按钮事件，暂时注释
         this.listBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             this.showListView();
@@ -195,7 +202,6 @@ class NotepadManager {
                 this.openNote(item.dataset.id);
             }
         });
-        */
 
         this._onFocusCheck = (e) => {
             if (!this.isOpen || !this.panel) return;
@@ -219,13 +225,17 @@ class NotepadManager {
                 if (!newNotes || !newNotes.length) return;
 
                 this.notes = newNotes;
-                if (!this.isOpen || !this.activeNoteId) return;
+                if (!this.isOpen) return;
 
-                const note = this._getNoteById(this.activeNoteId);
-                if (note && note.content !== this.textarea.value) {
-                    this.textarea.value = note.content;
-                    const len = note.content.length;
-                    this.textarea.selectionStart = this.textarea.selectionEnd = len;
+                if (this.currentView === 'list') {
+                    this._renderList();
+                } else if (this.activeNoteId) {
+                    const note = this._getNoteById(this.activeNoteId);
+                    if (note && note.content !== this.textarea.value) {
+                        this.textarea.value = note.content;
+                        const len = note.content.length;
+                        this.textarea.selectionStart = this.textarea.selectionEnd = len;
+                    }
                 }
             }
         };
@@ -238,25 +248,7 @@ class NotepadManager {
         window.addEventListener('resize', this._onWindowResize);
     }
 
-    // ─── 单条模式 ─────────────────────────────────────────────────────────────
-
-    _ensureSingleNote() {
-        if (!this.notes.length) {
-            this.notes.push({
-                id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
-                content: '',
-                updatedAt: Date.now()
-            });
-        }
-    }
-
-    _openSingleNote() {
-        const note = this.notes[0];
-        this.activeNoteId = note.id;
-        this.textarea.value = note.content;
-    }
-
-    /* ─── [多笔记模式] 视图切换 / 列表渲染，暂时注释 ──────────────────────────
+    // ─── 视图切换 / 列表渲染 ──────────────────────────────────────────────────
 
     async renderCurrentView() {
         this._updateListBtnVisibility();
@@ -275,7 +267,8 @@ class NotepadManager {
         this.currentView = 'list';
         this.activeNoteId = null;
         this.textarea.style.display = 'none';
-        this.listContainer.style.display = '';
+        this.listContainer.style.display = 'flex';
+        this.listContainer.style.flexDirection = 'column';
         this._renderList();
     }
 
@@ -325,7 +318,7 @@ class NotepadManager {
         }).join('');
     }
 
-    ─── [多笔记模式] 笔记 CRUD ────────────────────────────────────────────────
+    // ─── 笔记 CRUD ──────────────────────────────────────────────────────────
 
     createNote() {
         if (this.notes.length >= this.MAX_NOTES) {
@@ -339,6 +332,7 @@ class NotepadManager {
             updatedAt: Date.now()
         };
         this.notes.push(note);
+        this.saveNotes();
         this.openNote(note.id);
     }
 
@@ -383,7 +377,7 @@ class NotepadManager {
         }
     }
 
-    ─── [多笔记模式] 文本工具 ─────────────────────────────────────────────────
+    // ─── 文本工具 ────────────────────────────────────────────────────────────
 
     _extractTitle(content) {
         if (!content) return '';
@@ -425,8 +419,6 @@ class NotepadManager {
         return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
-    ────────────────────────────────── [多笔记模式] END ──────────────────────── */
-
     _flushCurrentNote() {
         if (!this.activeNoteId || !this.textarea) return;
         const note = this._getNoteById(this.activeNoteId);
@@ -458,10 +450,12 @@ class NotepadManager {
         try {
             chrome.storage.local.set({ [this.NOTES_KEY]: this.notes }, () => {
                 this._isSaving = false;
+                if (chrome.runtime.lastError) {}
             });
         } catch (e) {
             this._isSaving = false;
         }
+        setTimeout(() => { this._isSaving = false; }, 2000);
     }
 
     async loadNotes() {
@@ -655,11 +649,16 @@ class NotepadManager {
         await this.loadNotes();
         if (!this.isOpen) return;
 
-        this._ensureSingleNote();
-        this._openSingleNote();
+        if (!this.notes.length) {
+            this.createNote();
+        } else if (this.activeNoteId) {
+            this.openNote(this.activeNoteId);
+        } else {
+            this.openNote(this.notes[this.notes.length - 1].id);
+        }
 
         requestAnimationFrame(() => {
-            if (!this.isOpen) return;
+            if (!this.isOpen || this.currentView !== 'edit') return;
             this.textarea.focus();
             const len = this.textarea.value.length;
             this.textarea.setSelectionRange(len, len);
@@ -745,6 +744,9 @@ class NotepadManager {
             this.panel = null;
         }
         this.textarea = null;
+        this.listContainer = null;
+        this.listBtn = null;
+        this.addBtn = null;
     }
 }
 
