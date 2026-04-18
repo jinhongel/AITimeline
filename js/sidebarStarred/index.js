@@ -30,7 +30,11 @@
     // ==================== Init with retry ====================
 
     function canInject() {
-        return adapter.findInsertionPoint() !== null;
+        const info = adapter.findInsertionPoint();
+        if (!info) return false;
+        const { parent } = info;
+        if (!parent || !parent.offsetParent || parent.offsetHeight <= 0) return false;
+        return true;
     }
 
     async function initialize(retryIndex) {
