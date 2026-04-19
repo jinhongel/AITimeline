@@ -60,7 +60,7 @@
         try {
             // 使用 window.initSqlJs 调用 sql.js 提供的全局初始化函数
             const SQL = await window.initSqlJs({
-                locateFile: file => `https://cdn.jsdelivr.net/npm/sql.js@1.8.0/dist/${file}`
+                locateFile: file => `libs/${file}`
             });
             
             // 创建内存数据库

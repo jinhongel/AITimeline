@@ -92,7 +92,7 @@
     /**
      * 检测代码语言类型（使用 Highlight.js）
      * @param {string} code - 代码文本
-     * @returns {string|null} 'javascript' | 'python' | 'typescript' | null
+     * @returns {string|null} 'javascript' | 'typescript' | 'sql' | null
      */
     function detectLanguage(code) {
         if (!window.LanguageDetector) {
@@ -142,7 +142,7 @@
      * 创建运行按钮
      * @param {HTMLElement} codeElement - code 元素
      * @param {HTMLElement} layoutContainer - 布局容器
-     * @param {string} language - 语言类型 'javascript' | 'python'
+     * @param {string} language - 语言类型
      * @param {Object} config - 代码块配置（可选）
      * @returns {HTMLElement}
      */
@@ -255,7 +255,7 @@
      * @param {string} code - 代码
      * @param {HTMLElement} contentEl - 输出容器
      * @param {HTMLElement} runButton - 运行按钮
-     * @param {string} language - 语言类型 'javascript' | 'python'
+     * @param {string} language - 语言类型
      */
     async function executeCode(code, contentEl, runButton, language = 'javascript') {
         if (!code.trim()) {
@@ -321,7 +321,7 @@
      * @param {HTMLElement} codeElement - code 元素
      * @param {HTMLElement} layoutContainer - 布局容器
      * @param {HTMLElement} runButton - 运行按钮
-     * @param {string} language - 语言类型 'javascript' | 'python'
+     * @param {string} language - 语言类型
      */
     async function handleRunClick(codeElement, layoutContainer, runButton, language = 'javascript') {
         // 确保布局容器有 position: relative
@@ -530,7 +530,7 @@
      * @param {HTMLElement} codeElement - code 元素
      * @param {HTMLElement} layoutContainer - 布局容器
      * @param {Object} config - 配置对象
-     * @param {Object} enabledLanguages - 已启用的语言 { javascript: boolean, python: boolean }
+     * @param {Object} enabledLanguages - 已启用的语言
      */
     function initializeCodeBlock(codeElement, layoutContainer, config, enabledLanguages) {
         // 跳过已处理的（已添加 Run 按钮的）
@@ -589,21 +589,6 @@
             const result = await chrome.storage.local.get('runnerJsEnabled');
             // 默认值为 true（开启）
             return result.runnerJsEnabled !== false;
-        } catch (e) {
-            // 上下文失效时静默返回 false
-            return false;
-        }
-    }
-
-    /**
-     * 检查 Python Runner 是否启用
-     * @returns {Promise<boolean>}
-     */
-    async function isPythonRunnerEnabled() {
-        try {
-            const result = await chrome.storage.local.get('runnerPythonEnabled');
-            // 默认值为 true（开启）
-            return result.runnerPythonEnabled !== false;
         } catch (e) {
             // 上下文失效时静默返回 false
             return false;
@@ -680,32 +665,6 @@
     }
 
     /**
-     * 检查 Lua Runner 是否启用
-     * @returns {Promise<boolean>}
-     */
-    async function isLuaRunnerEnabled() {
-        try {
-            const result = await chrome.storage.local.get('runnerLuaEnabled');
-            return result.runnerLuaEnabled !== false;
-        } catch (e) {
-            return false;
-        }
-    }
-
-    /**
-     * 检查 Ruby Runner 是否启用
-     * @returns {Promise<boolean>}
-     */
-    async function isRubyRunnerEnabled() {
-        try {
-            const result = await chrome.storage.local.get('runnerRubyEnabled');
-            return result.runnerRubyEnabled !== false;
-        } catch {
-            return false;
-        }
-    }
-
-    /**
      * 检查 Mermaid 渲染器是否启用
      * @returns {Promise<boolean>}
      */
@@ -726,14 +685,11 @@
      */
     async function isLanguageEnabled(language) {
         if (language === 'javascript') return isJavaScriptRunnerEnabled();
-        if (language === 'python') return isPythonRunnerEnabled();
         if (language === 'typescript') return isTypeScriptRunnerEnabled();
         if (language === 'sql') return isSQLRunnerEnabled();
         if (language === 'html') return isHtmlRunnerEnabled();
         if (language === 'json') return isJsonRunnerEnabled();
         if (language === 'markdown') return isMarkdownRunnerEnabled();
-        if (language === 'lua') return isLuaRunnerEnabled();
-        if (language === 'ruby') return isRubyRunnerEnabled();
         if (language === 'mermaid') return isMermaidRendererEnabled();
         return false;
     }
@@ -743,34 +699,28 @@
      */
     async function scanCodeBlocks() {
         // 检查各语言是否启用
-        const [jsEnabled, pyEnabled, tsEnabled, sqlEnabled, htmlEnabled, jsonEnabled, mdEnabled, luaEnabled, rubyEnabled, mermaidEnabled] = await Promise.all([
+        const [jsEnabled, tsEnabled, sqlEnabled, htmlEnabled, jsonEnabled, mdEnabled, mermaidEnabled] = await Promise.all([
             isJavaScriptRunnerEnabled(),
-            isPythonRunnerEnabled(),
             isTypeScriptRunnerEnabled(),
             isSQLRunnerEnabled(),
             isHtmlRunnerEnabled(),
             isJsonRunnerEnabled(),
             isMarkdownRunnerEnabled(),
-            isLuaRunnerEnabled(),
-            isRubyRunnerEnabled(),
             isMermaidRendererEnabled()
         ]);
         
         // 如果所有功能都禁用，不扫描
-        if (!jsEnabled && !pyEnabled && !tsEnabled && !sqlEnabled && !htmlEnabled && !jsonEnabled && !mdEnabled && !luaEnabled && !rubyEnabled && !mermaidEnabled) {
+        if (!jsEnabled && !tsEnabled && !sqlEnabled && !htmlEnabled && !jsonEnabled && !mdEnabled && !mermaidEnabled) {
             return;
         }
         
         const enabledLanguages = {
             javascript: jsEnabled,
-            python: pyEnabled,
             typescript: tsEnabled,
             sql: sqlEnabled,
             html: htmlEnabled,
             json: jsonEnabled,
             markdown: mdEnabled,
-            lua: luaEnabled,
-            ruby: rubyEnabled,
             mermaid: mermaidEnabled
         };
         
@@ -816,20 +766,17 @@
         }
 
         // 检查是否有任何语言启用
-        const [jsEnabled, pyEnabled, tsEnabled, sqlEnabled, htmlEnabled, jsonEnabled, mdEnabled, luaEnabled, rubyEnabled, mermaidEnabled] = await Promise.all([
+        const [jsEnabled, tsEnabled, sqlEnabled, htmlEnabled, jsonEnabled, mdEnabled, mermaidEnabled] = await Promise.all([
             isJavaScriptRunnerEnabled(),
-            isPythonRunnerEnabled(),
             isTypeScriptRunnerEnabled(),
             isSQLRunnerEnabled(),
             isHtmlRunnerEnabled(),
             isJsonRunnerEnabled(),
             isMarkdownRunnerEnabled(),
-            isLuaRunnerEnabled(),
-            isRubyRunnerEnabled(),
             isMermaidRendererEnabled()
         ]);
         
-        if (!jsEnabled && !pyEnabled && !tsEnabled && !sqlEnabled && !htmlEnabled && !jsonEnabled && !mdEnabled && !luaEnabled && !rubyEnabled && !mermaidEnabled) {
+        if (!jsEnabled && !tsEnabled && !sqlEnabled && !htmlEnabled && !jsonEnabled && !mdEnabled && !mermaidEnabled) {
             console.log('[Runner] All runners are disabled, skipping initialization');
             return;
         }

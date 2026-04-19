@@ -5,31 +5,7 @@
     <title>TypeScript Sandbox</title>
 </head>
 <body>
-    <script>
-        // 动态加载 TypeScript 编译器
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/typescript@5.3.3/lib/typescript.min.js';
-        script.onload = function() {
-            // TypeScript 加载完成后，加载 sandbox-script.js
-            const sandboxScript = document.createElement('script');
-            sandboxScript.src = 'sandbox-script.js';
-            document.body.appendChild(sandboxScript);
-        };
-        script.onerror = function() {
-            if (window.parent && window.parent !== window) {
-                window.parent.postMessage({
-                    type: 'TS_ERROR',
-                    data: { message: '无法加载 TypeScript 编译器，请检查网络连接' }
-                }, '*');
-                // 发送完成消息，避免超时等待
-                window.parent.postMessage({
-                    type: 'TS_COMPLETE',
-                    data: { success: false, duration: 0, error: '无法加载 TypeScript 编译器' }
-                }, '*');
-            }
-        };
-        document.head.appendChild(script);
-    </script>
+    <script src="libs/typescript.min.js"></script>
+    <script src="sandbox-script.js"></script>
 </body>
 </html>
-

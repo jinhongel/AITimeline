@@ -354,10 +354,7 @@ function platformSupportsFeature(platformId, feature) {
 const RUNNER_LANGUAGES = [
     { id: 'javascript', name: 'JavaScript', mode: 'javascript', storageKey: 'runnerJsEnabled', runnerClass: 'JavaScriptRunner', hljsLang: 'javascript' },
     { id: 'typescript', name: 'TypeScript', mode: 'javascript', storageKey: 'runnerTypeScriptEnabled', runnerClass: 'TypeScriptRunner', hljsLang: 'typescript' },
-    { id: 'python', name: 'Python', mode: 'python', storageKey: 'runnerPythonEnabled', runnerClass: 'PythonRunner', hljsLang: 'python' },
     { id: 'sql', name: 'SQL', mode: 'sql', storageKey: 'runnerSQLEnabled', runnerClass: 'SQLRunner', hljsLang: 'sql' },
-    { id: 'lua', name: 'Lua', mode: 'lua', storageKey: 'runnerLuaEnabled', runnerClass: 'LuaRunner', hljsLang: 'lua' },
-    { id: 'ruby', name: 'Ruby', mode: 'ruby', storageKey: 'runnerRubyEnabled', runnerClass: 'RubyRunner', hljsLang: 'ruby' },
     { id: 'html', name: 'HTML', mode: 'htmlmixed', storageKey: 'runnerHtmlEnabled', runnerClass: 'HtmlRunner', hljsLang: 'xml' },
     { id: 'json', name: 'JSON', mode: 'javascript', storageKey: 'runnerJsonEnabled', runnerClass: 'JsonRunner', hljsLang: 'json' },
     { id: 'markdown', name: 'Markdown', mode: 'markdown', storageKey: 'runnerMarkdownEnabled', runnerClass: 'MarkdownRunner', hljsLang: 'markdown' },

@@ -2,7 +2,7 @@
  * Runner Tab - 代码运行器设置
  * 
  * 功能：
- * - 管理各语言代码块运行功能的开关（JS、Python 等）
+ * - 管理各语言代码块运行功能的开关
  * - 默认开启
  */
 
@@ -90,8 +90,6 @@ class RunnerTab extends BaseTab {
             
             if (lang.id === 'javascript') {
                 this._handleJavaScriptToggle(enabled);
-            } else if (lang.id === 'python') {
-                this._handlePythonToggle(enabled);
             } else if (lang.id === 'typescript') {
                 this._handleTypeScriptToggle(enabled);
             } else if (lang.id === 'sql') {
@@ -102,10 +100,6 @@ class RunnerTab extends BaseTab {
                 this._handleJsonToggle(enabled);
             } else if (lang.id === 'markdown') {
                 this._handleMarkdownToggle(enabled);
-            } else if (lang.id === 'lua') {
-                this._handleLuaToggle(enabled);
-            } else if (lang.id === 'ruby') {
-                this._handleRubyToggle(enabled);
             } else if (lang.id === 'mermaid') {
                 this._handleMermaidToggle(enabled);
             }
@@ -131,22 +125,6 @@ class RunnerTab extends BaseTab {
         } else {
             // 关闭功能：移除 JavaScript 的 Run 按钮
             this._removeRunButtonsByLanguage('javascript');
-        }
-    }
-    
-    /**
-     * 处理 Python 运行器开关
-     */
-    _handlePythonToggle(enabled) {
-        if (enabled) {
-            // 开启功能
-            if (window.Runner) {
-                // 重新扫描页面，添加 Run 按钮
-                window.Runner.scan();
-            }
-        } else {
-            // 关闭功能：移除 Python 的 Run 按钮
-            this._removeRunButtonsByLanguage('python');
         }
     }
     
@@ -215,32 +193,6 @@ class RunnerTab extends BaseTab {
             }
         } else {
             this._removeRunButtonsByLanguage('markdown');
-        }
-    }
-    
-    /**
-     * 处理 Lua 运行器开关
-     */
-    _handleLuaToggle(enabled) {
-        if (enabled) {
-            if (window.Runner) {
-                window.Runner.scan();
-            }
-        } else {
-            this._removeRunButtonsByLanguage('lua');
-        }
-    }
-    
-    /**
-     * 处理 Ruby 运行器开关
-     */
-    _handleRubyToggle(enabled) {
-        if (enabled) {
-            if (window.Runner) {
-                window.Runner.scan();
-            }
-        } else {
-            this._removeRunButtonsByLanguage('ruby');
         }
     }
     
