@@ -81,9 +81,8 @@ class NotepadManager {
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         width="16" height="16">
-                        <path d="M9 18h6"/>
-                        <path d="M10 22h4"/>
-                        <path d="M12 2a7 7 0 0 0-4 12.7V16a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-1.3A7 7 0 0 0 12 2Z"/>
+                        <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                        <path d="m15 5 4 4"/>
                     </svg>
                     ${chrome.i18n.getMessage('notepadTitle') || '闪记'}
                 </span>
@@ -321,6 +320,11 @@ class NotepadManager {
     // ─── 笔记 CRUD ──────────────────────────────────────────────────────────
 
     createNote() {
+        if (this.activeNoteId) {
+            const current = this._getNoteById(this.activeNoteId);
+            if (current && !current.content.trim()) return;
+        }
+
         if (this.notes.length >= this.MAX_NOTES) {
             const sorted = [...this.notes].sort((a, b) => a.updatedAt - b.updatedAt);
             this.notes = this.notes.filter(n => n.id !== sorted[0].id);
@@ -374,6 +378,10 @@ class NotepadManager {
             this.createNote();
         } else {
             this._renderList();
+        }
+
+        if (this.isOpen && this.panel) {
+            this.panel.classList.add('ait-notepad-focused');
         }
     }
 
